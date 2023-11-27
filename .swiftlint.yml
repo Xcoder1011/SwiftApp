@@ -1,0 +1,80 @@
+disabled_rules: # rule identifiers to exclude from running
+  - missing_docs
+  - unused_closure_parameter # 函数的参数必须被使用
+  - inclusive_language
+  - identifier_name  # 参数变量命名规则
+  - trailing_newline  #文件末尾应该有一个空行
+  - vertical_whitespace #不能有连续多个空行
+  - unused_optional_binding #在使用if判断某变量是否为nil的时候, 不建议使用下划线(_) 必须使用定义的 optional binding
+
+opt_in_rules: # some rules are only opt-in
+  - empty_count # 容器 使用 isEmpty 代替 count 判断是否为空
+# Find all the available rules by running:
+# swiftlint rules
+
+included: # paths to include during linting. `--path` is ignored if present.
+  - SwiftApp
+
+excluded: # paths to ignore during linting. Takes precedence over `included`.
+  - Pods
+  - SwiftApp/Resources/R.generated.swift
+  - SwiftApp/Networking/GraphQL/API.swift
+
+# configurable rules can be customized from this configuration file
+# binary rules can set their severity level
+force_cast: warning # implicitly
+force_try:
+  severity: warning # explicitly
+
+# rules that have both warning and error levels, can set just the warning level
+# implicitly
+line_length: 300
+
+function_body_length:
+  - 400 # warning
+  - 500 # error
+
+function_parameter_count:
+  - 10 # warning
+  - 15 # error
+
+large_tuple:
+  - 6 # warning
+  - 12 # error
+
+# they can set both implicitly with an array
+type_body_length:
+  - 400 # warning
+  - 500 # error
+
+# or they can set both explicitly
+file_length:
+  warning: 1000
+  error: 2000
+
+#cyclomatic_complexity:
+#  - 15 # warning
+#  - 30 # error
+
+# naming rules can set warnings/errors for min_length and max_length
+# additionally they can set excluded names
+type_name:
+  min_length: 3 # only warning
+  max_length: # warning and error
+    warning: 40
+    error: 50
+  excluded: # excluded via string
+    - T
+    - E
+
+identifier_name:
+  min_length: # only min_length
+    error: 3 # only error
+  excluded: # excluded via string array
+    - vc
+    - id
+    - in
+    - kf
+    - x
+    - y
+

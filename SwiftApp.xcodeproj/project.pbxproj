@@ -103,6 +103,7 @@
 				BC039E4D2B137F7D00EA4CC9 /* Frameworks */,
 				BC039E4E2B137F7D00EA4CC9 /* Resources */,
 				4D7762FD228C105C88B857FC /* [CP] Embed Pods Frameworks */,
+				BC4398B82B1477C50042087C /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -198,6 +199,23 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SwiftApp/Pods-SwiftApp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		BC4398B82B1477C50042087C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
