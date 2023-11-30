@@ -8,19 +8,12 @@
 import Foundation
 import UIKit
 
-class Application: NSObject {
+class Application {
     static let shared = Application()
+    private init() {}
     
     var window: UIWindow?
-    
-    init(window: UIWindow? = nil) {
-        self.window = window
-    }
-    
-    override init() {
-        super.init()
-    }
-    
+
     func initialScreenWindow(in window: UIWindow?) {
         guard let window = window else { return }
         self.window = window

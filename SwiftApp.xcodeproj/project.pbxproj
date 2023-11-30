@@ -13,6 +13,7 @@
 		BC039E5D2B137F8000EA4CC9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC039E5C2B137F8000EA4CC9 /* Assets.xcassets */; };
 		BC039E602B137F8000EA4CC9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC039E5E2B137F8000EA4CC9 /* LaunchScreen.storyboard */; };
 		BCA509862B18CBF100C37801 /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA509852B18CBF100C37801 /* Application.swift */; };
+		BCA5098D2B18E53E00C37801 /* LibsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA5098C2B18E53E00C37801 /* LibsManager.swift */; };
 		E17F29D62C5E53FAEE0403F7 /* Pods_SwiftApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CF8DFED88B4E0DECA182607 /* Pods_SwiftApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -26,6 +27,7 @@
 		BC039E5F2B137F8000EA4CC9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BC039E612B137F8000EA4CC9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BCA509852B18CBF100C37801 /* Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
+		BCA5098C2B18E53E00C37801 /* LibsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibsManager.swift; sourceTree = "<group>"; };
 		C453D7D0CFE14089DE78EC9D /* Pods-SwiftApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftApp.debug.xcconfig"; path = "Target Support Files/Pods-SwiftApp/Pods-SwiftApp.debug.xcconfig"; sourceTree = "<group>"; };
 		CFDFDE8DEC4272F6253D362E /* Pods-SwiftApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftApp.release.xcconfig"; path = "Target Support Files/Pods-SwiftApp/Pods-SwiftApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -80,8 +82,9 @@
 		BC039E522B137F7D00EA4CC9 /* SwiftApp */ = {
 			isa = PBXGroup;
 			children = (
+				BCA5098B2B18E51F00C37801 /* Managers */,
 				BCA509842B18CBA400C37801 /* Application */,
-				BC039E572B137F7D00EA4CC9 /* ViewController.swift */,
+				BCA509892B18E4E800C37801 /* Modules */,
 				BC039E592B137F7D00EA4CC9 /* Main.storyboard */,
 				BC039E5C2B137F8000EA4CC9 /* Assets.xcassets */,
 				BC039E5E2B137F8000EA4CC9 /* LaunchScreen.storyboard */,
@@ -97,6 +100,30 @@
 				BCA509852B18CBF100C37801 /* Application.swift */,
 			);
 			path = Application;
+			sourceTree = "<group>";
+		};
+		BCA509892B18E4E800C37801 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				BCA5098A2B18E4F100C37801 /* Main */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		BCA5098A2B18E4F100C37801 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				BC039E572B137F7D00EA4CC9 /* ViewController.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		BCA5098B2B18E51F00C37801 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				BCA5098C2B18E53E00C37801 /* LibsManager.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -233,6 +260,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BCA509862B18CBF100C37801 /* Application.swift in Sources */,
+				BCA5098D2B18E53E00C37801 /* LibsManager.swift in Sources */,
 				BC039E582B137F7D00EA4CC9 /* ViewController.swift in Sources */,
 				BC039E542B137F7D00EA4CC9 /* AppDelegate.swift in Sources */,
 			);
