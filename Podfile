@@ -7,7 +7,14 @@ target 'SwiftApp' do
   
   pod 'RxSwift', '6.6.0'  #https://github.com/ReactiveX/RxSwift
   pod 'RxCocoa', '6.6.0'
-
+  
+  # Rx Extensions
+  pod 'RxDataSources', '~> 5.0'  # https://github.com/RxSwiftCommunity/RxDataSources
+  pod 'RxSwiftExt', '~> 6.0'  # https://github.com/RxSwiftCommunity/RxSwiftExt
+  pod 'NSObject+Rx', '~> 5.0'  # https://github.com/RxSwiftCommunity/NSObject-Rx
+  pod 'RxViewController', '~> 2.0'  # https://github.com/devxoul/RxViewController
+  
+  
   # Tools
   pod 'R.swift', '7.3.2'  # https://github.com/mac-cain13/R.swift
   pod 'SwiftLint', '0.51.0'  # https://github.com/realm/SwiftLint
@@ -17,6 +24,29 @@ target 'SwiftApp' do
   
   # Image
   pod 'Kingfisher', '~> 7.0'  # https://github.com/onevcat/Kingfisher
+  
+  # Date
+  pod 'DateToolsSwift', '~> 5.0'  # https://github.com/MatthewYork/DateTools
+  pod 'SwiftDate', '~> 7.0'  # https://github.com/malcommac/SwiftDate
+  
+  # Keychain
+  pod 'KeychainAccess', '~> 4.0'  # https://github.com/kishikawakatsumi/KeychainAccess
+  
+  # UI
+  pod 'SVProgressHUD', '~> 2.0'  # https://github.com/SVProgressHUD/SVProgressHUD
+  # pod 'ImageSlideshow/Kingfisher', :git => 'https://github.com/khoren93/ImageSlideshow.git', :branch => 'master'   # https://github.com/zvonicek/ImageSlideshow
+  pod 'DZNEmptyDataSet', '~> 1.0'  # https://github.com/dzenbot/DZNEmptyDataSet
+  pod 'KafkaRefresh', '~> 1.0'  # https://github.com/OpenFeyn/KafkaRefresh
 
-     
+  # Keyboard
+   pod 'IQKeyboardManagerSwift', '~> 6.0'  # https://github.com/hackiftekhar/IQKeyboardManager
+
+   # Auto Layout
+   pod 'SnapKit', '~> 5.0'  # https://github.com/SnapKit/SnapKit
+
+   # Logging
+   pod 'CocoaLumberjack/Swift', '~> 3.0'  # https://github.com/CocoaLumberjack/CocoaLumberjack
+
+  
+  
 end
