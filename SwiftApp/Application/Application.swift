@@ -8,20 +8,21 @@
 import Foundation
 import UIKit
 
-class Application {
+class Application: NSObject {
     static let shared = Application()
-    private init() {}
+    
+    private override init() {
+        navigator = Navigator.default
+        super.init()
+    }
         
     var window: UIWindow?
+    let navigator: Navigator
 
     func initialScreenWindow(in window: UIWindow?) {
         guard let window = window else { return }
         self.window = window
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromLeft, animations: {
-                window.rootViewController = UINavigationController(rootViewController: ViewController())
-            }, completion: nil)
-        }
+        self.navigator.show(scene: .navHome, sender: nil, transition: .root(in: window))
     }
 }
 

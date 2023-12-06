@@ -6,7 +6,7 @@ import RxCocoa
 let minimalUsernameLength = 5
 let minimalPasswordLength = 5
 
-class SimpleValidationViewController : ViewController {
+class SimpleValidationViewController : BaseViewController {
 
     @IBOutlet weak var usernameOutlet: UITextField!
     @IBOutlet weak var usernameValidOutlet: UILabel!

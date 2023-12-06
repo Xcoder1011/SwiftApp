@@ -30,11 +30,7 @@ extension MySection: AnimatableSectionModelType {
     }
 }
 
-class ViewController: UIViewController {
-    
-    var tableView: UITableView?
-    
-    let disposeBag = DisposeBag()
+class ViewController: TableViewController {
     
     let dataSource = RxTableViewSectionedAnimatedDataSource<MySection>(
         configureCell: { _, tableView, indexPath, item in
@@ -49,9 +45,8 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView = UITableView(frame: view.frame, style: .plain)
-        tableView?.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
-        view.addSubview(tableView!)
+        navigationItem.title = "RxSwift + Moya + MVVM"
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         
         let dataSource = self.dataSource
         
@@ -68,13 +63,9 @@ class ViewController: UIViewController {
             ])
         ])
         
-        items.bind(to: tableView!.rx.items(dataSource: dataSource)).disposed(by: disposeBag)
+        items.bind(to: tableView.rx.items(dataSource: dataSource)).disposed(by: disposeBag)
         
-        tableView!.rx
-            .setDelegate(self)
-            .disposed(by: disposeBag)
-        
-        tableView!.rx.itemSelected
+        tableView.rx.itemSelected
             .map { indexPath in
                 return (indexPath, dataSource[indexPath])
             }

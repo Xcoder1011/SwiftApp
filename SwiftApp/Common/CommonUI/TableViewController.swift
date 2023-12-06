@@ -32,6 +32,11 @@ class TableViewController: BaseViewController, UIScrollViewDelegate {
     
     override func makeUI() {
         super.makeUI()
+        
+        self.contentView.addSubview(tableView)
+        tableView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
 
         tableView.bindGlobalStyle(forHeadRefreshHandler: { [weak self] in
             self?.headerRefreshTrigger.onNext(())

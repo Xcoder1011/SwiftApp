@@ -9,6 +9,8 @@ import UIKit
 import RxSwift
 import RxCocoa
 import DZNEmptyDataSet
+import SwiftUI
+import SnapKit
 
 class BaseViewController: UIViewController, NavigatorProtocol {
     
@@ -36,6 +38,15 @@ class BaseViewController: UIViewController, NavigatorProtocol {
         super.init(nibName: nil, bundle: nil)
     }
     
+    lazy var contentView: UIView = {
+        let view = UIView(frame: self.view.bounds)
+        self.view.addSubview(view)
+        view.snp.makeConstraints { (make) in
+            make.edges.equalTo(self.view.safeAreaLayoutGuide)
+        }
+        return view
+    }()
+    
     override func viewDidLoad() {
         makeUI()
         bindViewModel()
@@ -46,7 +57,7 @@ class BaseViewController: UIViewController, NavigatorProtocol {
     }
     
     func makeUI() {
-        view.backgroundColor = .white
+        self.contentView.backgroundColor = .white
     }
     
     func bindViewModel() {
