@@ -33,8 +33,8 @@ class Navigator {
     func getController(scene: Scene) -> UIViewController? {
         switch scene {
         case .simpleValidation(let viewModel): return SimpleValidationViewController(viewModel: viewModel, navigator: self)
-        case .home : return ViewController(viewModel: nil, navigator: self)
-        case .navHome : return NavigationController(rootViewController: ViewController(viewModel: nil, navigator: self)) 
+        case .home: return ViewController(viewModel: nil, navigator: self)
+        case .navHome: return NavigationController(rootViewController: ViewController(viewModel: nil, navigator: self))
         }
     }
     

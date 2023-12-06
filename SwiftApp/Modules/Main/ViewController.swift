@@ -9,26 +9,6 @@ import UIKit
 import RxSwift
 import RxCocoa
 import RxDataSources
-import Differentiator
-
-struct MySection {
-    var header: String
-    var items: [Item]
-}
-
-extension MySection: AnimatableSectionModelType {
-    //    typealias Item = Int
-    typealias Item = String
-    
-    var identity: String {
-        return header
-    }
-    
-    init(original: MySection, items: [Item]) {
-        self = original
-        self.items = items
-    }
-}
 
 class ViewController: TableViewController {
     

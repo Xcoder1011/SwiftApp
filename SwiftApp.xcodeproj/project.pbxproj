@@ -25,6 +25,9 @@
 		BC2952852B2042AF008FCD51 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2952842B2042AF008FCD51 /* R.generated.swift */; };
 		BC29528E2B204A5C008FCD51 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BC2952902B204A5C008FCD51 /* Localizable.strings */; };
 		BC2952932B2057DA008FCD51 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2952922B2057DA008FCD51 /* NavigationController.swift */; };
+		BC2952952B2063D2008FCD51 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2952942B2063D2008FCD51 /* ThemeManager.swift */; };
+		BC29529C2B20CD49008FCD51 /* CommonAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC29529B2B20CD49008FCD51 /* CommonAPI.swift */; };
+		BC29529E2B20CE51008FCD51 /* MySection.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC29529D2B20CE51008FCD51 /* MySection.swift */; };
 		BCA509862B18CBF100C37801 /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA509852B18CBF100C37801 /* Application.swift */; };
 		BCA5098D2B18E53E00C37801 /* LibsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA5098C2B18E53E00C37801 /* LibsManager.swift */; };
 		E17F29D62C5E53FAEE0403F7 /* Pods_SwiftApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CF8DFED88B4E0DECA182607 /* Pods_SwiftApp.framework */; };
@@ -53,6 +56,9 @@
 		BC29528F2B204A5C008FCD51 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		BC2952912B204AB7008FCD51 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		BC2952922B2057DA008FCD51 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
+		BC2952942B2063D2008FCD51 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
+		BC29529B2B20CD49008FCD51 /* CommonAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonAPI.swift; sourceTree = "<group>"; };
+		BC29529D2B20CE51008FCD51 /* MySection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySection.swift; sourceTree = "<group>"; };
 		BCA509852B18CBF100C37801 /* Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
 		BCA5098C2B18E53E00C37801 /* LibsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibsManager.swift; sourceTree = "<group>"; };
 		C453D7D0CFE14089DE78EC9D /* Pods-SwiftApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftApp.debug.xcconfig"; path = "Target Support Files/Pods-SwiftApp/Pods-SwiftApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -109,6 +115,7 @@
 		BC039E522B137F7D00EA4CC9 /* SwiftApp */ = {
 			isa = PBXGroup;
 			children = (
+				BC2952962B20CCC0008FCD51 /* Networking */,
 				BC2952832B20308F008FCD51 /* Resources */,
 				BC2952792B202662008FCD51 /* Third Party */,
 				BC2952632B201D6E008FCD51 /* Common */,
@@ -186,6 +193,14 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		BC2952962B20CCC0008FCD51 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				BC29529B2B20CD49008FCD51 /* CommonAPI.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
 		BCA509842B18CBA400C37801 /* Application */ = {
 			isa = PBXGroup;
 			children = (
@@ -209,6 +224,7 @@
 			isa = PBXGroup;
 			children = (
 				BC039E572B137F7D00EA4CC9 /* ViewController.swift */,
+				BC29529D2B20CE51008FCD51 /* MySection.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -218,6 +234,7 @@
 			children = (
 				BC2952802B2027EF008FCD51 /* LogManager.swift */,
 				BCA5098C2B18E53E00C37801 /* LibsManager.swift */,
+				BC2952942B2063D2008FCD51 /* ThemeManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -389,8 +406,11 @@
 				BC29527F2B202663008FCD51 /* ActivityIndicator.swift in Sources */,
 				BC2952932B2057DA008FCD51 /* NavigationController.swift in Sources */,
 				BC2952762B20236D008FCD51 /* TableViewController.swift in Sources */,
+				BC29529C2B20CD49008FCD51 /* CommonAPI.swift in Sources */,
 				BC2952712B202144008FCD51 /* SimpleValidationViewModel.swift in Sources */,
+				BC29529E2B20CE51008FCD51 /* MySection.swift in Sources */,
 				BC2952742B20226D008FCD51 /* TableView.swift in Sources */,
+				BC2952952B2063D2008FCD51 /* ThemeManager.swift in Sources */,
 				BCA5098D2B18E53E00C37801 /* LibsManager.swift in Sources */,
 				BC039E582B137F7D00EA4CC9 /* ViewController.swift in Sources */,
 				BC2952652B201D9E008FCD51 /* ViewModel.swift in Sources */,

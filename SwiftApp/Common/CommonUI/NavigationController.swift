@@ -6,10 +6,6 @@
 //
 
 import UIKit
-import RxSwift
-import RxCocoa
-
-let globalStatusBarStyle = BehaviorRelay<UIStatusBarStyle>(value: .default)
 
 class NavigationController: UINavigationController {
     override var preferredStatusBarStyle: UIStatusBarStyle {
