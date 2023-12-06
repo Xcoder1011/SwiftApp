@@ -10,12 +10,20 @@ import RxSwift
 import RxCocoa
 import DZNEmptyDataSet
 
-class BaseViewController: UIViewController {
+class BaseViewController: UIViewController, NavigatorProtocol {
     
     var viewModel: ViewModel?
     var navigator: Navigator!
     let isLoading = BehaviorRelay(value: false)
     
+    let emptyDataSetButtonTap = PublishSubject<Void>()
+    var emptyDataSetTitle = R.string.localizable.commonNoResults.developmentValue
+    var emptyDataSetDescription = ""
+    var emptyDataSetImage = R.image.empty()
+    var emptyDataSetImageTintColor = BehaviorRelay<UIColor?>(value: nil)
+    
+    let languageChanged = BehaviorRelay<Void>(value: ())
+
     let disposeBag = DisposeBag()
 
     init(viewModel: ViewModel?, navigator: Navigator) {
@@ -31,6 +39,10 @@ class BaseViewController: UIViewController {
     override func viewDidLoad() {
         makeUI()
         bindViewModel()
+        
+        NotificationCenter.default.rx.notification(NSNotification.Name.SKLanguageChangeNotification).subscribe({ [weak self] (event) in
+            self?.languageChanged.accept(())
+        }).disposed(by: disposeBag)
     }
     
     func makeUI() {
@@ -43,5 +55,51 @@ class BaseViewController: UIViewController {
         isLoading.subscribe(onNext: { isLoading in
             UIApplication.shared.isNetworkActivityIndicatorVisible = isLoading
         }).disposed(by: disposeBag)
+        
+        languageChanged.subscribe(onNext: {[weak self] () in
+            self?.emptyDataSetTitle = R.string.localizable.commonNoResults.developmentValue
+        }).disposed(by: disposeBag)
+    }
+}
+
+extension BaseViewController: DZNEmptyDataSetSource {
+
+    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        return NSAttributedString(string: emptyDataSetTitle ?? "")
+    }
+
+    func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        return NSAttributedString(string: emptyDataSetDescription)
+    }
+
+    func image(forEmptyDataSet scrollView: UIScrollView!) -> UIImage! {
+        return emptyDataSetImage
+    }
+
+    func imageTintColor(forEmptyDataSet scrollView: UIScrollView!) -> UIColor! {
+        return emptyDataSetImageTintColor.value
+    }
+
+    func backgroundColor(forEmptyDataSet scrollView: UIScrollView!) -> UIColor! {
+        return .clear
+    }
+
+    func verticalOffset(forEmptyDataSet scrollView: UIScrollView!) -> CGFloat {
+        return -60
+    }
+}
+
+extension BaseViewController: DZNEmptyDataSetDelegate {
+
+    func emptyDataSetShouldDisplay(_ scrollView: UIScrollView!) -> Bool {
+        return !isLoading.value
+    }
+
+    func emptyDataSetShouldAllowScroll(_ scrollView: UIScrollView!) -> Bool {
+        return true
+    }
+
+    func emptyDataSet(_ scrollView: UIScrollView!, didTap button: UIButton!) {
+        emptyDataSetButtonTap.onNext(())
     }
 }

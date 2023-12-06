@@ -11,7 +11,7 @@ import UIKit
 class Application {
     static let shared = Application()
     private init() {}
-    
+        
     var window: UIWindow?
 
     func initialScreenWindow(in window: UIWindow?) {
@@ -23,4 +23,10 @@ class Application {
             }, completion: nil)
         }
     }
+}
+
+
+extension Notification.Name {
+    public static let SKLanguageChangeNotification =
+        Notification.Name("com.kun.SwiftApp.SKLanguageChangeNotification")
 }

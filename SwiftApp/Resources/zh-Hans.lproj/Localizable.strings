@@ -1,0 +1,9 @@
+/* 
+  Localizable.strings
+  SwiftApp
+
+  Created by KUN on 2023/12/6.
+  
+*/
+"Common.NoResults" = "没有结果";
+

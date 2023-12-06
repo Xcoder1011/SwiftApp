@@ -8,6 +8,10 @@
 import Foundation
 import UIKit
 
+protocol NavigatorProtocol {
+    var navigator: Navigator! { get set }
+}
+
 class Navigator {
     static var `default` = Navigator()
     
@@ -17,7 +21,7 @@ class Navigator {
     
     func getController(scene: Scene) -> UIViewController? {
         switch scene {
-        case .simpleValidation(_): return SimpleValidationViewController()
+            case .simpleValidation(_): return SimpleValidationViewController()
         }
     }
     
