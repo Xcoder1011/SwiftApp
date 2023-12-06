@@ -17,7 +17,8 @@ struct MySection {
 }
 
 extension MySection: AnimatableSectionModelType {
-    typealias Item = Int
+    //    typealias Item = Int
+    typealias Item = String
     
     var identity: String {
         return header
@@ -32,9 +33,19 @@ extension MySection: AnimatableSectionModelType {
 class ViewController: UIViewController {
     
     var tableView: UITableView?
-    var dataSource: RxTableViewSectionedAnimatedDataSource<MySection>?
     
     let disposeBag = DisposeBag()
+    
+    let dataSource = RxTableViewSectionedAnimatedDataSource<MySection>(
+        configureCell: { _, tableView, indexPath, item in
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") ?? UITableViewCell(style: .default, reuseIdentifier: "Cell")
+            cell.textLabel?.text = "\(item)"
+            return cell
+        },
+        titleForHeaderInSection: { dataSource, sectionIndex in
+            return dataSource.sectionModels[sectionIndex].header
+        }
+    )
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,50 +53,57 @@ class ViewController: UIViewController {
         tableView?.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         view.addSubview(tableView!)
         
-        let dataSource = RxTableViewSectionedAnimatedDataSource<MySection>(
-            configureCell: { ds, tv, _, item in
-                let cell = tv.dequeueReusableCell(withIdentifier: "Cell") ?? UITableViewCell(style: .default, reuseIdentifier: "Cell")
-                cell.textLabel?.text = "Item \(item)"
-                
-                return cell
-            },
-            titleForHeaderInSection: { ds, index in
-                return ds.sectionModels[index].header
-            }
-        )
+        let dataSource = self.dataSource
         
-        self.dataSource = dataSource
-        
-        let sections = [
-            MySection(header: "First section", items: [
-                1,
-                2
+        let items = Observable.just([
+            MySection(header: "MVVM", items: [
+                "SimpleValidation",
+                "MVVM 设计模式"
             ]),
-            MySection(header: "Second section", items: [
-                3,
-                4
+            MySection(header: "RxFeedback", items: [
+                "反馈循环架构"
+            ]),
+            MySection(header: "ReactorKit ", items: [
+                "结合了 Flux 和响应式编程的架构"
             ])
-        ]
+        ])
         
-        Observable.just(sections).bind(to: tableView!.rx.items(dataSource: dataSource)).disposed(by: disposeBag)
+        items.bind(to: tableView!.rx.items(dataSource: dataSource)).disposed(by: disposeBag)
         
-        tableView!.rx.setDelegate(self)
+        tableView!.rx
+            .setDelegate(self)
             .disposed(by: disposeBag)
         
+        tableView!.rx.itemSelected
+            .map { indexPath in
+                return (indexPath, dataSource[indexPath])
+            }
+            .subscribe(onNext: { indexPath, item in
+                let message = "Tapped `\(item)` @ \(indexPath)"
+                let alertView = UIAlertController(title: "SwiftApp", message: message, preferredStyle: .alert)
+                alertView.addAction(UIAlertAction(title: "OK", style: .cancel) { _ in
+                })
+                rootViewController().present(alertView, animated: true, completion: nil)
+            })
+            .disposed(by: disposeBag)
     }
 }
 
 extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
-        guard let item = dataSource?[indexPath],
-              dataSource?[indexPath.section] != nil
-        else {
-            return 0.0
-        }
-        
-        return CGFloat(40 + item * 10)
+        let item = dataSource[indexPath]
+        let section = dataSource[indexPath.section]
+        print("item = \(item)")
+        print("section = \(section)")
+        return 40
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 40
     }
 }
 
+private func rootViewController() -> UIViewController {
+    return UIApplication.shared.keyWindow!.rootViewController!
+}
 
