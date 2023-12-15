@@ -11,6 +11,7 @@ import RxCocoa
 import DZNEmptyDataSet
 import SwiftUI
 import SnapKit
+import SVProgressHUD
 
 class BaseViewController: UIViewController, NavigatorProtocol {
     
@@ -60,10 +61,18 @@ class BaseViewController: UIViewController, NavigatorProtocol {
         self.contentView.backgroundColor = .white
     }
     
+    func startAnimating() {
+        SVProgressHUD.show()
+    }
+
+    func stopAnimating() {
+        SVProgressHUD.dismiss()
+    }
+    
     func bindViewModel() {
         viewModel?.loading.asObservable().bind(to: isLoading).disposed(by: disposeBag)
-        
         isLoading.subscribe(onNext: { isLoading in
+            print("subscribe isLoading = \(isLoading)")
             UIApplication.shared.isNetworkActivityIndicatorVisible = isLoading
         }).disposed(by: disposeBag)
         

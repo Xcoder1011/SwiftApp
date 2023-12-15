@@ -13,8 +13,9 @@ struct MySection {
     var items: [Item]
 }
 
+typealias Item = String
+
 extension MySection: AnimatableSectionModelType {
-    typealias Item = String
     
     var identity: String {
         return header

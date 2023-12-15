@@ -14,9 +14,6 @@
 		BC039E602B137F8000EA4CC9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC039E5E2B137F8000EA4CC9 /* LaunchScreen.storyboard */; };
 		BC2952622B201BBD008FCD51 /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2952612B201BBD008FCD51 /* Navigator.swift */; };
 		BC2952652B201D9E008FCD51 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2952642B201D9E008FCD51 /* ViewModel.swift */; };
-		BC29526D2B201FD5008FCD51 /* SimpleValidation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC29526B2B201FD5008FCD51 /* SimpleValidation.storyboard */; };
-		BC29526E2B201FD5008FCD51 /* SimpleValidationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC29526C2B201FD5008FCD51 /* SimpleValidationViewController.swift */; };
-		BC2952712B202144008FCD51 /* SimpleValidationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2952702B202144008FCD51 /* SimpleValidationViewModel.swift */; };
 		BC2952742B20226D008FCD51 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2952732B20226D008FCD51 /* TableView.swift */; };
 		BC2952762B20236D008FCD51 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2952752B20236D008FCD51 /* TableViewController.swift */; };
 		BC2952782B20238C008FCD51 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2952772B20238C008FCD51 /* BaseViewController.swift */; };
@@ -30,6 +27,7 @@
 		BC29529E2B20CE51008FCD51 /* MySection.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC29529D2B20CE51008FCD51 /* MySection.swift */; };
 		BCA509862B18CBF100C37801 /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA509852B18CBF100C37801 /* Application.swift */; };
 		BCA5098D2B18E53E00C37801 /* LibsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA5098C2B18E53E00C37801 /* LibsManager.swift */; };
+		BCFDCAA12B2B0DF40069AA9C /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFDCAA02B2B0DF40069AA9C /* MainViewModel.swift */; };
 		E17F29D62C5E53FAEE0403F7 /* Pods_SwiftApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CF8DFED88B4E0DECA182607 /* Pods_SwiftApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -44,9 +42,6 @@
 		BC039E612B137F8000EA4CC9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BC2952612B201BBD008FCD51 /* Navigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigator.swift; sourceTree = "<group>"; };
 		BC2952642B201D9E008FCD51 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
-		BC29526B2B201FD5008FCD51 /* SimpleValidation.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SimpleValidation.storyboard; sourceTree = "<group>"; };
-		BC29526C2B201FD5008FCD51 /* SimpleValidationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleValidationViewController.swift; sourceTree = "<group>"; };
-		BC2952702B202144008FCD51 /* SimpleValidationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleValidationViewModel.swift; sourceTree = "<group>"; };
 		BC2952732B20226D008FCD51 /* TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
 		BC2952752B20236D008FCD51 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		BC2952772B20238C008FCD51 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -61,6 +56,7 @@
 		BC29529D2B20CE51008FCD51 /* MySection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySection.swift; sourceTree = "<group>"; };
 		BCA509852B18CBF100C37801 /* Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
 		BCA5098C2B18E53E00C37801 /* LibsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibsManager.swift; sourceTree = "<group>"; };
+		BCFDCAA02B2B0DF40069AA9C /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		C453D7D0CFE14089DE78EC9D /* Pods-SwiftApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftApp.debug.xcconfig"; path = "Target Support Files/Pods-SwiftApp/Pods-SwiftApp.debug.xcconfig"; sourceTree = "<group>"; };
 		CFDFDE8DEC4272F6253D362E /* Pods-SwiftApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftApp.release.xcconfig"; path = "Target Support Files/Pods-SwiftApp/Pods-SwiftApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -139,24 +135,6 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
-		BC2952672B201F4E008FCD51 /* SimpleValidation */ = {
-			isa = PBXGroup;
-			children = (
-				BC2952682B201F80008FCD51 /* Controller */,
-			);
-			path = SimpleValidation;
-			sourceTree = "<group>";
-		};
-		BC2952682B201F80008FCD51 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				BC29526B2B201FD5008FCD51 /* SimpleValidation.storyboard */,
-				BC29526C2B201FD5008FCD51 /* SimpleValidationViewController.swift */,
-				BC2952702B202144008FCD51 /* SimpleValidationViewModel.swift */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
 		BC2952722B20224C008FCD51 /* CommonUI */ = {
 			isa = PBXGroup;
 			children = (
@@ -214,7 +192,6 @@
 		BCA509892B18E4E800C37801 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				BC2952672B201F4E008FCD51 /* SimpleValidation */,
 				BCA5098A2B18E4F100C37801 /* Main */,
 			);
 			path = Modules;
@@ -224,6 +201,7 @@
 			isa = PBXGroup;
 			children = (
 				BC039E572B137F7D00EA4CC9 /* ViewController.swift */,
+				BCFDCAA02B2B0DF40069AA9C /* MainViewModel.swift */,
 				BC29529D2B20CE51008FCD51 /* MySection.swift */,
 			);
 			path = Main;
@@ -306,7 +284,6 @@
 				BC039E602B137F8000EA4CC9 /* LaunchScreen.storyboard in Resources */,
 				BC039E5D2B137F8000EA4CC9 /* Assets.xcassets in Resources */,
 				BC039E5B2B137F7D00EA4CC9 /* Main.storyboard in Resources */,
-				BC29526D2B201FD5008FCD51 /* SimpleValidation.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -399,7 +376,6 @@
 			files = (
 				BCA509862B18CBF100C37801 /* Application.swift in Sources */,
 				BC2952852B2042AF008FCD51 /* R.generated.swift in Sources */,
-				BC29526E2B201FD5008FCD51 /* SimpleValidationViewController.swift in Sources */,
 				BC2952812B2027F0008FCD51 /* LogManager.swift in Sources */,
 				BC2952782B20238C008FCD51 /* BaseViewController.swift in Sources */,
 				BC2952622B201BBD008FCD51 /* Navigator.swift in Sources */,
@@ -407,9 +383,9 @@
 				BC2952932B2057DA008FCD51 /* NavigationController.swift in Sources */,
 				BC2952762B20236D008FCD51 /* TableViewController.swift in Sources */,
 				BC29529C2B20CD49008FCD51 /* CommonAPI.swift in Sources */,
-				BC2952712B202144008FCD51 /* SimpleValidationViewModel.swift in Sources */,
 				BC29529E2B20CE51008FCD51 /* MySection.swift in Sources */,
 				BC2952742B20226D008FCD51 /* TableView.swift in Sources */,
+				BCFDCAA12B2B0DF40069AA9C /* MainViewModel.swift in Sources */,
 				BC2952952B2063D2008FCD51 /* ThemeManager.swift in Sources */,
 				BCA5098D2B18E53E00C37801 /* LibsManager.swift in Sources */,
 				BC039E582B137F7D00EA4CC9 /* ViewController.swift in Sources */,

@@ -18,9 +18,8 @@ protocol ViewModelType {
 
 class ViewModel: NSObject {
     var page = 1
-    
+    let disposeBag = DisposeBag()
     let provider: CommonAPI
-
     let loading = ActivityIndicator()
     let headerLoading = ActivityIndicator()
     let footerLoading = ActivityIndicator()

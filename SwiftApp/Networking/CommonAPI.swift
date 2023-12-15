@@ -21,15 +21,21 @@ class ApiTool: CommonAPI {
 extension ApiTool {
     func localSections() -> Single<[MySection]> {
         let items = Observable.just([
+            MySection(header: "设计模式", items: [
+                "mvc",
+                "mvp"
+            ]),
             MySection(header: "MVVM", items: [
-                "SimpleValidation",
-                "MVVM 设计模式"
+                "mvvm-closures",
+                "mvvm-functions-subjects-observables",
+                "mvvm-rxswift-pure",
+                "mvvm-rxswift-subjects-observables"
             ]),
-            MySection(header: "RxFeedback", items: [
-                "反馈循环架构"
+            MySection(header: "反馈循环架构", items: [
+                "RxFeedback"
             ]),
-            MySection(header: "ReactorKit ", items: [
-                "结合了 Flux 和响应式编程的架构"
+            MySection(header: "结合了 Flux 和响应式编程的架构", items: [
+                "ReactorKit"
             ])
         ]).asSingle()
         return items

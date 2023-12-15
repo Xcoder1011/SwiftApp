@@ -16,7 +16,6 @@ class Navigator {
     static var `default` = Navigator()
     
     enum Scene {
-        case simpleValidation(viewMode: SimpleValidationViewModel)
         case home
         case navHome
     }
@@ -32,19 +31,18 @@ class Navigator {
     
     func getController(scene: Scene) -> UIViewController? {
         switch scene {
-        case .simpleValidation(let viewModel): return SimpleValidationViewController(viewModel: viewModel, navigator: self)
         case .home: return ViewController(viewModel: nil, navigator: self)
-        case .navHome: return NavigationController(rootViewController: ViewController(viewModel: nil, navigator: self))
+        case .navHome: return NavigationController(rootViewController: ViewController(viewModel: MainViewModel(provider: ApiTool()), navigator: self))
         }
     }
     
     func show(scene: Scene, sender: UIViewController?, transition: Transition = .navigation) {
         if let target = getController(scene: scene) {
-            show(target: target, sender: sender, transition: transition)
+            _show(target: target, sender: sender, transition: transition)
         }
     }
     
-    private func show(target: UIViewController, sender: UIViewController?, transition: Transition) {
+    private func _show(target: UIViewController, sender: UIViewController?, transition: Transition) {
         switch transition {
         case .root(in: let window):
             window.rootViewController = target
