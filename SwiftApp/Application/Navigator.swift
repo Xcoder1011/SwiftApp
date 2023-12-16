@@ -18,6 +18,7 @@ class Navigator {
     enum Scene {
         case home
         case navHome
+        case mvc
     }
     
     enum Transition {
@@ -32,7 +33,8 @@ class Navigator {
     func getController(scene: Scene) -> UIViewController? {
         switch scene {
         case .home: return ViewController(viewModel: nil, navigator: self)
-        case .navHome: return NavigationController(rootViewController: ViewController(viewModel: MainViewModel(provider: ApiTool()), navigator: self))
+        case .navHome: return NavigationController(rootViewController: ViewController(viewModel: MainViewModel(service: NetworkingApi()), navigator: self))
+        case .mvc: return MVCViewController(viewModel: nil, navigator: self)
         }
     }
     

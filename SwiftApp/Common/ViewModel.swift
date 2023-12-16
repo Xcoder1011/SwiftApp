@@ -19,13 +19,13 @@ protocol ViewModelType {
 class ViewModel: NSObject {
     var page = 1
     let disposeBag = DisposeBag()
-    let provider: CommonAPI
+    let service: NetworkingService
     let loading = ActivityIndicator()
     let headerLoading = ActivityIndicator()
     let footerLoading = ActivityIndicator()
     
-    init(provider: CommonAPI) {
-        self.provider = provider
+    init(service: NetworkingService) {
+        self.service = service
         super.init()
     }
         

@@ -10,9 +10,10 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
-private let reuseIdentifier = "ViewControllerCell"
 
 class ViewController: TableViewController {
+    
+    private let reuseIdentifier = "ViewControllerCell"
     
     override func makeUI() {
         super.makeUI()
@@ -27,7 +28,7 @@ class ViewController: TableViewController {
         
         let dataSource = RxTableViewSectionedAnimatedDataSource<MySection>(
             configureCell: { _, tableView, indexPath, item in
-                let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier) ?? UITableViewCell(style: .default, reuseIdentifier: reuseIdentifier)
+                let cell = tableView.dequeueReusableCell(withIdentifier: self.reuseIdentifier) ?? UITableViewCell(style: .default, reuseIdentifier: self.reuseIdentifier)
                 cell.textLabel?.text = "\(item)"
                 return cell
             },
@@ -42,6 +43,7 @@ class ViewController: TableViewController {
         
         output.itemSelected.drive(onNext: { (item) in
             print("item = \(item)")
+            Navigator.default.show(scene: .mvc, sender: self)
         }).disposed(by: disposeBag)
         
         output.sections.drive(tableView.rx.items(dataSource: dataSource)).disposed(by: disposeBag)
@@ -62,8 +64,3 @@ extension ViewController: UITableViewDelegate {
         return 40
     }
 }
-
-private func rootViewController() -> UIViewController {
-    return UIApplication.shared.keyWindow!.rootViewController!
-}
-
