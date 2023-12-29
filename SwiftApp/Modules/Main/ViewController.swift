@@ -26,10 +26,10 @@ class ViewController: TableViewController {
         super.bindViewModel()
         guard let viewModel = viewModel as? MainViewModel else { return }
         
-        let dataSource = RxTableViewSectionedAnimatedDataSource<MySection>(
+        let dataSource = RxTableViewSectionedReloadDataSource<MySection>(
             configureCell: { _, tableView, indexPath, item in
                 let cell = tableView.dequeueReusableCell(withIdentifier: self.reuseIdentifier) ?? UITableViewCell(style: .default, reuseIdentifier: self.reuseIdentifier)
-                cell.textLabel?.text = "\(item)"
+                cell.textLabel?.text = "\(item.title)"
                 return cell
             },
             titleForHeaderInSection: { dataSource, sectionIndex in

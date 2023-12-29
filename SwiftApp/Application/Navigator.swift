@@ -19,6 +19,7 @@ class Navigator {
         case home
         case navHome
         case mvc
+        case mvp
     }
     
     enum Transition {
@@ -35,6 +36,7 @@ class Navigator {
         case .home: return ViewController(viewModel: nil, navigator: self)
         case .navHome: return NavigationController(rootViewController: ViewController(viewModel: MainViewModel(service: NetworkingApi()), navigator: self))
         case .mvc: return MVCViewController(viewModel: nil, navigator: self)
+        case .mvp: return MVPViewController(viewModel: MVPViewModel(service: NetworkingApi()), navigator: self)
         }
     }
     

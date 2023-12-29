@@ -21,7 +21,9 @@ class MyTableViewDataSource: NSObject, UITableViewDataSource {
         guard let repos = repos else { return UITableViewCell() }
 
         let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier) ?? UITableViewCell(style: .default, reuseIdentifier: reuseIdentifier)
-        cell.textLabel?.text = "\(repos[indexPath.row].name)"
+        let repo = repos[indexPath.row]
+        cell.textLabel?.numberOfLines = 0
+        cell.textLabel?.text = "\(repo.name)\n\(repo.description)"
         return cell
     }
 }

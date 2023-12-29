@@ -1,13 +1,13 @@
 //
-//  MVCViewController.swift
+//  MVPViewController.swift
 //  SwiftApp
 //
-//  Created by KUN on 2023/12/15.
+//  Created by KUN on 2023/12/16.
 //
 
 import UIKit
 
-class MVCViewController: TableViewController {
+class MVPViewController: TableViewController {
     
     private let searchController = UISearchController(searchResultsController: nil)
     private let validator = ThrottledTextFieldValidator()
@@ -16,7 +16,7 @@ class MVCViewController: TableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "MVC"
+        navigationItem.title = "MVP"
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -71,19 +71,19 @@ class MVCViewController: TableViewController {
     }
 }
 
-extension MVCViewController: UITableViewDelegate {
+extension MVPViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         didSelectRow(at: indexPath)
     }
 }
 
-extension MVCViewController: UISearchResultsUpdating {
+extension MVPViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         didChangeQuery(searchController.searchBar.text ?? "")
     }
 }
 
-extension MVCViewController: UISearchControllerDelegate {
+extension MVPViewController: UISearchControllerDelegate {
     func didDismissSearchController(_ searchController: UISearchController) {
         startFetching(forQuery: "RxSwift")
     }

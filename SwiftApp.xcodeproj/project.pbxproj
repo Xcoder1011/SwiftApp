@@ -18,6 +18,8 @@
 		BC079A5A2B2C4E31002C9B40 /* CancellableReposFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC079A592B2C4E31002C9B40 /* CancellableReposFetcher.swift */; };
 		BC079A5C2B2C4E9C002C9B40 /* Repo.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC079A5B2B2C4E9C002C9B40 /* Repo.swift */; };
 		BC079A5E2B2D78B9002C9B40 /* MyTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC079A5D2B2D78B9002C9B40 /* MyTableViewDataSource.swift */; };
+		BC079A612B2D8C95002C9B40 /* MVPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC079A602B2D8C95002C9B40 /* MVPViewController.swift */; };
+		BC079A632B2D8D92002C9B40 /* MVPViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC079A622B2D8D92002C9B40 /* MVPViewModel.swift */; };
 		BC2952622B201BBD008FCD51 /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2952612B201BBD008FCD51 /* Navigator.swift */; };
 		BC2952652B201D9E008FCD51 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2952642B201D9E008FCD51 /* ViewModel.swift */; };
 		BC2952742B20226D008FCD51 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2952732B20226D008FCD51 /* TableView.swift */; };
@@ -52,6 +54,8 @@
 		BC079A592B2C4E31002C9B40 /* CancellableReposFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancellableReposFetcher.swift; sourceTree = "<group>"; };
 		BC079A5B2B2C4E9C002C9B40 /* Repo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repo.swift; sourceTree = "<group>"; };
 		BC079A5D2B2D78B9002C9B40 /* MyTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTableViewDataSource.swift; sourceTree = "<group>"; };
+		BC079A602B2D8C95002C9B40 /* MVPViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVPViewController.swift; sourceTree = "<group>"; };
+		BC079A622B2D8D92002C9B40 /* MVPViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVPViewModel.swift; sourceTree = "<group>"; };
 		BC2952612B201BBD008FCD51 /* Navigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigator.swift; sourceTree = "<group>"; };
 		BC2952642B201D9E008FCD51 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		BC2952732B20226D008FCD51 /* TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
@@ -158,6 +162,15 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		BC079A5F2B2D8C70002C9B40 /* MVP */ = {
+			isa = PBXGroup;
+			children = (
+				BC079A602B2D8C95002C9B40 /* MVPViewController.swift */,
+				BC079A622B2D8D92002C9B40 /* MVPViewModel.swift */,
+			);
+			path = MVP;
+			sourceTree = "<group>";
+		};
 		BC2952632B201D6E008FCD51 /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -225,6 +238,7 @@
 		BCA509892B18E4E800C37801 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				BC079A5F2B2D8C70002C9B40 /* MVP */,
 				BC079A512B2C3895002C9B40 /* MVC */,
 				BCA5098A2B18E4F100C37801 /* Main */,
 			);
@@ -412,6 +426,7 @@
 				BC2952852B2042AF008FCD51 /* R.generated.swift in Sources */,
 				BC079A5E2B2D78B9002C9B40 /* MyTableViewDataSource.swift in Sources */,
 				BC2952812B2027F0008FCD51 /* LogManager.swift in Sources */,
+				BC079A632B2D8D92002C9B40 /* MVPViewModel.swift in Sources */,
 				BC079A582B2C4D8D002C9B40 /* Throttle.swift in Sources */,
 				BC079A5A2B2C4E31002C9B40 /* CancellableReposFetcher.swift in Sources */,
 				BC2952782B20238C008FCD51 /* BaseViewController.swift in Sources */,
@@ -428,6 +443,7 @@
 				BC2952952B2063D2008FCD51 /* ThemeManager.swift in Sources */,
 				BCA5098D2B18E53E00C37801 /* LibsManager.swift in Sources */,
 				BC039E582B137F7D00EA4CC9 /* ViewController.swift in Sources */,
+				BC079A612B2D8C95002C9B40 /* MVPViewController.swift in Sources */,
 				BC079A562B2C4A61002C9B40 /* ThrottledTextFieldValidator.swift in Sources */,
 				BC2952652B201D9E008FCD51 /* ViewModel.swift in Sources */,
 				BC039E542B137F7D00EA4CC9 /* AppDelegate.swift in Sources */,

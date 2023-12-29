@@ -29,20 +29,21 @@ class MainViewModel: ViewModel, ViewModelType {
             guard self != nil else { return Observable.just([]) }
             let items = Observable.just([
                 MySection(header: "设计模式", items: [
-                    "mvc",
-                    "mvp"
+                    Item(title: "mvc", scene: .mvc),
+                    Item(title: "mvp", scene: .mvp)
                 ]),
                 MySection(header: "MVVM", items: [
-                    "mvvm-closures",
-                    "mvvm-functions-subjects-observables",
-                    "mvvm-rxswift-pure",
-                    "mvvm-rxswift-subjects-observables"
+                    Item(title: "mvvm-closures", scene: .mvc),
+                    Item(title: "mvvm-functions-subjects-observables", scene: .mvp),
+                    Item(title: "mvvm-rxswift-pure", scene: .mvc),
+                    Item(title: "mvvm-rxswift-pure", scene: .mvp),
+                    Item(title: "mvvm-rxswift-subjects-observables", scene: .mvc)
                 ]),
                 MySection(header: "反馈循环架构", items: [
-                    "RxFeedback"
+                    Item(title: "RxFeedback", scene: .mvc)
                 ]),
                 MySection(header: "结合了 Flux 和响应式编程的架构", items: [
-                    "ReactorKit"
+                    Item(title: "ReactorKit", scene: .mvc)
                 ])
             ])
             return items
@@ -52,6 +53,6 @@ class MainViewModel: ViewModel, ViewModelType {
         
         input.selection.asObservable().bind(to: itemSelected).disposed(by: disposeBag)
         
-        return Output(sections: elements.asDriver(), itemSelected: itemSelected.asDriver(onErrorJustReturn: ""))
+        return Output(sections: elements.asDriver(), itemSelected: itemSelected.asDriver(onErrorJustReturn: Item(title: "", scene: .home)))
     }
 }

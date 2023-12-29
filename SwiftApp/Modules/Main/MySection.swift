@@ -8,19 +8,31 @@
 import Foundation
 import Differentiator
 
+struct Item {
+    var title: String
+    var scene: Navigator.Scene
+}
+
 struct MySection {
     var header: String
     var items: [Item]
 }
 
-typealias Item = String
+extension Item: Equatable, IdentifiableType {
+    static func == (lhs: Item, rhs: Item) -> Bool {
+        return lhs.title == rhs.title
+    }
+    var identity: String {
+        return title
+    }
+    typealias Identity = String
+}
 
-extension MySection: AnimatableSectionModelType {
-    
+extension MySection: AnimatableSectionModelType, IdentifiableType {
     var identity: String {
         return header
     }
-    
+    typealias Identity = String
     init(original: MySection, items: [Item]) {
         self = original
         self.items = items
