@@ -7,3 +7,6 @@ gem 'fastlane'  # https://github.com/fastlane/fastlane
 
 gem 'cocoapods'  # https://github.com/CocoaPods/CocoaPods
 
+
+# gem 'cocoapods-binary'
+

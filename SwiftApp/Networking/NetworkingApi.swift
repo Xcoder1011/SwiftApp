@@ -24,13 +24,11 @@ class NetworkingApi: NetworkingService {
         let request = URLRequest(url: URL(string: "https://api.github.com/search/repositories?q=\(query)")!)
         let task = session.dataTask(with: request) { data, _, error in
             DispatchQueue.main.async {
-                print("data = \(data)")
                 guard let data = data,
                       let response = try? JSONDecoder().decode(SearchReponse.self, from: data) else {
                     completion([])
                     return
                 }
-                print("response = \(response.items)")
                 completion(response.items)
             }
         }

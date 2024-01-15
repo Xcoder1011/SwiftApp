@@ -10,7 +10,6 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
-
 class ViewController: TableViewController {
     
     private let reuseIdentifier = "ViewControllerCell"
@@ -43,9 +42,8 @@ class ViewController: TableViewController {
         
         output.itemSelected.drive(onNext: { (item) in
             print("item = \(item)")
-            Navigator.default.show(scene: .mvc, sender: self)
+            Navigator.default.show(scene: item.scene, sender: self)
         }).disposed(by: disposeBag)
-        
         output.sections.drive(tableView.rx.items(dataSource: dataSource)).disposed(by: disposeBag)
     }
     

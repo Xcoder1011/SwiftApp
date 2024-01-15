@@ -10,8 +10,6 @@ import UIKit
 class MVPViewController: TableViewController {
     
     private let searchController = UISearchController(searchResultsController: nil)
-    private let validator = ThrottledTextFieldValidator()
-    private let fetcher = CancellableReposFetcher()
     private let dataSource = MyTableViewDataSource()
     
     override func viewDidLoad() {
@@ -21,7 +19,9 @@ class MVPViewController: TableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        startFetching(forQuery: "RxSwift")
+        if let viewModel = viewModel as? MVPViewModel {
+            viewModel.didChangeQuery("RxSwift")
+        }
     }
     
     override func makeUI() {
@@ -40,27 +40,21 @@ class MVPViewController: TableViewController {
         tableView.delegate = self
     }
     
-    private func didChangeQuery(_ query: String) {
-        validator.validate(query: query) { [weak self] query in
-            guard let strongSelf = self,
-                  let query = query else { return }
-            strongSelf.startFetching(forQuery: query)
+    override func bindViewModel() {
+        super.bindViewModel()
+        if let viewModel = viewModel as? MVPViewModel {
+            viewModel.delegate = self
         }
     }
-    
-    private func startFetching(forQuery query: String) {
-        startAnimating()
-        fetcher.fetchRepos(withQuery: query, completion: { [weak self] repos in
-            guard let strongSelf = self else { return }
-            strongSelf.stopAnimating()
-            strongSelf.dataSource.repos = repos
-            strongSelf.tableView.reloadData()
-        })
+}
+
+extension MVPViewController: MVPViewModelDelegate {
+    func mvpReposViewModel(_ reposViewModel: MVPViewModel, didReceiveRepos repos: [Repo]) {
+        self.dataSource.repos = repos
+        self.tableView.reloadData()
     }
     
-    private func didSelectRow(at indexPath: IndexPath) {
-        guard let repos = dataSource.repos else { return }
-        let id = repos[indexPath.item].id
+    func mvpReposViewModel(_ reposViewModel: MVPViewModel, didSelectId id: Int) {
         let alertController = UIAlertController(title: "\(id)", message: nil, preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
         if searchController.isActive {
@@ -69,22 +63,32 @@ class MVPViewController: TableViewController {
             present(alertController, animated: true, completion: nil)
         }
     }
+    
+    func mvpReposViewModel(_ reposViewModel: MVPViewModel, requestIsLoadding: Bool) {
+        requestIsLoadding ? startAnimating() : stopAnimating()
+    }
 }
 
 extension MVPViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        didSelectRow(at: indexPath)
+        if let viewModel = viewModel as? MVPViewModel {
+            viewModel.didSelectRow(at: indexPath)
+        }
     }
 }
 
 extension MVPViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        didChangeQuery(searchController.searchBar.text ?? "")
+        if let viewModel = viewModel as? MVPViewModel {
+            viewModel.didChangeQuery(searchController.searchBar.text ?? "")
+        }
     }
 }
 
 extension MVPViewController: UISearchControllerDelegate {
     func didDismissSearchController(_ searchController: UISearchController) {
-        startFetching(forQuery: "RxSwift")
+        if let viewModel = viewModel as? MVPViewModel {
+            viewModel.didChangeQuery("RxSwift")
+        }
     }
 }

@@ -1,4 +1,9 @@
 # Uncomment the next line to define a global platform for your project
+# plugin 'cocoapods-binary'
+# use_frameworks!
+
+# all_binary!
+
 platform :ios, '14.0'
 
 target 'SwiftApp' do
@@ -23,8 +28,9 @@ target 'SwiftApp' do
   pod 'Moya/RxSwift', '~> 15.0'  # https://github.com/Moya/Moya
   
   # Image
-  pod 'Kingfisher', '~> 7.0'  # https://github.com/onevcat/Kingfisher
-  
+#  pod 'Kingfisher', '~> 7.0'  # https://github.com/onevcat/Kingfisher
+  pod 'Kingfisher', '7.10.0'  # https://github.com/onevcat/Kingfisher
+
   # Date
   pod 'DateToolsSwift', '~> 5.0'  # https://github.com/MatthewYork/DateTools
   pod 'SwiftDate', '~> 7.0'  # https://github.com/malcommac/SwiftDate
@@ -34,6 +40,7 @@ target 'SwiftApp' do
   
   # UI
   pod 'SVProgressHUD', '~> 2.0'  # https://github.com/SVProgressHUD/SVProgressHUD
+#   pod 'SVProgressHUD', '~> 2.0', :binary => false # https://github.com/SVProgressHUD/SVProgressHUD
   # pod 'ImageSlideshow/Kingfisher', :git => 'https://github.com/khoren93/ImageSlideshow.git', :branch => 'master'   # https://github.com/zvonicek/ImageSlideshow
   pod 'DZNEmptyDataSet', '~> 1.0'  # https://github.com/dzenbot/DZNEmptyDataSet
   pod 'KafkaRefresh', '~> 1.0'  # https://github.com/OpenFeyn/KafkaRefresh
