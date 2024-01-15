@@ -33,7 +33,7 @@ class MainViewModel: ViewModel, ViewModelType {
                     Item(title: "mvp", scene: .mvp)
                 ]),
                 MySection(header: "MVVM", items: [
-                    Item(title: "mvvm-closures", scene: .mvc),
+                    Item(title: "mvvm-closures", scene: .mvvm_closures),
                     Item(title: "mvvm-functions-subjects-observables", scene: .mvp),
                     Item(title: "mvvm-rxswift-pure", scene: .mvc),
                     Item(title: "mvvm-rxswift-pure", scene: .mvp),
