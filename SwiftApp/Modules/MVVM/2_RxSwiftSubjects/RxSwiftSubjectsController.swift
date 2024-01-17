@@ -30,5 +30,59 @@ class RxSwiftSubjectsController: TableViewController {
     
     override func bindViewModel() {
         super.bindViewModel()
+        
+        if let viewModel = viewModel as? RxSwiftSubjectsViewModel {
+            
+            rx.viewWillAppear
+                .asObservable()
+                .bind(to: viewModel.viewWillAppearSubject)
+                .disposed(by: disposeBag)
+            
+            searchController.searchBar.rx.text.orEmpty
+                .asObservable()
+                .bind(to: viewModel.didSearchSubject)
+                .disposed(by: disposeBag)
+            
+            tableView.rx.itemSelected
+                .asObservable()
+                .bind(to: viewModel.didSelectRowSubject)
+                .disposed(by: disposeBag)
+            
+            
+            viewModel.didReceiveRepos
+                .drive(tableView.rx.items(cellIdentifier: reuseIdentifier, cellType: UITableViewCell.self)) { (row, repo, cell) in
+                    cell.textLabel?.numberOfLines = 0
+                    cell.textLabel?.text = "\(repo.name)\n\(repo.description)"
+                }
+                .disposed(by: disposeBag)
+            
+            viewModel.requestIsLoadding
+                .drive(onNext: { [weak self] isLoadding in
+                    guard let strongSelf = self else { return }
+                    if isLoadding {
+                        strongSelf.startAnimating()
+                    } else {
+                        strongSelf.stopAnimating()
+                    }
+                })
+                .disposed(by: disposeBag)
+            
+            viewModel.didSelectId
+                .drive(onNext: { [weak self] repoId in
+                    guard let strongSelf = self else { return }
+                    strongSelf.showSelectId(repoId)
+                })
+                .disposed(by: disposeBag)
+        }
+    }
+    
+    private func showSelectId(_ id: Int) {
+        let alertController = UIAlertController(title: "\(id)", message: nil, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        if searchController.isActive {
+            searchController.present(alertController, animated: true)
+        } else {
+            present(alertController, animated: true, completion: nil)
+        }
     }
 }

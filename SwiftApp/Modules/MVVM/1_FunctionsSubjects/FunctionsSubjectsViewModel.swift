@@ -47,9 +47,9 @@ class FunctionsSubjectsViewModel: ViewModel, FuncSubViewModelType, FuncSubViewMo
     
     // Outputs
     
-    let didReceiveRepos: RxCocoa.Driver<[Repo]>
-    let didSelectId: RxCocoa.Driver<Int>
-    let requestIsLoadding: RxCocoa.Driver<Bool>
+    var didReceiveRepos: RxCocoa.Driver<[Repo]>
+    var didSelectId: RxCocoa.Driver<Int>
+    var requestIsLoadding: RxCocoa.Driver<Bool>
     
     var input: FuncSubViewModelInputs { return self }
     var output: FuncSubViewModelOutputs { return self }

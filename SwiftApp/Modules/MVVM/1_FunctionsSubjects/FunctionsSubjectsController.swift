@@ -81,9 +81,8 @@ class FunctionsSubjectsController: TableViewController {
                 }).disposed(by: disposeBag)
             
             viewModel.didReceiveRepos
-                .drive(tableView.rx.items(cellIdentifier: reuseIdentifier, cellType: UITableViewCell.self)) {
-                    
-                    (row, repo, cell) in
+                .drive(tableView.rx.items(cellIdentifier: reuseIdentifier, cellType: UITableViewCell.self)) { (row, repo, cell)
+                    in
                     cell.textLabel?.numberOfLines = 0
                     cell.textLabel?.text = "\(repo.name)\n\(repo.description)"
                 }

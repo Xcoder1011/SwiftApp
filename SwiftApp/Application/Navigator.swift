@@ -46,7 +46,7 @@ class Navigator {
         case .mvvm_functions_subjects:
             return FunctionsSubjectsController(viewModel: FunctionsSubjectsViewModel(), navigator: self)
         case .mvvm_rxswift_subjects:
-            return RxSwiftSubjectsController(viewModel: FunctionsSubjectsViewModel(), navigator: self)
+            return RxSwiftSubjectsController(viewModel: RxSwiftSubjectsViewModel(service: NetworkingApi()), navigator: self)
         case .mvvm_rxswift_pure:
             return FunctionsSubjectsController(viewModel: FunctionsSubjectsViewModel(), navigator: self)
         }
