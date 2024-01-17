@@ -21,6 +21,9 @@ class Navigator {
         case mvc
         case mvp
         case mvvm_closures
+        case mvvm_functions_subjects
+        case mvvm_rxswift_subjects
+        case mvvm_rxswift_pure
     }
     
     enum Transition {
@@ -40,6 +43,12 @@ class Navigator {
         case .mvp: return MVPViewController(viewModel: MVPViewModel(service: NetworkingApi()), navigator: self)
         case .mvvm_closures:
             return MVVMClosuresViewController(viewModel: MVVMClosuresViewModel(service: NetworkingApi()), navigator: self)
+        case .mvvm_functions_subjects:
+            return FunctionsSubjectsController(viewModel: FunctionsSubjectsViewModel(), navigator: self)
+        case .mvvm_rxswift_subjects:
+            return RxSwiftSubjectsController(viewModel: FunctionsSubjectsViewModel(), navigator: self)
+        case .mvvm_rxswift_pure:
+            return FunctionsSubjectsController(viewModel: FunctionsSubjectsViewModel(), navigator: self)
         }
     }
     

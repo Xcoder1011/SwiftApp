@@ -34,10 +34,9 @@ class MainViewModel: ViewModel, ViewModelType {
                 ]),
                 MySection(header: "MVVM", items: [
                     Item(title: "mvvm-closures", scene: .mvvm_closures),
-                    Item(title: "mvvm-functions-subjects-observables", scene: .mvp),
-                    Item(title: "mvvm-rxswift-pure", scene: .mvc),
-                    Item(title: "mvvm-rxswift-pure", scene: .mvp),
-                    Item(title: "mvvm-rxswift-subjects-observables", scene: .mvc)
+                    Item(title: "mvvm-functions-subjects-observables", scene: .mvvm_functions_subjects),
+                    Item(title: "mvvm-rxswift-subjects-observables", scene: .mvvm_rxswift_subjects),
+                    Item(title: "mvvm-rxswift-pure", scene: .mvvm_rxswift_pure)
                 ]),
                 MySection(header: "反馈循环架构", items: [
                     Item(title: "RxFeedback", scene: .mvc)

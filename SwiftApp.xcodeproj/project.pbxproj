@@ -22,6 +22,14 @@
 		BC079A632B2D8D92002C9B40 /* MVPViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC079A622B2D8D92002C9B40 /* MVPViewModel.swift */; };
 		BC26B0392B54EBD900EF0E2D /* MVVMClosuresViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC26B0382B54EBD900EF0E2D /* MVVMClosuresViewController.swift */; };
 		BC26B03B2B54EC2A00EF0E2D /* MVVMClosuresViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC26B03A2B54EC2A00EF0E2D /* MVVMClosuresViewModel.swift */; };
+		BC26B0402B5514CA00EF0E2D /* FunctionsSubjectsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC26B03F2B5514CA00EF0E2D /* FunctionsSubjectsController.swift */; };
+		BC26B0422B5514DB00EF0E2D /* FunctionsSubjectsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC26B0412B5514DB00EF0E2D /* FunctionsSubjectsViewModel.swift */; };
+		BC26B0442B5514F400EF0E2D /* RxSwiftSubjectsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC26B0432B5514F400EF0E2D /* RxSwiftSubjectsController.swift */; };
+		BC26B0462B55150100EF0E2D /* RxSwiftSubjectsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC26B0452B55150100EF0E2D /* RxSwiftSubjectsViewModel.swift */; };
+		BC26B0482B55151F00EF0E2D /* RxSwiftPureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC26B0472B55151F00EF0E2D /* RxSwiftPureViewController.swift */; };
+		BC26B04A2B55152D00EF0E2D /* RxSwiftPureViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC26B0492B55152D00EF0E2D /* RxSwiftPureViewModel.swift */; };
+		BC27D9132B578C5F001A1B17 /* UIViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC27D9122B578C5F001A1B17 /* UIViewController+Rx.swift */; };
+		BC27D9152B57AE7F001A1B17 /* AppEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC27D9142B57AE7F001A1B17 /* AppEnvironment.swift */; };
 		BC2952622B201BBD008FCD51 /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2952612B201BBD008FCD51 /* Navigator.swift */; };
 		BC2952652B201D9E008FCD51 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2952642B201D9E008FCD51 /* ViewModel.swift */; };
 		BC2952742B20226D008FCD51 /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2952732B20226D008FCD51 /* TableView.swift */; };
@@ -60,6 +68,14 @@
 		BC079A622B2D8D92002C9B40 /* MVPViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVPViewModel.swift; sourceTree = "<group>"; };
 		BC26B0382B54EBD900EF0E2D /* MVVMClosuresViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVVMClosuresViewController.swift; sourceTree = "<group>"; };
 		BC26B03A2B54EC2A00EF0E2D /* MVVMClosuresViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVVMClosuresViewModel.swift; sourceTree = "<group>"; };
+		BC26B03F2B5514CA00EF0E2D /* FunctionsSubjectsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionsSubjectsController.swift; sourceTree = "<group>"; };
+		BC26B0412B5514DB00EF0E2D /* FunctionsSubjectsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunctionsSubjectsViewModel.swift; sourceTree = "<group>"; };
+		BC26B0432B5514F400EF0E2D /* RxSwiftSubjectsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxSwiftSubjectsController.swift; sourceTree = "<group>"; };
+		BC26B0452B55150100EF0E2D /* RxSwiftSubjectsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxSwiftSubjectsViewModel.swift; sourceTree = "<group>"; };
+		BC26B0472B55151F00EF0E2D /* RxSwiftPureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxSwiftPureViewController.swift; sourceTree = "<group>"; };
+		BC26B0492B55152D00EF0E2D /* RxSwiftPureViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxSwiftPureViewModel.swift; sourceTree = "<group>"; };
+		BC27D9122B578C5F001A1B17 /* UIViewController+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Rx.swift"; sourceTree = "<group>"; };
+		BC27D9142B57AE7F001A1B17 /* AppEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEnvironment.swift; sourceTree = "<group>"; };
 		BC2952612B201BBD008FCD51 /* Navigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigator.swift; sourceTree = "<group>"; };
 		BC2952642B201D9E008FCD51 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		BC2952732B20226D008FCD51 /* TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
@@ -162,6 +178,7 @@
 				BC079A552B2C4A61002C9B40 /* ThrottledTextFieldValidator.swift */,
 				BC079A592B2C4E31002C9B40 /* CancellableReposFetcher.swift */,
 				BC079A572B2C4D8D002C9B40 /* Throttle.swift */,
+				BC27D9122B578C5F001A1B17 /* UIViewController+Rx.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -178,18 +195,48 @@
 		BC26B0362B54EB3600EF0E2D /* MVVM */ = {
 			isa = PBXGroup;
 			children = (
-				BC26B0372B54EBA300EF0E2D /* Closures */,
+				BC26B03E2B55147B00EF0E2D /* 3_RxSwiftPure */,
+				BC26B03D2B55146500EF0E2D /* 2_RxSwiftSubjects */,
+				BC26B03C2B5513C800EF0E2D /* 1_FunctionsSubjects */,
+				BC26B0372B54EBA300EF0E2D /* 0_Closures */,
 			);
 			path = MVVM;
 			sourceTree = "<group>";
 		};
-		BC26B0372B54EBA300EF0E2D /* Closures */ = {
+		BC26B0372B54EBA300EF0E2D /* 0_Closures */ = {
 			isa = PBXGroup;
 			children = (
 				BC26B0382B54EBD900EF0E2D /* MVVMClosuresViewController.swift */,
 				BC26B03A2B54EC2A00EF0E2D /* MVVMClosuresViewModel.swift */,
 			);
-			path = Closures;
+			path = 0_Closures;
+			sourceTree = "<group>";
+		};
+		BC26B03C2B5513C800EF0E2D /* 1_FunctionsSubjects */ = {
+			isa = PBXGroup;
+			children = (
+				BC26B03F2B5514CA00EF0E2D /* FunctionsSubjectsController.swift */,
+				BC26B0412B5514DB00EF0E2D /* FunctionsSubjectsViewModel.swift */,
+			);
+			path = 1_FunctionsSubjects;
+			sourceTree = "<group>";
+		};
+		BC26B03D2B55146500EF0E2D /* 2_RxSwiftSubjects */ = {
+			isa = PBXGroup;
+			children = (
+				BC26B0432B5514F400EF0E2D /* RxSwiftSubjectsController.swift */,
+				BC26B0452B55150100EF0E2D /* RxSwiftSubjectsViewModel.swift */,
+			);
+			path = 2_RxSwiftSubjects;
+			sourceTree = "<group>";
+		};
+		BC26B03E2B55147B00EF0E2D /* 3_RxSwiftPure */ = {
+			isa = PBXGroup;
+			children = (
+				BC26B0472B55151F00EF0E2D /* RxSwiftPureViewController.swift */,
+				BC26B0492B55152D00EF0E2D /* RxSwiftPureViewModel.swift */,
+			);
+			path = 3_RxSwiftPure;
 			sourceTree = "<group>";
 		};
 		BC2952632B201D6E008FCD51 /* Common */ = {
@@ -242,6 +289,7 @@
 			isa = PBXGroup;
 			children = (
 				BC29529B2B20CD49008FCD51 /* NetworkingApi.swift */,
+				BC27D9142B57AE7F001A1B17 /* AppEnvironment.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -444,30 +492,38 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC27D9152B57AE7F001A1B17 /* AppEnvironment.swift in Sources */,
 				BCA509862B18CBF100C37801 /* Application.swift in Sources */,
 				BC2952852B2042AF008FCD51 /* R.generated.swift in Sources */,
 				BC26B0392B54EBD900EF0E2D /* MVVMClosuresViewController.swift in Sources */,
 				BC079A5E2B2D78B9002C9B40 /* MyTableViewDataSource.swift in Sources */,
 				BC2952812B2027F0008FCD51 /* LogManager.swift in Sources */,
 				BC079A632B2D8D92002C9B40 /* MVPViewModel.swift in Sources */,
+				BC26B04A2B55152D00EF0E2D /* RxSwiftPureViewModel.swift in Sources */,
+				BC26B0462B55150100EF0E2D /* RxSwiftSubjectsViewModel.swift in Sources */,
 				BC26B03B2B54EC2A00EF0E2D /* MVVMClosuresViewModel.swift in Sources */,
 				BC079A582B2C4D8D002C9B40 /* Throttle.swift in Sources */,
 				BC079A5A2B2C4E31002C9B40 /* CancellableReposFetcher.swift in Sources */,
 				BC2952782B20238C008FCD51 /* BaseViewController.swift in Sources */,
 				BC2952622B201BBD008FCD51 /* Navigator.swift in Sources */,
+				BC26B0482B55151F00EF0E2D /* RxSwiftPureViewController.swift in Sources */,
 				BC29527F2B202663008FCD51 /* ActivityIndicator.swift in Sources */,
 				BC2952932B2057DA008FCD51 /* NavigationController.swift in Sources */,
 				BC079A5C2B2C4E9C002C9B40 /* Repo.swift in Sources */,
 				BC079A532B2C449A002C9B40 /* MVCViewController.swift in Sources */,
 				BC2952762B20236D008FCD51 /* TableViewController.swift in Sources */,
+				BC26B0442B5514F400EF0E2D /* RxSwiftSubjectsController.swift in Sources */,
 				BC29529C2B20CD49008FCD51 /* NetworkingApi.swift in Sources */,
+				BC26B0422B5514DB00EF0E2D /* FunctionsSubjectsViewModel.swift in Sources */,
 				BC29529E2B20CE51008FCD51 /* MySection.swift in Sources */,
 				BC2952742B20226D008FCD51 /* TableView.swift in Sources */,
 				BCFDCAA12B2B0DF40069AA9C /* MainViewModel.swift in Sources */,
 				BC2952952B2063D2008FCD51 /* ThemeManager.swift in Sources */,
+				BC27D9132B578C5F001A1B17 /* UIViewController+Rx.swift in Sources */,
 				BCA5098D2B18E53E00C37801 /* LibsManager.swift in Sources */,
 				BC039E582B137F7D00EA4CC9 /* ViewController.swift in Sources */,
 				BC079A612B2D8C95002C9B40 /* MVPViewController.swift in Sources */,
+				BC26B0402B5514CA00EF0E2D /* FunctionsSubjectsController.swift in Sources */,
 				BC079A562B2C4A61002C9B40 /* ThrottledTextFieldValidator.swift in Sources */,
 				BC2952652B201D9E008FCD51 /* ViewModel.swift in Sources */,
 				BC039E542B137F7D00EA4CC9 /* AppDelegate.swift in Sources */,
