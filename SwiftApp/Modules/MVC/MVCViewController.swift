@@ -8,12 +8,11 @@
 import UIKit
 
 class MVCViewController: TableViewController {
-    
     private let searchController = UISearchController(searchResultsController: nil)
+    
     private let validator = ThrottledTextFieldValidator()
     private let fetcher = CancellableReposFetcher()
     private let dataSource = MyTableViewDataSource()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +28,7 @@ class MVCViewController: TableViewController {
         super.makeUI()
         tableView.headRefreshControl = nil
         tableView.footRefreshControl = nil
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.reuseIdentifier)
         
         searchController.searchResultsUpdater = self
         searchController.delegate = self

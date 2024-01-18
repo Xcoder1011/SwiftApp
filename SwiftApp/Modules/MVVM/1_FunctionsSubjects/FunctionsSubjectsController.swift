@@ -10,26 +10,11 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
-class FunctionsSubjectsController: TableViewController {
-    
-    private let searchController = UISearchController(searchResultsController: nil)
-    private let reuseIdentifier = "FunctionsSubjectsControllerCell"
+class FunctionsSubjectsController: MVVMBaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "mvvm-functions-subjects-observables"
-    }
-    
-    override func makeUI() {
-        super.makeUI()
-        tableView.headRefreshControl = nil
-        tableView.footRefreshControl = nil
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
-        
-        searchController.searchResultsUpdater = nil
-        searchController.hidesNavigationBarDuringPresentation = false
-        searchController.searchBar.sizeToFit()
-        self.navigationItem.titleView = searchController.searchBar
     }
     
     override func bindViewModel() {
@@ -81,22 +66,12 @@ class FunctionsSubjectsController: TableViewController {
                 }).disposed(by: disposeBag)
             
             viewModel.didReceiveRepos
-                .drive(tableView.rx.items(cellIdentifier: reuseIdentifier, cellType: UITableViewCell.self)) { (row, repo, cell)
+                .drive(tableView.rx.items(cellIdentifier: UITableViewCell.reuseIdentifier, cellType: UITableViewCell.self)) { (row, repo, cell)
                     in
                     cell.textLabel?.numberOfLines = 0
                     cell.textLabel?.text = "\(repo.name)\n\(repo.description)"
                 }
                 .disposed(by: disposeBag)
-        }
-    }
-    
-    private func showSelectId(_ id: Int) {
-        let alertController = UIAlertController(title: "\(id)", message: nil, preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-        if searchController.isActive {
-            searchController.present(alertController, animated: true)
-        } else {
-            present(alertController, animated: true, completion: nil)
         }
     }
 }

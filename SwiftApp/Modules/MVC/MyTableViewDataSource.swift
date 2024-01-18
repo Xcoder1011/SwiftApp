@@ -8,9 +8,8 @@
 import Foundation
 import UIKit
 
-let reuseIdentifier = "MyRepoCell"
-
 class MyTableViewDataSource: NSObject, UITableViewDataSource {
+    
     var repos: [Repo]?
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -19,8 +18,7 @@ class MyTableViewDataSource: NSObject, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let repos = repos else { return UITableViewCell() }
-
-        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier) ?? UITableViewCell(style: .default, reuseIdentifier: reuseIdentifier)
+        let cell = tableView.dequeueReusableCell(for: indexPath)
         let repo = repos[indexPath.row]
         cell.textLabel?.numberOfLines = 0
         cell.textLabel?.text = "\(repo.name)\n\(repo.description)"

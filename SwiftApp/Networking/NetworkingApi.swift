@@ -9,17 +9,24 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-protocol NetworkingService {
-    func localSections() -> Single<[MySection]>
-    func login(username: String, password: String) -> Single<String>
+protocol NetworkingHomeService {
     // 闭包形式
-    @discardableResult func searchRepos(withQuery query: String, completion: @escaping ([Repo]) -> Void) -> URLSessionDataTask
+    @discardableResult
+    func searchRepos(withQuery query: String, completion: @escaping ([Repo]) -> Void) -> URLSessionDataTask
     // Rx 响应式
     func rx_searchRepos(withQuery query: String) -> Observable<[Repo]>
+    func fetchPopularRepos() -> Observable<[Repo]?>
 }
 
-class NetworkingApi: NetworkingService {
-        
+protocol NetworkingAuthService {
+    func localSections() -> Single<[MySection]>
+    func login(username: String, password: String) -> Single<String>
+}
+
+protocol NetworkingService: NetworkingHomeService, NetworkingAuthService { }
+
+final class NetworkingApi: NetworkingService {
+    
     private let session = URLSession.shared
     
     // 闭包形式
@@ -45,6 +52,17 @@ class NetworkingApi: NetworkingService {
         let request = URLRequest(url: URL(string: "https://api.github.com/search/repositories?q=\(query)")!)
         return session.rx.data(request: request)
             .map { data -> [Repo] in
+                guard let response = try? JSONDecoder().decode(SearchReponse.self, from: data) else {
+                    return []
+                }
+                return response.items
+            }
+    }
+    
+    func fetchPopularRepos() -> RxSwift.Observable<[Repo]?> {
+        let request = URLRequest(url: URL(string: "https://api.github.com/search/repositories?q=hot")!)
+        return session.rx.data(request: request)
+            .map { data -> [Repo]? in
                 guard let response = try? JSONDecoder().decode(SearchReponse.self, from: data) else {
                     return []
                 }

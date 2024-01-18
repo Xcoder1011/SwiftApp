@@ -28,7 +28,7 @@ class MVVMClosuresViewController: TableViewController {
         super.makeUI()
         tableView.headRefreshControl = nil
         tableView.footRefreshControl = nil
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.reuseIdentifier)
         
         searchController.searchResultsUpdater = self
         searchController.delegate = self
@@ -42,26 +42,26 @@ class MVVMClosuresViewController: TableViewController {
     
     override func bindViewModel() {
         super.bindViewModel()
-        if let viewModel = viewModel as? MVVMClosuresViewModel {
-            
-            viewModel.didReceiveRepos = { [weak self] repos in
-                guard let strongSelf = self else { return }
-                strongSelf.dataSource.repos = repos
-                strongSelf.tableView.reloadData()
-            }
-            
-            viewModel.didSelectId = { [weak self] id in
-                guard let strongSelf = self else { return }
-                strongSelf.showSelectId(id)
-            }
-            
-            viewModel.requestIsLoadding = { [weak self] isLoadding in
-                guard let strongSelf = self else { return }
-                if isLoadding {
-                    strongSelf.startAnimating()
-                } else {
-                    strongSelf.stopAnimating()
-                }
+        
+        guard let viewModel = viewModel as? MVVMClosuresViewModel else { return }
+        
+        viewModel.didReceiveRepos = { [weak self] repos in
+            guard let strongSelf = self else { return }
+            strongSelf.dataSource.repos = repos
+            strongSelf.tableView.reloadData()
+        }
+        
+        viewModel.didSelectId = { [weak self] id in
+            guard let strongSelf = self else { return }
+            strongSelf.showSelectId(id)
+        }
+        
+        viewModel.requestIsLoadding = { [weak self] isLoadding in
+            guard let strongSelf = self else { return }
+            if isLoadding {
+                strongSelf.startAnimating()
+            } else {
+                strongSelf.stopAnimating()
             }
         }
     }

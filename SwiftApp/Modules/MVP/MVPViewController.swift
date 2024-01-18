@@ -28,7 +28,7 @@ class MVPViewController: TableViewController {
         super.makeUI()
         tableView.headRefreshControl = nil
         tableView.footRefreshControl = nil
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.reuseIdentifier)
         
         searchController.searchResultsUpdater = self
         searchController.delegate = self
