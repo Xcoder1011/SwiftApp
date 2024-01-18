@@ -45,6 +45,7 @@
 		BC29529E2B20CE51008FCD51 /* MySection.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC29529D2B20CE51008FCD51 /* MySection.swift */; };
 		BCA509862B18CBF100C37801 /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA509852B18CBF100C37801 /* Application.swift */; };
 		BCA5098D2B18E53E00C37801 /* LibsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA5098C2B18E53E00C37801 /* LibsManager.swift */; };
+		BCCCC6612B58C923001FB88C /* Navigator+Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCCCC6602B58C923001FB88C /* Navigator+Controller.swift */; };
 		BCFDCAA12B2B0DF40069AA9C /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFDCAA02B2B0DF40069AA9C /* MainViewModel.swift */; };
 		E17F29D62C5E53FAEE0403F7 /* Pods_SwiftApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CF8DFED88B4E0DECA182607 /* Pods_SwiftApp.framework */; };
 /* End PBXBuildFile section */
@@ -92,6 +93,7 @@
 		BC29529D2B20CE51008FCD51 /* MySection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySection.swift; sourceTree = "<group>"; };
 		BCA509852B18CBF100C37801 /* Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
 		BCA5098C2B18E53E00C37801 /* LibsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibsManager.swift; sourceTree = "<group>"; };
+		BCCCC6602B58C923001FB88C /* Navigator+Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Navigator+Controller.swift"; sourceTree = "<group>"; };
 		BCFDCAA02B2B0DF40069AA9C /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		C453D7D0CFE14089DE78EC9D /* Pods-SwiftApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftApp.debug.xcconfig"; path = "Target Support Files/Pods-SwiftApp/Pods-SwiftApp.debug.xcconfig"; sourceTree = "<group>"; };
 		CFDFDE8DEC4272F6253D362E /* Pods-SwiftApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftApp.release.xcconfig"; path = "Target Support Files/Pods-SwiftApp/Pods-SwiftApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -300,6 +302,7 @@
 				BC039E532B137F7D00EA4CC9 /* AppDelegate.swift */,
 				BCA509852B18CBF100C37801 /* Application.swift */,
 				BC2952612B201BBD008FCD51 /* Navigator.swift */,
+				BCCCC6602B58C923001FB88C /* Navigator+Controller.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -511,6 +514,7 @@
 				BC2952932B2057DA008FCD51 /* NavigationController.swift in Sources */,
 				BC079A5C2B2C4E9C002C9B40 /* Repo.swift in Sources */,
 				BC079A532B2C449A002C9B40 /* MVCViewController.swift in Sources */,
+				BCCCC6612B58C923001FB88C /* Navigator+Controller.swift in Sources */,
 				BC2952762B20236D008FCD51 /* TableViewController.swift in Sources */,
 				BC26B0442B5514F400EF0E2D /* RxSwiftSubjectsController.swift in Sources */,
 				BC29529C2B20CD49008FCD51 /* NetworkingApi.swift in Sources */,

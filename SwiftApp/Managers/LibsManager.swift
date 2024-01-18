@@ -23,15 +23,15 @@ class LibsManager {
     }
     
     func setupKafkaRefresh() {
-          if let defaults = KafkaRefreshDefaults.standard() {
-              defaults.headDefaultStyle = .replicatorAllen
-              defaults.footDefaultStyle = .replicatorDot
-          }
-      }
-
-      func setupKeyboardManager() {
-          IQKeyboardManager.shared.enable = true
-      }
+        if let defaults = KafkaRefreshDefaults.standard() {
+            defaults.headDefaultStyle = .replicatorAllen
+            defaults.footDefaultStyle = .replicatorDot
+        }
+    }
+    
+    func setupKeyboardManager() {
+        IQKeyboardManager.shared.enable = true
+    }
     
     func setupKingfisher() {
         ImageCache.default.diskStorage.config.sizeLimit = UInt(500 * 1024 * 1024) // 500 MB

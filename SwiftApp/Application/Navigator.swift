@@ -14,18 +14,7 @@ protocol NavigatorProtocol {
 
 class Navigator {
     static var `default` = Navigator()
-    
-    enum Scene {
-        case home
-        case navHome
-        case mvc
-        case mvp
-        case mvvm_closures
-        case mvvm_functions_subjects
-        case mvvm_rxswift_subjects
-        case mvvm_rxswift_pure
-    }
-    
+  
     enum Transition {
         case root(in: UIWindow)
         case resetToot(in: UIWindow)
@@ -33,23 +22,6 @@ class Navigator {
         case modal
         case present
         case detail
-    }
-    
-    func getController(scene: Scene) -> UIViewController? {
-        switch scene {
-        case .home: return ViewController(viewModel: nil, navigator: self)
-        case .navHome: return NavigationController(rootViewController: ViewController(viewModel: MainViewModel(service: NetworkingApi()), navigator: self))
-        case .mvc: return MVCViewController(viewModel: nil, navigator: self)
-        case .mvp: return MVPViewController(viewModel: MVPViewModel(service: NetworkingApi()), navigator: self)
-        case .mvvm_closures:
-            return MVVMClosuresViewController(viewModel: MVVMClosuresViewModel(service: NetworkingApi()), navigator: self)
-        case .mvvm_functions_subjects:
-            return FunctionsSubjectsController(viewModel: FunctionsSubjectsViewModel(), navigator: self)
-        case .mvvm_rxswift_subjects:
-            return RxSwiftSubjectsController(viewModel: RxSwiftSubjectsViewModel(service: NetworkingApi()), navigator: self)
-        case .mvvm_rxswift_pure:
-            return FunctionsSubjectsController(viewModel: FunctionsSubjectsViewModel(), navigator: self)
-        }
     }
     
     func show(scene: Scene, sender: UIViewController?, transition: Transition = .navigation) {

@@ -54,7 +54,7 @@ class FunctionsSubjectsViewModel: ViewModel, FuncSubViewModelType, FuncSubViewMo
     var input: FuncSubViewModelInputs { return self }
     var output: FuncSubViewModelOutputs { return self }
     
-    override init() {
+    override init(service: NetworkingService) {
         let loading = ActivityIndicator()
         self.requestIsLoadding = loading.asDriver()
         
@@ -86,6 +86,6 @@ class FunctionsSubjectsViewModel: ViewModel, FuncSubViewModelType, FuncSubViewMo
             .map { $0.id }
             .asDriver(onErrorJustReturn: 0)
         
-        super.init()
+        super.init(service: service)
     }
 }
