@@ -20,21 +20,23 @@ struct MySection {
 
 extension Item: Equatable, IdentifiableType {
     static func == (lhs: Item, rhs: Item) -> Bool {
-        return lhs.title == rhs.title
+        return lhs.title == rhs.title && lhs.scene == rhs.scene
     }
+    
+    // IdentifiableType 实现
     var identity: String {
         return title
     }
-    typealias Identity = String
 }
 
 extension MySection: AnimatableSectionModelType, IdentifiableType {
+    // IdentifiableType 实现
     var identity: String {
         return header
     }
-    typealias Identity = String
+    
     init(original: MySection, items: [Item]) {
-        self = original
+        header = original.header
         self.items = items
     }
 }

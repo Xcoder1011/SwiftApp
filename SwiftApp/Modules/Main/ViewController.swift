@@ -11,7 +11,7 @@ import RxCocoa
 import RxDataSources
 
 class ViewController: TableViewController {
-        
+    
     override func makeUI() {
         super.makeUI()
         tableView.headRefreshControl = nil
@@ -30,7 +30,8 @@ class ViewController: TableViewController {
         
         let output = viewModel.transform(input: input)
         
-        output.itemSelected.drive(onNext: { (item) in
+        output.itemSelected.drive(onNext: { [weak self] (item) in
+            guard let self = self else { return }
             print("item = \(item)")
             Navigator.default.show(scene: item.scene, sender: self)
         }).disposed(by: disposeBag)

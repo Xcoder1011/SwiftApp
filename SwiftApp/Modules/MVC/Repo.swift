@@ -24,7 +24,7 @@ struct Repo: Decodable {
     let url: String    
 }
 
-struct SearchReponse: Decodable {
+struct SearchResponse: Decodable {
     let items: [Repo]
 }
 

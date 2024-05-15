@@ -46,22 +46,22 @@ class MVVMClosuresViewController: TableViewController {
         guard let viewModel = viewModel as? MVVMClosuresViewModel else { return }
         
         viewModel.didReceiveRepos = { [weak self] repos in
-            guard let strongSelf = self else { return }
-            strongSelf.dataSource.repos = repos
-            strongSelf.tableView.reloadData()
+            guard let self = self else { return }
+            self.dataSource.repos = repos
+            self.tableView.reloadData()
         }
         
         viewModel.didSelectId = { [weak self] id in
-            guard let strongSelf = self else { return }
-            strongSelf.showSelectId(id)
+            guard let self = self else { return }
+            self.showSelectId(id)
         }
         
         viewModel.requestIsLoadding = { [weak self] isLoadding in
-            guard let strongSelf = self else { return }
+            guard let self = self else { return }
             if isLoadding {
-                strongSelf.startAnimating()
+                self.startAnimating()
             } else {
-                strongSelf.stopAnimating()
+                self.stopAnimating()
             }
         }
     }

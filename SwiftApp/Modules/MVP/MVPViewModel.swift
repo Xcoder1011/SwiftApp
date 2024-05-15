@@ -9,8 +9,8 @@ import Foundation
 
 protocol MVPViewModelDelegate: AnyObject {
     func mvpReposViewModel(_ reposViewModel: MVPViewModel, didReceiveRepos repos: [Repo])
-    func mvpReposViewModel(_ reposViewModel: MVPViewModel, didSelectId id: Int)
-    func mvpReposViewModel(_ reposViewModel: MVPViewModel, requestIsLoadding: Bool)
+    func mvpReposViewModel(_ reposViewModel: MVPViewModel, didSelectRepoWithId id: Int)
+    func mvpReposViewModel(_ reposViewModel: MVPViewModel, isRequestLoading: Bool)
 }
 
 class MVPViewModel: ViewModel {
@@ -21,25 +21,32 @@ class MVPViewModel: ViewModel {
     
     func didChangeQuery(_ query: String) {
         validator.validate(query: query) { [weak self] query in
-            guard let strongSelf = self,
+            guard let self = self,
                   let query = query else { return }
-            strongSelf.startFetching(forQuery: query)
+            self.startFetching(forQuery: query)
         }
     }
     
     func didSelectRow(at indexPath: IndexPath) {
-        guard let repos = repos else { return }
+        guard let repos = repos, indexPath.item < repos.count else { return }
         let id = repos[indexPath.item].id
-        delegate?.mvpReposViewModel(self, didSelectId: id)
+        delegate?.mvpReposViewModel(self, didSelectRepoWithId: id)
     }
     
+    /// 开始获取仓库列表
+    /// - Parameters:
+    ///   - query: 查询关键字
     private func startFetching(forQuery query: String) {
-        delegate?.mvpReposViewModel(self, requestIsLoadding: true)
+        delegate?.mvpReposViewModel(self, isRequestLoading: true)
         fetcher.fetchRepos(withQuery: query, completion: { [weak self] repos in
-            guard let strongSelf = self else { return }
-            strongSelf.delegate?.mvpReposViewModel(strongSelf, requestIsLoadding: false)
-            strongSelf.repos = repos
-            strongSelf.delegate?.mvpReposViewModel(strongSelf, didReceiveRepos: repos)
+            guard let self = self else { return }
+            self.delegate?.mvpReposViewModel(self, isRequestLoading: false)
+            updateRepos(with: repos)
         })
+    }
+    
+    private func updateRepos(with repos: [Repo]) {
+        self.repos = repos
+        delegate?.mvpReposViewModel(self, didReceiveRepos: repos)
     }
 }

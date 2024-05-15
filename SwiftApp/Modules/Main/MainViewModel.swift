@@ -25,27 +25,28 @@ class MainViewModel: ViewModel, ViewModelType {
         let elements = BehaviorRelay<[MySection]>(value: [])
         let itemSelected = PublishSubject<Item>()
         
-        input.headerRefresh.flatMapLatest({ [weak self] () -> Observable<[MySection]> in
-            guard self != nil else { return Observable.just([]) }
-            let items = Observable.just([
-                MySection(header: "设计模式", items: [
-                    Item(title: "mvc", scene: .mvc),
-                    Item(title: "mvp", scene: .mvp)
-                ]),
-                MySection(header: "MVVM", items: [
-                    Item(title: "mvvm-closures", scene: .mvvm_closures),
-                    Item(title: "mvvm-functions-subjects-observables", scene: .mvvm_functions_subjects),
-                    Item(title: "mvvm-rxswift-subjects-observables", scene: .mvvm_rxswift_subjects),
-                    Item(title: "mvvm-rxswift-pure", scene: .mvvm_rxswift_pure)
-                ]),
-                MySection(header: "反馈循环架构", items: [
-                    Item(title: "RxFeedback", scene: .mvc)
-                ]),
-                MySection(header: "结合了 Flux 和响应式编程的架构", items: [
-                    Item(title: "ReactorKit", scene: .mvc)
-                ])
+        let sectionsData = [
+            MySection(header: "设计模式", items: [
+                Item(title: "mvc", scene: .mvc),
+                Item(title: "mvp", scene: .mvp)
+            ]),
+            MySection(header: "MVVM", items: [
+                Item(title: "mvvm-closures", scene: .mvvm_closures),
+                Item(title: "mvvm-functions-subjects-observables", scene: .mvvm_functions_subjects),
+                Item(title: "mvvm-rxswift-subjects-observables", scene: .mvvm_rxswift_subjects),
+                Item(title: "mvvm-rxswift-pure", scene: .mvvm_rxswift_pure)
+            ]),
+            MySection(header: "反馈循环架构", items: [
+                Item(title: "RxFeedback", scene: .mvc)
+            ]),
+            MySection(header: "结合了 Flux 和响应式编程的架构", items: [
+                Item(title: "ReactorKit", scene: .mvc)
             ])
-            return items
+        ]
+        
+        input.headerRefresh.flatMapLatest({ [weak self] () -> Observable<[MySection]> in
+            guard let _ = self else { return Observable.just([]) }
+            return Observable.just(sectionsData)
         }).subscribe(onNext: { (items) in
             elements.accept(items)
         }).disposed(by: disposeBag)

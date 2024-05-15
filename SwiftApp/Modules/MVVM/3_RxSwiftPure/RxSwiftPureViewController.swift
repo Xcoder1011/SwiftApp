@@ -39,19 +39,19 @@ class RxSwiftPureViewController: MVVMBaseViewController {
         
         output.requestIsLoadding
             .drive(onNext: { [weak self] isLoadding in
-                guard let strongSelf = self else { return }
+                guard let self = self else { return }
                 if isLoadding {
-                    strongSelf.startAnimating()
+                    self.startAnimating()
                 } else {
-                    strongSelf.stopAnimating()
+                    self.stopAnimating()
                 }
             })
             .disposed(by: disposeBag)
         
         output.didSelectId
             .drive(onNext: { [weak self] repoId in
-                guard let strongSelf = self else { return }
-                strongSelf.showSelectId(repoId)
+                guard let self = self else { return }
+                self.showSelectId(repoId)
             })
             .disposed(by: disposeBag)
     }

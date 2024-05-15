@@ -20,9 +20,9 @@ class MVVMClosuresViewModel: ViewModel {
     
     func didChangeQuery(_ query: String) {
         validator.validate(query: query) { [weak self] query in
-            guard let strongSelf = self,
+            guard let self = self,
                   let query = query else { return }
-            strongSelf.startFetching(forQuery: query)
+            self.startFetching(forQuery: query)
         }
     }
     
@@ -35,10 +35,10 @@ class MVVMClosuresViewModel: ViewModel {
     private func startFetching(forQuery query: String) {
         requestIsLoadding?(true)
         fetcher.fetchRepos(withQuery: query, completion: { [weak self] repos in
-            guard let strongSelf = self else { return }
-            strongSelf.requestIsLoadding?(false)
-            strongSelf.repos = repos
-            strongSelf.didReceiveRepos?(repos)
+            guard let self = self else { return }
+            self.requestIsLoadding?(false)
+            self.repos = repos
+            self.didReceiveRepos?(repos)
         })
     }
 }

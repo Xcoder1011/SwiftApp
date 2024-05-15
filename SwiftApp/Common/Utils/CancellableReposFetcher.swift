@@ -15,7 +15,8 @@ final class CancellableReposFetcher {
         self.networkingService = networkingService
     }
     
-    func fetchRepos(withQuery query: String, completion: @escaping (([Repo]) -> ())) {
+    func fetchRepos(withQuery query: String, completion: @escaping (([Repo]) -> Void)) {
+        // 取消当前正在进行的网络任务
         currentSearchNetworkTask?.cancel()
         
         _ = currentSearchNetworkTask = networkingService.searchRepos(withQuery: query) { repos in

@@ -8,7 +8,6 @@
 import UIKit
 
 class MVPViewController: TableViewController {
-    
     private let searchController = UISearchController(searchResultsController: nil)
     private let dataSource = MyTableViewDataSource()
     
@@ -54,18 +53,18 @@ extension MVPViewController: MVPViewModelDelegate {
         self.tableView.reloadData()
     }
     
-    func mvpReposViewModel(_ reposViewModel: MVPViewModel, didSelectId id: Int) {
+    func mvpReposViewModel(_ reposViewModel: MVPViewModel, didSelectRepoWithId id: Int) {
         let alertController = UIAlertController(title: "\(id)", message: nil, preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-        if searchController.isActive {
+        if let presentedVC = presentedViewController, presentedVC == searchController {
             searchController.present(alertController, animated: true)
         } else {
             present(alertController, animated: true, completion: nil)
         }
     }
     
-    func mvpReposViewModel(_ reposViewModel: MVPViewModel, requestIsLoadding: Bool) {
-        if requestIsLoadding {
+    func mvpReposViewModel(_ reposViewModel: MVPViewModel, isRequestLoading: Bool) {
+        if isRequestLoading {
             startAnimating()
         } else {
             stopAnimating()

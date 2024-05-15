@@ -23,8 +23,8 @@ class FunctionsSubjectsController: MVVMBaseViewController {
         rx.viewWillAppear
             .asObservable()
             .subscribe(onNext: { [weak self] _ in
-                guard let strongSelf = self else { return }
-                if let viewModel = strongSelf.viewModel as? FunctionsSubjectsViewModel {
+                guard let self = self else { return }
+                if let viewModel = self.viewModel as? FunctionsSubjectsViewModel {
                     viewModel.viewWillAppear()
                 }
             }).disposed(by: disposeBag)
@@ -32,8 +32,8 @@ class FunctionsSubjectsController: MVVMBaseViewController {
         searchController.searchBar.rx.text.orEmpty
             .asObservable()
             .subscribe(onNext: { [weak self] text in
-                guard let strongSelf = self else { return }
-                if let viewModel = strongSelf.viewModel as? FunctionsSubjectsViewModel {
+                guard let self = self else { return }
+                if let viewModel = self.viewModel as? FunctionsSubjectsViewModel {
                     viewModel.didSearch(text)
                 }
             }).disposed(by: disposeBag)
@@ -41,8 +41,8 @@ class FunctionsSubjectsController: MVVMBaseViewController {
         tableView.rx.itemSelected
             .asObservable()
             .subscribe(onNext: { [weak self] indexPath in
-                guard let strongSelf = self else { return }
-                if let viewModel = strongSelf.viewModel as? FunctionsSubjectsViewModel {
+                guard let self = self else { return }
+                if let viewModel = self.viewModel as? FunctionsSubjectsViewModel {
                     viewModel.didSelectRowAt(indexPath)
                 }
             }).disposed(by: disposeBag)
@@ -51,17 +51,17 @@ class FunctionsSubjectsController: MVVMBaseViewController {
         if let viewModel = viewModel as? FunctionsSubjectsViewModel {
             viewModel.didSelectId
                 .drive(onNext: { [weak self] repoId in
-                    guard let strongSelf = self else { return }
-                    strongSelf.showSelectId(repoId)
+                    guard let self = self else { return }
+                    self.showSelectId(repoId)
                 }).disposed(by: disposeBag)
             
             viewModel.requestIsLoadding
                 .drive(onNext: { [weak self] isLoadding in
-                    guard let strongSelf = self else { return }
+                    guard let self = self else { return }
                     if isLoadding {
-                        strongSelf.startAnimating()
+                        self.startAnimating()
                     } else {
-                        strongSelf.stopAnimating()
+                        self.stopAnimating()
                     }
                 }).disposed(by: disposeBag)
             
