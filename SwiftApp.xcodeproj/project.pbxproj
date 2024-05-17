@@ -49,6 +49,10 @@
 		BCCCC6662B595409001FB88C /* UITableView+Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCCCC6652B595409001FB88C /* UITableView+Reusable.swift */; };
 		BCCCC6682B5962D1001FB88C /* MVVMBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCCCC6672B5962D1001FB88C /* MVVMBaseViewController.swift */; };
 		BCFDCAA12B2B0DF40069AA9C /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFDCAA02B2B0DF40069AA9C /* MainViewModel.swift */; };
+		E014B5102BF7070500AB6F29 /* RxSwiftGitHubSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E014B50F2BF7070500AB6F29 /* RxSwiftGitHubSearchController.swift */; };
+		E014B5122BF7076900AB6F29 /* RxSwiftGitHubSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E014B5112BF7076900AB6F29 /* RxSwiftGitHubSearchViewModel.swift */; };
+		E014B5142BF707BB00AB6F29 /* CombineGitHubSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E014B5132BF707BB00AB6F29 /* CombineGitHubSearchController.swift */; };
+		E014B5162BF707DC00AB6F29 /* CombineGitHubSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E014B5152BF707DC00AB6F29 /* CombineGitHubSearchViewModel.swift */; };
 		E17F29D62C5E53FAEE0403F7 /* Pods_SwiftApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CF8DFED88B4E0DECA182607 /* Pods_SwiftApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -101,6 +105,10 @@
 		BCFDCAA02B2B0DF40069AA9C /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		C453D7D0CFE14089DE78EC9D /* Pods-SwiftApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftApp.debug.xcconfig"; path = "Target Support Files/Pods-SwiftApp/Pods-SwiftApp.debug.xcconfig"; sourceTree = "<group>"; };
 		CFDFDE8DEC4272F6253D362E /* Pods-SwiftApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftApp.release.xcconfig"; path = "Target Support Files/Pods-SwiftApp/Pods-SwiftApp.release.xcconfig"; sourceTree = "<group>"; };
+		E014B50F2BF7070500AB6F29 /* RxSwiftGitHubSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxSwiftGitHubSearchController.swift; sourceTree = "<group>"; };
+		E014B5112BF7076900AB6F29 /* RxSwiftGitHubSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxSwiftGitHubSearchViewModel.swift; sourceTree = "<group>"; };
+		E014B5132BF707BB00AB6F29 /* CombineGitHubSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineGitHubSearchController.swift; sourceTree = "<group>"; };
+		E014B5152BF707DC00AB6F29 /* CombineGitHubSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineGitHubSearchViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -316,6 +324,7 @@
 		BCA509892B18E4E800C37801 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				E014B50C2BF7062D00AB6F29 /* GitHub */,
 				BC26B0362B54EB3600EF0E2D /* MVVM */,
 				BC079A5F2B2D8C70002C9B40 /* MVP */,
 				BC079A512B2C3895002C9B40 /* MVC */,
@@ -350,6 +359,33 @@
 				BCCCC6652B595409001FB88C /* UITableView+Reusable.swift */,
 			);
 			path = Category;
+			sourceTree = "<group>";
+		};
+		E014B50C2BF7062D00AB6F29 /* GitHub */ = {
+			isa = PBXGroup;
+			children = (
+				E014B50E2BF7067100AB6F29 /* Combine */,
+				E014B50D2BF7066100AB6F29 /* RxSwift */,
+			);
+			path = GitHub;
+			sourceTree = "<group>";
+		};
+		E014B50D2BF7066100AB6F29 /* RxSwift */ = {
+			isa = PBXGroup;
+			children = (
+				E014B50F2BF7070500AB6F29 /* RxSwiftGitHubSearchController.swift */,
+				E014B5112BF7076900AB6F29 /* RxSwiftGitHubSearchViewModel.swift */,
+			);
+			path = RxSwift;
+			sourceTree = "<group>";
+		};
+		E014B50E2BF7067100AB6F29 /* Combine */ = {
+			isa = PBXGroup;
+			children = (
+				E014B5132BF707BB00AB6F29 /* CombineGitHubSearchController.swift */,
+				E014B5152BF707DC00AB6F29 /* CombineGitHubSearchViewModel.swift */,
+			);
+			path = Combine;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -511,8 +547,10 @@
 			files = (
 				BC27D9152B57AE7F001A1B17 /* AppEnvironment.swift in Sources */,
 				BCA509862B18CBF100C37801 /* Application.swift in Sources */,
+				E014B5142BF707BB00AB6F29 /* CombineGitHubSearchController.swift in Sources */,
 				BCCCC6662B595409001FB88C /* UITableView+Reusable.swift in Sources */,
 				BC2952852B2042AF008FCD51 /* R.generated.swift in Sources */,
+				E014B5102BF7070500AB6F29 /* RxSwiftGitHubSearchController.swift in Sources */,
 				BC26B0392B54EBD900EF0E2D /* MVVMClosuresViewController.swift in Sources */,
 				BC079A5E2B2D78B9002C9B40 /* MyTableViewDataSource.swift in Sources */,
 				BC2952812B2027F0008FCD51 /* LogManager.swift in Sources */,
@@ -521,6 +559,7 @@
 				BC26B0462B55150100EF0E2D /* RxSwiftSubjectsViewModel.swift in Sources */,
 				BC26B03B2B54EC2A00EF0E2D /* MVVMClosuresViewModel.swift in Sources */,
 				BC079A582B2C4D8D002C9B40 /* Throttle.swift in Sources */,
+				E014B5122BF7076900AB6F29 /* RxSwiftGitHubSearchViewModel.swift in Sources */,
 				BC079A5A2B2C4E31002C9B40 /* CancellableReposFetcher.swift in Sources */,
 				BC2952782B20238C008FCD51 /* BaseViewController.swift in Sources */,
 				BC2952622B201BBD008FCD51 /* Navigator.swift in Sources */,
@@ -531,6 +570,7 @@
 				BC079A532B2C449A002C9B40 /* MVCViewController.swift in Sources */,
 				BCCCC6612B58C923001FB88C /* Navigator+Controller.swift in Sources */,
 				BC2952762B20236D008FCD51 /* TableViewController.swift in Sources */,
+				E014B5162BF707DC00AB6F29 /* CombineGitHubSearchViewModel.swift in Sources */,
 				BC26B0442B5514F400EF0E2D /* RxSwiftSubjectsController.swift in Sources */,
 				BC29529C2B20CD49008FCD51 /* NetworkingApi.swift in Sources */,
 				BC26B0422B5514DB00EF0E2D /* FunctionsSubjectsViewModel.swift in Sources */,

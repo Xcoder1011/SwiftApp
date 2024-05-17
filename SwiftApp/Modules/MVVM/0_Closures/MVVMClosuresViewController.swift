@@ -8,7 +8,6 @@
 import UIKit
 
 class MVVMClosuresViewController: TableViewController {
-    
     private let searchController = UISearchController(searchResultsController: nil)
     private let dataSource = MyTableViewDataSource()
     

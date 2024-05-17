@@ -16,7 +16,6 @@ class RxSwiftPureViewController: MVVMBaseViewController {
     
     override func bindViewModel() {
         super.bindViewModel()
-        
         let ready = rx.viewWillAppear.asDriver()
         let selectedIndex = tableView.rx.itemSelected.asDriver()
         let searchText = searchController.searchBar.rx.text.orEmpty.asDriver()
@@ -26,7 +25,6 @@ class RxSwiftPureViewController: MVVMBaseViewController {
                                                searchText: searchText)
         
         guard let viewModel = viewModel as? RxSwiftPureViewModel else { return }
-        
         let output = viewModel.transform(input: input)
         
         output.repos

@@ -15,8 +15,7 @@ class RxSwiftSubjectsViewModel: ViewModel {
     let viewWillAppearSubject = PublishSubject<Void>()
     let didSelectRowSubject = PublishSubject<IndexPath>()
     let didSearchSubject = BehaviorSubject(value: "")
-
-
+    
     // Outputs
     var didReceiveRepos: Driver<[Repo]>
     var didSelectId: Driver<Int>
@@ -29,7 +28,7 @@ class RxSwiftSubjectsViewModel: ViewModel {
         let initialRepos = self.viewWillAppearSubject
             .asObservable()
             .flatMap { _ in
-                service.rx_searchRepos(withQuery: "RxSwift").trackActivity(loading)
+                service.rx_searchRepos(query: "RxSwift").trackActivity(loading)
             }
             .asDriver(onErrorJustReturn: [])
         
@@ -39,7 +38,7 @@ class RxSwiftSubjectsViewModel: ViewModel {
             .throttle(RxTimeInterval.milliseconds(300), scheduler: MainScheduler.instance)
             .distinctUntilChanged()
             .flatMapLatest { query in
-                service.rx_searchRepos(withQuery: query).trackActivity(loading)
+                service.rx_searchRepos(query: query).trackActivity(loading)
             }
             .asDriver(onErrorJustReturn: [])
         
@@ -52,11 +51,10 @@ class RxSwiftSubjectsViewModel: ViewModel {
                 return repos[indexPath.item]
             })
             .map { $0.id }
-            .asDriver(onErrorJustReturn: 0)
+            .asDriver(onErrorJustReturn: -1)
         
         super.init(service: service)
     }
-   
 }
 
 

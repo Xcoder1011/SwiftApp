@@ -14,7 +14,7 @@ protocol NetworkingHomeService {
     @discardableResult
     func searchRepos(withQuery query: String, completion: @escaping ([Repo]) -> Void) -> URLSessionDataTask
     // Rx 响应式
-    func rx_searchRepos(withQuery query: String) -> Observable<[Repo]>
+    func rx_searchRepos(query: String) -> Observable<[Repo]>
     func fetchPopularRepos() -> Observable<[Repo]?>
 }
 
@@ -68,7 +68,7 @@ final class NetworkingApi: NetworkingService {
     }
     
     // Rx 响应式
-    func rx_searchRepos(withQuery query: String) -> RxSwift.Observable<[Repo]> {
+    func rx_searchRepos(query: String) -> RxSwift.Observable<[Repo]> {
         let request = URLRequest(url: URL(string: "https://api.github.com/search/repositories?q=\(query)")!)
         return session.rx.data(request: request)
             .map { data -> [Repo] in

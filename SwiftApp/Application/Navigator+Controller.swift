@@ -19,6 +19,8 @@ extension Navigator {
         case mvvm_functions_subjects
         case mvvm_rxswift_subjects
         case mvvm_rxswift_pure
+        case rxswift_github
+        case combine_github
     }
     
     func getController(scene: Scene) -> UIViewController? {
@@ -35,6 +37,10 @@ extension Navigator {
             return RxSwiftSubjectsController(viewModel: RxSwiftSubjectsViewModel(service: NetworkingApi()), navigator: self)
         case .mvvm_rxswift_pure:
             return RxSwiftPureViewController(viewModel: RxSwiftPureViewModel(service: NetworkingApi()), navigator: self)
+        case .rxswift_github:
+            return RxSwiftGitHubSearchController(viewModel: RxSwiftGitHubSearchViewModel(service: NetworkingApi()), navigator: self)
+        case .combine_github:
+            return CombineGitHubSearchController(viewModel: CombineGitHubSearchViewModel(service: NetworkingApi()), navigator: self)
         }
     }
 }

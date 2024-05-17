@@ -36,12 +36,12 @@ class MainViewModel: ViewModel, ViewModelType {
                 Item(title: "mvvm-rxswift-subjects-observables", scene: .mvvm_rxswift_subjects),
                 Item(title: "mvvm-rxswift-pure", scene: .mvvm_rxswift_pure)
             ]),
-            MySection(header: "反馈循环架构", items: [
-                Item(title: "RxFeedback", scene: .mvc)
+            MySection(header: "RxSwift", items: [
+                Item(title: "GitHub", scene: .rxswift_github)
             ]),
-            MySection(header: "结合了 Flux 和响应式编程的架构", items: [
-                Item(title: "ReactorKit", scene: .mvc)
-            ])
+            MySection(header: "Combine", items: [
+                Item(title: "GitHub", scene: .combine_github)
+            ]),
         ]
         
         input.headerRefresh.flatMapLatest({ [weak self] () -> Observable<[MySection]> in

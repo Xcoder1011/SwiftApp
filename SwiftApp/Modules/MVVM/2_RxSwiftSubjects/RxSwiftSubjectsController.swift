@@ -34,7 +34,6 @@ class RxSwiftSubjectsController: MVVMBaseViewController {
             .bind(to: viewModel.didSelectRowSubject)
             .disposed(by: disposeBag)
         
-        
         viewModel.didReceiveRepos
             .drive(tableView.rx.items(cellIdentifier: UITableViewCell.reuseIdentifier, cellType: UITableViewCell.self)) { (row, repo, cell) in
                 cell.textLabel?.numberOfLines = 0

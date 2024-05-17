@@ -63,10 +63,10 @@ private extension Navigator {
             }
         }
         
-        if let nav = sender as? UINavigationController {
-            nav.pushViewController(target, animated: false)
-            return
-        }
+//        if let nav = sender as? UINavigationController {
+//            nav.pushViewController(target, animated: false)
+//            return
+//        }
         
         switch transition {
         case .navigation:

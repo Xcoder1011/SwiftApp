@@ -61,17 +61,18 @@ class FunctionsSubjectsViewModel: ViewModel, FuncSubViewModelType, FuncSubViewMo
         let initialRepos = self.viewWillAppearSubject
             .asObservable()
             .flatMap { _ in
-                AppEnvironment.instance.service.rx_searchRepos(withQuery: "RxSwift").trackActivity(loading)
+                AppEnvironment.instance.service.rx_searchRepos(query: "RxSwift").trackActivity(loading)
             }
             .asDriver(onErrorJustReturn: [])
         
         let searchRepos = self.didSearchSubject
             .asObservable()
+        // 仅当查询关键词长度大于2时才触发搜索
             .filter { $0.count > 2 }
             .throttle(RxTimeInterval.milliseconds(300), scheduler: MainScheduler.instance)
             .distinctUntilChanged()
             .flatMapLatest { query in
-                AppEnvironment.instance.service.rx_searchRepos(withQuery: query).trackActivity(loading)
+                AppEnvironment.instance.service.rx_searchRepos(query: query).trackActivity(loading)
             }
             .asDriver(onErrorJustReturn: [])
         
@@ -84,7 +85,8 @@ class FunctionsSubjectsViewModel: ViewModel, FuncSubViewModelType, FuncSubViewMo
                 return repos[indexPath.item]
             })
             .map { $0.id }
-            .asDriver(onErrorJustReturn: 0)
+        // 当遇到错误时，返回-1表示无效的id
+            .asDriver(onErrorJustReturn: -1)
         
         super.init(service: service)
     }
