@@ -28,3 +28,23 @@ struct SearchResponse: Decodable {
     let items: [Repo]
 }
 
+
+// MARK: - RepoElement
+struct RepoElement: Codable {
+    var author: String
+    var avatar: String
+    var forks, currentPeriodStars: Int
+    var builtBy: [TrendingUser]
+    var url: String
+    var language: String?
+    var stars: Int
+    var description: String?
+    var name: String
+    var languageColor: String?
+}
+
+struct TrendingUser: Codable {
+    var avatar: String
+    var username: String
+    var href: String
+}

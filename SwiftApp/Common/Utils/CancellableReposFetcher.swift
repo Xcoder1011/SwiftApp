@@ -11,7 +11,7 @@ final class CancellableReposFetcher {
     private var currentSearchNetworkTask: URLSessionDataTask?
     private let networkingService: NetworkingService
     
-    init(networkingService: NetworkingService = NetworkingApi()) {
+    init(networkingService: NetworkingService = NetworkingServiceIMP()) {
         self.networkingService = networkingService
     }
     

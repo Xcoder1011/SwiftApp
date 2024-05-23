@@ -41,7 +41,6 @@
 		BC29528E2B204A5C008FCD51 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BC2952902B204A5C008FCD51 /* Localizable.strings */; };
 		BC2952932B2057DA008FCD51 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2952922B2057DA008FCD51 /* NavigationController.swift */; };
 		BC2952952B2063D2008FCD51 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC2952942B2063D2008FCD51 /* ThemeManager.swift */; };
-		BC29529C2B20CD49008FCD51 /* NetworkingApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC29529B2B20CD49008FCD51 /* NetworkingApi.swift */; };
 		BC29529E2B20CE51008FCD51 /* MySection.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC29529D2B20CE51008FCD51 /* MySection.swift */; };
 		BCA509862B18CBF100C37801 /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA509852B18CBF100C37801 /* Application.swift */; };
 		BCA5098D2B18E53E00C37801 /* LibsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA5098C2B18E53E00C37801 /* LibsManager.swift */; };
@@ -53,6 +52,11 @@
 		E014B5122BF7076900AB6F29 /* RxSwiftGitHubSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E014B5112BF7076900AB6F29 /* RxSwiftGitHubSearchViewModel.swift */; };
 		E014B5142BF707BB00AB6F29 /* CombineGitHubSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E014B5132BF707BB00AB6F29 /* CombineGitHubSearchController.swift */; };
 		E014B5162BF707DC00AB6F29 /* CombineGitHubSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E014B5152BF707DC00AB6F29 /* CombineGitHubSearchViewModel.swift */; };
+		E014B51A2BF75D2E00AB6F29 /* NetworkingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E014B5192BF75D2E00AB6F29 /* NetworkingService.swift */; };
+		E014B51E2BFDDA4B00AB6F29 /* GitHubAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E014B51D2BFDDA4B00AB6F29 /* GitHubAPI.swift */; };
+		E014B5202BFDDAAD00AB6F29 /* AModuleAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E014B51F2BFDDAAD00AB6F29 /* AModuleAPI.swift */; };
+		E014B5232BFDDD0E00AB6F29 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = E014B5222BFDDD0E00AB6F29 /* File.swift */; };
+		E014B5252BFDEEE600AB6F29 /* NetworkingAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E014B5242BFDEEE600AB6F29 /* NetworkingAPI.swift */; };
 		E17F29D62C5E53FAEE0403F7 /* Pods_SwiftApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CF8DFED88B4E0DECA182607 /* Pods_SwiftApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -95,7 +99,6 @@
 		BC2952912B204AB7008FCD51 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		BC2952922B2057DA008FCD51 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		BC2952942B2063D2008FCD51 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
-		BC29529B2B20CD49008FCD51 /* NetworkingApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingApi.swift; sourceTree = "<group>"; };
 		BC29529D2B20CE51008FCD51 /* MySection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySection.swift; sourceTree = "<group>"; };
 		BCA509852B18CBF100C37801 /* Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
 		BCA5098C2B18E53E00C37801 /* LibsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibsManager.swift; sourceTree = "<group>"; };
@@ -109,6 +112,11 @@
 		E014B5112BF7076900AB6F29 /* RxSwiftGitHubSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxSwiftGitHubSearchViewModel.swift; sourceTree = "<group>"; };
 		E014B5132BF707BB00AB6F29 /* CombineGitHubSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineGitHubSearchController.swift; sourceTree = "<group>"; };
 		E014B5152BF707DC00AB6F29 /* CombineGitHubSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineGitHubSearchViewModel.swift; sourceTree = "<group>"; };
+		E014B5192BF75D2E00AB6F29 /* NetworkingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingService.swift; sourceTree = "<group>"; };
+		E014B51D2BFDDA4B00AB6F29 /* GitHubAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubAPI.swift; sourceTree = "<group>"; };
+		E014B51F2BFDDAAD00AB6F29 /* AModuleAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AModuleAPI.swift; sourceTree = "<group>"; };
+		E014B5222BFDDD0E00AB6F29 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
+		E014B5242BFDEEE600AB6F29 /* NetworkingAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingAPI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +169,7 @@
 		BC039E522B137F7D00EA4CC9 /* SwiftApp */ = {
 			isa = PBXGroup;
 			children = (
+				E014B5212BFDDCDF00AB6F29 /* Configs */,
 				BC2952962B20CCC0008FCD51 /* Networking */,
 				BC2952832B20308F008FCD51 /* Resources */,
 				BC2952792B202662008FCD51 /* Third Party */,
@@ -304,8 +313,11 @@
 		BC2952962B20CCC0008FCD51 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				BC29529B2B20CD49008FCD51 /* NetworkingApi.swift */,
+				E014B5192BF75D2E00AB6F29 /* NetworkingService.swift */,
 				BC27D9142B57AE7F001A1B17 /* AppEnvironment.swift */,
+				E014B51D2BFDDA4B00AB6F29 /* GitHubAPI.swift */,
+				E014B51F2BFDDAAD00AB6F29 /* AModuleAPI.swift */,
+				E014B5242BFDEEE600AB6F29 /* NetworkingAPI.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -386,6 +398,14 @@
 				E014B5152BF707DC00AB6F29 /* CombineGitHubSearchViewModel.swift */,
 			);
 			path = Combine;
+			sourceTree = "<group>";
+		};
+		E014B5212BFDDCDF00AB6F29 /* Configs */ = {
+			isa = PBXGroup;
+			children = (
+				E014B5222BFDDD0E00AB6F29 /* File.swift */,
+			);
+			path = Configs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -563,16 +583,18 @@
 				BC079A5A2B2C4E31002C9B40 /* CancellableReposFetcher.swift in Sources */,
 				BC2952782B20238C008FCD51 /* BaseViewController.swift in Sources */,
 				BC2952622B201BBD008FCD51 /* Navigator.swift in Sources */,
+				E014B51A2BF75D2E00AB6F29 /* NetworkingService.swift in Sources */,
 				BC26B0482B55151F00EF0E2D /* RxSwiftPureViewController.swift in Sources */,
 				BC29527F2B202663008FCD51 /* ActivityIndicator.swift in Sources */,
+				E014B5232BFDDD0E00AB6F29 /* File.swift in Sources */,
 				BC2952932B2057DA008FCD51 /* NavigationController.swift in Sources */,
 				BC079A5C2B2C4E9C002C9B40 /* Repo.swift in Sources */,
 				BC079A532B2C449A002C9B40 /* MVCViewController.swift in Sources */,
 				BCCCC6612B58C923001FB88C /* Navigator+Controller.swift in Sources */,
 				BC2952762B20236D008FCD51 /* TableViewController.swift in Sources */,
 				E014B5162BF707DC00AB6F29 /* CombineGitHubSearchViewModel.swift in Sources */,
+				E014B51E2BFDDA4B00AB6F29 /* GitHubAPI.swift in Sources */,
 				BC26B0442B5514F400EF0E2D /* RxSwiftSubjectsController.swift in Sources */,
-				BC29529C2B20CD49008FCD51 /* NetworkingApi.swift in Sources */,
 				BC26B0422B5514DB00EF0E2D /* FunctionsSubjectsViewModel.swift in Sources */,
 				BCCCC6682B5962D1001FB88C /* MVVMBaseViewController.swift in Sources */,
 				BC29529E2B20CE51008FCD51 /* MySection.swift in Sources */,
@@ -581,9 +603,11 @@
 				BC2952952B2063D2008FCD51 /* ThemeManager.swift in Sources */,
 				BC27D9132B578C5F001A1B17 /* UIViewController+Rx.swift in Sources */,
 				BCA5098D2B18E53E00C37801 /* LibsManager.swift in Sources */,
+				E014B5252BFDEEE600AB6F29 /* NetworkingAPI.swift in Sources */,
 				BC039E582B137F7D00EA4CC9 /* ViewController.swift in Sources */,
 				BC079A612B2D8C95002C9B40 /* MVPViewController.swift in Sources */,
 				BC26B0402B5514CA00EF0E2D /* FunctionsSubjectsController.swift in Sources */,
+				E014B5202BFDDAAD00AB6F29 /* AModuleAPI.swift in Sources */,
 				BC079A562B2C4A61002C9B40 /* ThrottledTextFieldValidator.swift in Sources */,
 				BC2952652B201D9E008FCD51 /* ViewModel.swift in Sources */,
 				BC039E542B137F7D00EA4CC9 /* AppDelegate.swift in Sources */,

@@ -12,8 +12,8 @@ class MVVMBaseViewController: TableViewController {
     
     override func makeUI() {
         super.makeUI()
-        tableView.headRefreshControl = nil
-        tableView.footRefreshControl = nil
+//        tableView.headRefreshControl = nil
+//        tableView.footRefreshControl = nil
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.reuseIdentifier)
 
         searchController.searchResultsUpdater = nil

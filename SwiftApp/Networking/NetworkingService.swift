@@ -1,5 +1,5 @@
 //
-//  CommonAPI.swift
+//  NetworkingService.swift
 //  SwiftApp
 //
 //  Created by KUN on 2023/12/6.
@@ -9,34 +9,28 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-protocol NetworkingHomeService {
-    // 闭包形式
+protocol NetworkingHomeAPI {
     @discardableResult
     func searchRepos(withQuery query: String, completion: @escaping ([Repo]) -> Void) -> URLSessionDataTask
-    // Rx 响应式
     func rx_searchRepos(query: String) -> Observable<[Repo]>
     func fetchPopularRepos() -> Observable<[Repo]?>
 }
 
-protocol NetworkingAuthService {
+protocol NetworkingAuthAPI {
     func localSections() -> Single<[MySection]>
     func login(username: String, password: String) -> Single<String>
 }
 
-protocol NetworkingService: NetworkingHomeService, NetworkingAuthService { }
+protocol NetworkingService: NetworkingHomeAPI, NetworkingAuthAPI { }
 
-final class NetworkingApi: NetworkingService {
-    
+final class NetworkingServiceIMP: NetworkingService {
     private let session = URLSession.shared
-    
-    // 闭包形式
     @discardableResult
     func searchRepos(withQuery query: String, completion: @escaping ([Repo]) -> Void) -> URLSessionDataTask {
         let request = URLRequest(url: URL(string: "https://api.github.com/search/repositories?q=\(query)")!)
         let task = session.dataTask(with: request) { data, response, error in
             DispatchQueue.main.async {
                 if let error = error {
-                    // 网络请求出错
                     completion([])
                     print("Error occurred during search: \(error.localizedDescription)")
                     return
@@ -45,29 +39,24 @@ final class NetworkingApi: NetworkingService {
                 guard let httpResponse = response as? HTTPURLResponse,
                       httpResponse.statusCode == 200,
                       let data = data else {
-                    // 服务器返回非200状态码或数据为空，返回空数组
                     completion([])
                     print("Invalid response or no data received")
                     return
                 }
             
                 do {
-                    // 解析数据
                     let searchResponse = try JSONDecoder().decode(SearchResponse.self, from: data)
                     completion(searchResponse.items)
                 } catch {
-                    // 解析数据出错
                     completion([])
                     print("Error decoding search response: \(error.localizedDescription)")
                 }
             }
         }
-        // 启动任务
         task.resume()
         return task
     }
     
-    // Rx 响应式
     func rx_searchRepos(query: String) -> RxSwift.Observable<[Repo]> {
         let request = URLRequest(url: URL(string: "https://api.github.com/search/repositories?q=\(query)")!)
         return session.rx.data(request: request)
@@ -89,10 +78,9 @@ final class NetworkingApi: NetworkingService {
                 return response.items
             }
     }
-    
 }
 
-extension NetworkingApi {
+extension NetworkingServiceIMP {
     func localSections() -> Single<[MySection]> {
         let items = Observable.just([
             MySection(header: "设计模式", items: [
@@ -101,15 +89,15 @@ extension NetworkingApi {
             ]),
             MySection(header: "MVVM", items: [
                 Item(title: "mvvm-closures", scene: .mvvm_closures),
-                Item(title: "mvvm-functions-subjects-observables", scene: .mvp),
-                Item(title: "mvvm-rxswift-subjects-observables", scene: .mvc),
-                Item(title: "mvvm-rxswift-pure", scene: .mvc)
+                Item(title: "mvvm-functions-subjects-observables", scene: .mvvm_functions_subjects),
+                Item(title: "mvvm-rxswift-subjects-observables", scene: .mvvm_rxswift_subjects),
+                Item(title: "mvvm-rxswift-pure", scene: .mvvm_rxswift_pure)
             ]),
-            MySection(header: "反馈循环架构", items: [
-                Item(title: "RxFeedback", scene: .mvc)
+            MySection(header: "RxSwift", items: [
+                Item(title: "GitHub", scene: .rxswift_github)
             ]),
-            MySection(header: "结合了 Flux 和响应式编程的架构", items: [
-                Item(title: "ReactorKit", scene: .mvc)
+            MySection(header: "Combine", items: [
+                Item(title: "GitHub", scene: .combine_github)
             ])
         ]).asSingle()
         return items

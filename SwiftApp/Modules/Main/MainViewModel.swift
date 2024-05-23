@@ -41,7 +41,7 @@ class MainViewModel: ViewModel, ViewModelType {
             ]),
             MySection(header: "Combine", items: [
                 Item(title: "GitHub", scene: .combine_github)
-            ]),
+            ])
         ]
         
         input.headerRefresh.flatMapLatest({ [weak self] () -> Observable<[MySection]> in

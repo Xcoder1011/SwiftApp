@@ -13,7 +13,7 @@ final class AppEnvironment {
 
 struct Environment {
     let service: NetworkingService
-    init(service: NetworkingService = NetworkingApi()) {
+    init(service: NetworkingService = NetworkingServiceIMP()) {
         self.service = service
     }
 }
