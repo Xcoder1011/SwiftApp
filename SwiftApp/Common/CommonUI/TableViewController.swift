@@ -47,10 +47,15 @@ extension TableViewController: ScrollViewRefreshable {
     }
     func setupRefreshConfig() {
         guard let viewModel = viewModel as? ViewModelRefreshable else { return }
+        viewModel.refreshingStateObservable.bind(to: refreshScrollView.rx.refreshingState).disposed(by: self.disposeBag)
+
         if let headerVM = viewModel as? ViewModelHeaderConfigure {
             refreshScrollView.mj_header = headerVM.header
             refreshScrollView.mj_header?.refreshingBlock = { [weak self] in
                 self?.headerRefreshTrigger.onNext(())
+            }
+            if headerVM.enterRefreshImmediately {
+                refreshScrollView.mj_header?.beginRefreshing()
             }
         }
         if let footerVM = viewModel as? ViewModelFooterConfigure {
@@ -59,6 +64,5 @@ extension TableViewController: ScrollViewRefreshable {
                 self?.footerRefreshTrigger.onNext(())
             }
         }
-        viewModel.refreshingStateObservable.bind(to: refreshScrollView.rx.refreshingState).disposed(by: self.disposeBag)
     }
 }

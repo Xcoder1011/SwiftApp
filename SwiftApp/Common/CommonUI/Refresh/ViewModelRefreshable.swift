@@ -36,11 +36,16 @@ typealias ViewModelHeaderFooterConfigure = ViewModelHeaderConfigure & ViewModelF
 protocol ViewModelHeaderConfigure: ViewModelRefreshable {
     /// 下拉刷新
     var header: MJRefreshHeader { get }
+    /// 进入立即刷新
+    var enterRefreshImmediately: Bool { get }
 }
 
 extension ViewModelHeaderConfigure {
     var header: MJRefreshHeader {
         return MJRefreshNormalHeader()
+    }
+    var enterRefreshImmediately: Bool {
+        return false
     }
 }
 

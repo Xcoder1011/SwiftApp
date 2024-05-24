@@ -19,8 +19,9 @@ class RxSwiftGitHubSearchController: TableViewController {
         super.bindViewModel()
         guard let viewModel = viewModel as? RxSwiftGitHubSearchViewModel else { return }
         
-        let refresh = Observable.of(Observable.just(()), headerRefreshTrigger).merge()
-        let input = RxSwiftGitHubSearchViewModel.Input(headerRefresh: refresh)
+//        let refresh = Observable.of(Observable.just(()), headerRefreshTrigger).merge()
+        
+        let input = RxSwiftGitHubSearchViewModel.Input(headerRefresh: headerRefreshTrigger, footerRefresh: footerRefreshTrigger)
         let output = viewModel.transform(input: input)
         
         output.repos

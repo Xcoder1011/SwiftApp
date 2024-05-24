@@ -27,7 +27,14 @@ class BaseViewController: UIViewController, NavigatorProtocol {
     
     let languageChanged = BehaviorRelay<Void>(value: ())
 
-    let disposeBag = DisposeBag()
+    private var _disposeBag: DisposeBag?
+    var disposeBag: DisposeBag {
+        if let existingBag = _disposeBag {
+            return existingBag
+        }
+        _disposeBag = self.viewModel?.disposeBag ??  DisposeBag()
+        return _disposeBag!
+    }
 
     init(viewModel: ViewModel?, navigator: Navigator) {
         self.viewModel = viewModel

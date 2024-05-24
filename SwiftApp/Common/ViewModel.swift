@@ -17,7 +17,6 @@ protocol ViewModelType {
 }
 
 class ViewModel: NSObject {
-    var page = 1
     let disposeBag = DisposeBag()
     let service: NetworkingService
     let loading = ActivityIndicator()
