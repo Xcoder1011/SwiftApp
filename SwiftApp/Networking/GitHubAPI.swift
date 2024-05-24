@@ -38,7 +38,7 @@ extension GitHubAPI: NetworkingAPI {
         }
     }
     
-    var headers: [String : String]? {
+    var headers: [String: String]? {
         return nil
     }
 }

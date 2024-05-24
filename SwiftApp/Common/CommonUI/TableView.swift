@@ -35,6 +35,14 @@ class TableView: UITableView {
         separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         tableHeaderView = UIView()
         tableFooterView = UIView()
+        separatorStyle = UITableViewCell.SeparatorStyle.none
+        keyboardDismissMode = UIScrollView.KeyboardDismissMode.onDrag
+        if #available(iOS 11, *) {
+            contentInsetAdjustmentBehavior = UIScrollView.ContentInsetAdjustmentBehavior.never
+        }
+        if #available(iOS 15.0, *) {
+            sectionHeaderTopPadding = 0
+        }
     }
     
 }

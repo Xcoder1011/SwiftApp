@@ -44,6 +44,7 @@ PODS:
     - KafkaRefresh/Default
   - KeychainAccess (4.2.2)
   - Kingfisher (7.10.0)
+  - MJRefresh (3.7.9)
   - Moya/Core (15.0.0):
     - Alamofire (~> 5.0)
   - Moya/RxSwift (15.0.0):
@@ -88,6 +89,7 @@ DEPENDENCIES:
   - KafkaRefresh (~> 1.0)
   - KeychainAccess (~> 4.0)
   - Kingfisher (= 7.10.0)
+  - MJRefresh
   - Moya/RxSwift (~> 15.0)
   - "NSObject+Rx (~> 5.0)"
   - R.swift (= 7.3.2)
@@ -112,6 +114,7 @@ SPEC REPOS:
     - KafkaRefresh
     - KeychainAccess
     - Kingfisher
+    - MJRefresh
     - Moya
     - "NSObject+Rx"
     - R.swift
@@ -136,6 +139,7 @@ SPEC CHECKSUMS:
   KafkaRefresh: ee64c70eb7c9426a99e68ffdae59dba9bd0b5d51
   KeychainAccess: c0c4f7f38f6fc7bbe58f5702e25f7bd2f65abf51
   Kingfisher: a18f05d3b6d37d8650ee4a3e61d57a28fc6207f6
+  MJRefresh: ff9e531227924c84ce459338414550a05d2aea78
   Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
   "NSObject+Rx": 61cf1f7306a73dcef8b36649198af0813ec18dfd
   R.swift: 0af0d882f49f03711415cb4e5215daa977d8a480
@@ -150,6 +154,6 @@ SPEC CHECKSUMS:
   SwiftDate: bbc26e26fc8c0c33fbee8c140c5e8a68293a148a
   SwiftLint: 1b7561918a19e23bfed960e40759086e70f4dba5
 
-PODFILE CHECKSUM: 7883325bae57ef3fad669eb5726bfc036f3bca44
+PODFILE CHECKSUM: 8205ca54135662391f25e09567d46ef39ae6282e
 
 COCOAPODS: 1.15.2

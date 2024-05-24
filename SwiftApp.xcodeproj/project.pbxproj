@@ -57,6 +57,9 @@
 		E014B5202BFDDAAD00AB6F29 /* AModuleAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E014B51F2BFDDAAD00AB6F29 /* AModuleAPI.swift */; };
 		E014B5232BFDDD0E00AB6F29 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = E014B5222BFDDD0E00AB6F29 /* File.swift */; };
 		E014B5252BFDEEE600AB6F29 /* NetworkingAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E014B5242BFDEEE600AB6F29 /* NetworkingAPI.swift */; };
+		E014B52A2C006A4400AB6F29 /* ScrollViewRefreshable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E014B5292C006A4400AB6F29 /* ScrollViewRefreshable.swift */; };
+		E014B52D2C0074FB00AB6F29 /* ViewModelRefreshable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E014B52C2C0074FB00AB6F29 /* ViewModelRefreshable.swift */; };
+		E014B52F2C007CA400AB6F29 /* RefreshingStateBinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E014B52E2C007CA400AB6F29 /* RefreshingStateBinder.swift */; };
 		E17F29D62C5E53FAEE0403F7 /* Pods_SwiftApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CF8DFED88B4E0DECA182607 /* Pods_SwiftApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -117,6 +120,9 @@
 		E014B51F2BFDDAAD00AB6F29 /* AModuleAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AModuleAPI.swift; sourceTree = "<group>"; };
 		E014B5222BFDDD0E00AB6F29 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		E014B5242BFDEEE600AB6F29 /* NetworkingAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingAPI.swift; sourceTree = "<group>"; };
+		E014B5292C006A4400AB6F29 /* ScrollViewRefreshable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollViewRefreshable.swift; sourceTree = "<group>"; };
+		E014B52C2C0074FB00AB6F29 /* ViewModelRefreshable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelRefreshable.swift; sourceTree = "<group>"; };
+		E014B52E2C007CA400AB6F29 /* RefreshingStateBinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshingStateBinder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -277,6 +283,7 @@
 		BC2952722B20224C008FCD51 /* CommonUI */ = {
 			isa = PBXGroup;
 			children = (
+				E014B52B2C006C6900AB6F29 /* Refresh */,
 				BC2952732B20226D008FCD51 /* TableView.swift */,
 				BC2952752B20236D008FCD51 /* TableViewController.swift */,
 				BC2952772B20238C008FCD51 /* BaseViewController.swift */,
@@ -406,6 +413,16 @@
 				E014B5222BFDDD0E00AB6F29 /* File.swift */,
 			);
 			path = Configs;
+			sourceTree = "<group>";
+		};
+		E014B52B2C006C6900AB6F29 /* Refresh */ = {
+			isa = PBXGroup;
+			children = (
+				E014B5292C006A4400AB6F29 /* ScrollViewRefreshable.swift */,
+				E014B52C2C0074FB00AB6F29 /* ViewModelRefreshable.swift */,
+				E014B52E2C007CA400AB6F29 /* RefreshingStateBinder.swift */,
+			);
+			path = Refresh;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -574,6 +591,7 @@
 				BC26B0392B54EBD900EF0E2D /* MVVMClosuresViewController.swift in Sources */,
 				BC079A5E2B2D78B9002C9B40 /* MyTableViewDataSource.swift in Sources */,
 				BC2952812B2027F0008FCD51 /* LogManager.swift in Sources */,
+				E014B52A2C006A4400AB6F29 /* ScrollViewRefreshable.swift in Sources */,
 				BC079A632B2D8D92002C9B40 /* MVPViewModel.swift in Sources */,
 				BC26B04A2B55152D00EF0E2D /* RxSwiftPureViewModel.swift in Sources */,
 				BC26B0462B55150100EF0E2D /* RxSwiftSubjectsViewModel.swift in Sources */,
@@ -584,6 +602,7 @@
 				BC2952782B20238C008FCD51 /* BaseViewController.swift in Sources */,
 				BC2952622B201BBD008FCD51 /* Navigator.swift in Sources */,
 				E014B51A2BF75D2E00AB6F29 /* NetworkingService.swift in Sources */,
+				E014B52D2C0074FB00AB6F29 /* ViewModelRefreshable.swift in Sources */,
 				BC26B0482B55151F00EF0E2D /* RxSwiftPureViewController.swift in Sources */,
 				BC29527F2B202663008FCD51 /* ActivityIndicator.swift in Sources */,
 				E014B5232BFDDD0E00AB6F29 /* File.swift in Sources */,
@@ -598,6 +617,7 @@
 				BC26B0422B5514DB00EF0E2D /* FunctionsSubjectsViewModel.swift in Sources */,
 				BCCCC6682B5962D1001FB88C /* MVVMBaseViewController.swift in Sources */,
 				BC29529E2B20CE51008FCD51 /* MySection.swift in Sources */,
+				E014B52F2C007CA400AB6F29 /* RefreshingStateBinder.swift in Sources */,
 				BC2952742B20226D008FCD51 /* TableView.swift in Sources */,
 				BCFDCAA12B2B0DF40069AA9C /* MainViewModel.swift in Sources */,
 				BC2952952B2063D2008FCD51 /* ThemeManager.swift in Sources */,

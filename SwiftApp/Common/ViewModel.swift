@@ -21,8 +21,6 @@ class ViewModel: NSObject {
     let disposeBag = DisposeBag()
     let service: NetworkingService
     let loading = ActivityIndicator()
-    let headerLoading = ActivityIndicator()
-    let footerLoading = ActivityIndicator()
         
     init(service: NetworkingService) {
         self.service = service

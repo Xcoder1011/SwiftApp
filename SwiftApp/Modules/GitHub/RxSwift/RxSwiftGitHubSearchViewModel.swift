@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 import Moya
 
-class RxSwiftGitHubSearchViewModel: ViewModel, ViewModelType {
+class RxSwiftGitHubSearchViewModel: ViewModel, ViewModelType, ViewModelHeaderFooterConfigure {
     
     struct Input {
         let headerRefresh: Observable<Void>
@@ -25,6 +25,7 @@ class RxSwiftGitHubSearchViewModel: ViewModel, ViewModelType {
         let initialRepos = input.headerRefresh.flatMapLatest {[weak self] () -> Observable<[RepoElement]> in
             guard let _ = self else { return Observable.just([]) }
             return GitHubAPI.searchRepositories(language: "swift", since: "monthly").rx_request().trackActivity(loading).take(1).map { response in
+                self?.refreshingStateObservable.accept(.headerEndRefreshing)
                 let elements = try response.map([RepoElement].self)
                 return elements
             }
