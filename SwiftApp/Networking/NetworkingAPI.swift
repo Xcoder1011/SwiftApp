@@ -37,5 +37,4 @@ public extension NetworkingAPI {
         let provider = MoyaProvider<Self>()
         return provider.request(self, callbackQueue: callbackQueue, completion: completion)
     }
-    
 }

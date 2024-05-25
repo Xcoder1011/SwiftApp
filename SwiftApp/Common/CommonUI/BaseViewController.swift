@@ -18,7 +18,8 @@ class BaseViewController: UIViewController, NavigatorProtocol {
     var viewModel: ViewModel?
     var navigator: Navigator!
     let isLoading = BehaviorRelay(value: false)
-    
+    let viewDidLoadSubject = PublishSubject<Void>()
+
     let emptyDataSetButtonTap = PublishSubject<Void>()
     var emptyDataSetTitle = R.string.localizable.commonNoResults.developmentValue
     var emptyDataSetDescription = ""
@@ -62,6 +63,9 @@ class BaseViewController: UIViewController, NavigatorProtocol {
         NotificationCenter.default.rx.notification(NSNotification.Name.SKLanguageChangeNotification).subscribe({ [weak self] (event) in
             self?.languageChanged.accept(())
         }).disposed(by: disposeBag)
+        
+        viewDidLoadSubject.onNext(())
+        viewDidLoadSubject.onCompleted()
     }
     
     func makeUI() {

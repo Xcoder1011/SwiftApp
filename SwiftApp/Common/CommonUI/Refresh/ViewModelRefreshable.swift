@@ -9,8 +9,10 @@ import MJRefresh
 import RxSwift
 import RxCocoa
 
+// MARK: - ViewModelRefreshable
+
 protocol ViewModelRefreshable {
-    var refreshingStateObservable: BehaviorRelay<RefreshingState> { get set}
+    var refreshingStateObservable: BehaviorRelay<RefreshingState> { get set }
 }
 
 private var refreshingStateObservableKey: UInt8 = 0
@@ -33,6 +35,8 @@ extension ViewModelRefreshable {
 
 typealias ViewModelHeaderFooterConfigure = ViewModelHeaderConfigure & ViewModelFooterConfigure
 
+// MARK: - ViewModelHeaderConfigure
+
 protocol ViewModelHeaderConfigure: ViewModelRefreshable {
     /// 下拉刷新
     var header: MJRefreshHeader { get }
@@ -48,6 +52,8 @@ extension ViewModelHeaderConfigure {
         return false
     }
 }
+
+// MARK: - ViewModelFooterConfigure
 
 protocol ViewModelFooterConfigure: ViewModelRefreshable {
     /// 上拉加载

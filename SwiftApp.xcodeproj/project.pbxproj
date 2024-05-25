@@ -54,7 +54,6 @@
 		E014B5162BF707DC00AB6F29 /* CombineGitHubSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E014B5152BF707DC00AB6F29 /* CombineGitHubSearchViewModel.swift */; };
 		E014B51A2BF75D2E00AB6F29 /* NetworkingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E014B5192BF75D2E00AB6F29 /* NetworkingService.swift */; };
 		E014B51E2BFDDA4B00AB6F29 /* GitHubAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E014B51D2BFDDA4B00AB6F29 /* GitHubAPI.swift */; };
-		E014B5202BFDDAAD00AB6F29 /* AModuleAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E014B51F2BFDDAAD00AB6F29 /* AModuleAPI.swift */; };
 		E014B5232BFDDD0E00AB6F29 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = E014B5222BFDDD0E00AB6F29 /* File.swift */; };
 		E014B5252BFDEEE600AB6F29 /* NetworkingAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E014B5242BFDEEE600AB6F29 /* NetworkingAPI.swift */; };
 		E014B52A2C006A4400AB6F29 /* ScrollViewRefreshable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E014B5292C006A4400AB6F29 /* ScrollViewRefreshable.swift */; };
@@ -117,7 +116,6 @@
 		E014B5152BF707DC00AB6F29 /* CombineGitHubSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineGitHubSearchViewModel.swift; sourceTree = "<group>"; };
 		E014B5192BF75D2E00AB6F29 /* NetworkingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingService.swift; sourceTree = "<group>"; };
 		E014B51D2BFDDA4B00AB6F29 /* GitHubAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubAPI.swift; sourceTree = "<group>"; };
-		E014B51F2BFDDAAD00AB6F29 /* AModuleAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AModuleAPI.swift; sourceTree = "<group>"; };
 		E014B5222BFDDD0E00AB6F29 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		E014B5242BFDEEE600AB6F29 /* NetworkingAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingAPI.swift; sourceTree = "<group>"; };
 		E014B5292C006A4400AB6F29 /* ScrollViewRefreshable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollViewRefreshable.swift; sourceTree = "<group>"; };
@@ -323,7 +321,6 @@
 				E014B5192BF75D2E00AB6F29 /* NetworkingService.swift */,
 				BC27D9142B57AE7F001A1B17 /* AppEnvironment.swift */,
 				E014B51D2BFDDA4B00AB6F29 /* GitHubAPI.swift */,
-				E014B51F2BFDDAAD00AB6F29 /* AModuleAPI.swift */,
 				E014B5242BFDEEE600AB6F29 /* NetworkingAPI.swift */,
 			);
 			path = Networking;
@@ -627,7 +624,6 @@
 				BC039E582B137F7D00EA4CC9 /* ViewController.swift in Sources */,
 				BC079A612B2D8C95002C9B40 /* MVPViewController.swift in Sources */,
 				BC26B0402B5514CA00EF0E2D /* FunctionsSubjectsController.swift in Sources */,
-				E014B5202BFDDAAD00AB6F29 /* AModuleAPI.swift in Sources */,
 				BC079A562B2C4A61002C9B40 /* ThrottledTextFieldValidator.swift in Sources */,
 				BC2952652B201D9E008FCD51 /* ViewModel.swift in Sources */,
 				BC039E542B137F7D00EA4CC9 /* AppDelegate.swift in Sources */,

@@ -12,7 +12,7 @@ import RxSwift
 class MainViewModel: ViewModel, ViewModelType {
     
     struct Input {
-        let headerRefresh: Observable<Void>
+        let ready: Observable<Void>
         let selection: Driver<Item>
     }
     
@@ -22,8 +22,8 @@ class MainViewModel: ViewModel, ViewModelType {
     }
     
     func transform(input: Input) -> Output {
-        let elements = BehaviorRelay<[MySection]>(value: [])
-        let itemSelected = PublishSubject<Item>()
+        let sectionsRelay = BehaviorRelay<[MySection]>(value: [])
+        let selectedItemsRelay = PublishSubject<Item>()
         
         let sectionsData = [
             MySection(header: "设计模式", items: [
@@ -44,15 +44,19 @@ class MainViewModel: ViewModel, ViewModelType {
             ])
         ]
         
-        input.headerRefresh.flatMapLatest({ [weak self] () -> Observable<[MySection]> in
-            guard let _ = self else { return Observable.just([]) }
+        input.ready.flatMapLatest({ () -> Observable<[MySection]> in
             return Observable.just(sectionsData)
-        }).subscribe(onNext: { (items) in
-            elements.accept(items)
+        }).subscribe(onNext: { (sections) in
+            sectionsRelay.accept(sections)
+        }, onError: { error in
+            print("Error occurred: \(error)")
         }).disposed(by: disposeBag)
         
-        input.selection.asObservable().bind(to: itemSelected).disposed(by: disposeBag)
+        input.selection.asObservable().bind(to: selectedItemsRelay).disposed(by: disposeBag)
         
-        return Output(sections: elements.asDriver(), itemSelected: itemSelected.asDriver(onErrorJustReturn: Item(title: "", scene: .home)))
+        let itemSelectedDriver = selectedItemsRelay.asDriver(onErrorRecover: { error in
+            return Driver.just(Item(title: "", scene: .home))
+        })
+        return Output(sections: sectionsRelay.asDriver(), itemSelected: itemSelectedDriver)
     }
 }

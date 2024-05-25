@@ -5,7 +5,6 @@
 //  Created by KUN on 2024/5/17.
 //
 
-import Foundation
 import RxSwift
 import RxCocoa
 import Moya
@@ -25,16 +24,17 @@ class RxSwiftGitHubSearchViewModel: ViewModel, ViewModelType {
     var page: Int = 1
     
     func transform(input: Input) -> Output {
-        let loading = ActivityIndicator()
-        
         // 下拉刷新
         input.headerRefresh.flatMapLatest { [weak self] in
             self?.page = 1
-            return GitHubAPI.searchRepositories(language: "swift", since: "monthly").rx_request().trackActivity(loading).take(1)
+            return GitHubAPI.searchRepositories(language: "swift", since: "monthly").rx_request().asObservable().take(1)
         }
         .map { [weak self] (response) -> Result<[RepoElement], Error> in
             do {
                 let elements = try response.map([RepoElement].self)
+                if let string = String(data: response.data, encoding: .utf8) {
+                    print("返回结果 string = \(string)")
+                }
                 self?.refreshingStateObservable.accept(.headerEndRefreshing)
                 return .success(elements)
             } catch {
@@ -53,7 +53,7 @@ class RxSwiftGitHubSearchViewModel: ViewModel, ViewModelType {
         // 上拉加载
         input.footerRefresh.flatMapLatest { [weak self] in
             self?.page += 1
-            return GitHubAPI.searchRepositories(language: "swift", since: "monthly").rx_request().trackActivity(loading).take(1)
+            return GitHubAPI.searchRepositories(language: "swift", since: "monthly").rx_request().asObservable().take(1)
         }
         .map { [weak self] (response) -> Result<[RepoElement], Error> in
             do {

@@ -47,7 +47,6 @@ class FunctionsSubjectsController: MVVMBaseViewController {
                 }
             }).disposed(by: disposeBag)
         
-        
         if let viewModel = viewModel as? FunctionsSubjectsViewModel {
             viewModel.didSelectId
                 .drive(onNext: { [weak self] repoId in

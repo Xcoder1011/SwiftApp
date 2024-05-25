@@ -67,7 +67,6 @@ class FunctionsSubjectsViewModel: ViewModel, FuncSubViewModelType, FuncSubViewMo
         
         let searchRepos = self.didSearchSubject
             .asObservable()
-        // 仅当查询关键词长度大于2时才触发搜索
             .filter { $0.count > 2 }
             .throttle(RxTimeInterval.milliseconds(300), scheduler: MainScheduler.instance)
             .distinctUntilChanged()

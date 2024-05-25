@@ -5,7 +5,6 @@
 //  Created by KUN on 2024/1/15.
 //
 
-import Foundation
 import RxSwift
 import RxCocoa
 
@@ -25,30 +24,43 @@ class RxSwiftPureViewModel: ViewModel, ViewModelType {
     
     func transform(input: Input) -> Output {
         let loading = ActivityIndicator()
+
         let initialRepos = input.ready
             .flatMap { _ in
                 self.service.rx_searchRepos(query: "RxSwift")
                     .trackActivity(loading)
-                    .asDriver(onErrorJustReturn: [])
+                    .asDriver(onErrorRecover: { error in
+                        // 错误处理逻辑
+                        return Driver.just([])
+                    })
             }
+
         let searchRepos = input.searchText
             .filter { $0.count > 2 }
-            .throttle(RxTimeInterval.milliseconds(300))
+            .throttle(throttleInterval)
             .distinctUntilChanged()
             .flatMapLatest { query in
                 self.service.rx_searchRepos(query: query)
                     .trackActivity(loading)
-                    .asDriver(onErrorJustReturn: [])
+                    .asDriver(onErrorRecover: { error in
+                        // 错误处理逻辑
+                        return Driver.just([])
+                    })
             }
+
         let repos = Driver.merge(initialRepos, searchRepos)
-        
+
         let selectRepoId = input.selectedIndex
             .withLatestFrom(repos) { (indexPath, repos) in
                 return repos[indexPath.item]
             }
             .map { $0.id }
+
         return Output(requestIsLoadding: loading.asDriver(),
                       didSelectId: selectRepoId,
                       repos: repos)
     }
+
+    // 提取为常量的时间间隔
+    private let throttleInterval = RxTimeInterval.milliseconds(300)
 }
