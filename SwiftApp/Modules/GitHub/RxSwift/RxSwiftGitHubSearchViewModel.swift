@@ -30,12 +30,12 @@ class RxSwiftGitHubSearchViewModel: ViewModel, ViewModelType {
             return GitHubAPI.searchRepositories(language: "swift", since: "monthly").rx_request().asObservable().take(1)
         }
         .map { [weak self] (response) -> Result<[RepoElement], Error> in
+            self?.refreshingStateObservable.accept(.headerEndRefreshing)
             do {
                 let elements = try response.map([RepoElement].self)
                 if let string = String(data: response.data, encoding: .utf8) {
                     print("返回结果 string = \(string)")
                 }
-                self?.refreshingStateObservable.accept(.headerEndRefreshing)
                 return .success(elements)
             } catch {
                 return .failure(error)

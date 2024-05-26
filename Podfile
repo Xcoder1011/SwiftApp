@@ -13,6 +13,10 @@ target 'SwiftApp' do
   pod 'RxSwift', '6.6.0'  #https://github.com/ReactiveX/RxSwift
   pod 'RxCocoa', '6.6.0'
   
+  pod 'OpenCombine', '~> 0.14.0'
+  pod 'OpenCombineDispatch', '~> 0.14.0'
+  pod 'OpenCombineFoundation', '~> 0.14.0'
+  
   # Rx Extensions
   pod 'RxDataSources', '~> 5.0'  # https://github.com/RxSwiftCommunity/RxDataSources
   pod 'RxSwiftExt', '~> 6.0'  # https://github.com/RxSwiftCommunity/RxSwiftExt

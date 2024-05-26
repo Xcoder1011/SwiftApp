@@ -52,6 +52,11 @@ PODS:
     - RxSwift (~> 6.0)
   - "NSObject+Rx (5.2.2)":
     - RxSwift (~> 6.2)
+  - OpenCombine (0.14.0)
+  - OpenCombineDispatch (0.14.0):
+    - OpenCombine (>= 0.13.0)
+  - OpenCombineFoundation (0.14.0):
+    - OpenCombine (>= 0.13.0)
   - R.swift (7.3.2)
   - RxCocoa (6.6.0):
     - RxRelay (= 6.6.0)
@@ -92,6 +97,9 @@ DEPENDENCIES:
   - MJRefresh
   - Moya/RxSwift (~> 15.0)
   - "NSObject+Rx (~> 5.0)"
+  - OpenCombine (~> 0.14.0)
+  - OpenCombineDispatch (~> 0.14.0)
+  - OpenCombineFoundation (~> 0.14.0)
   - R.swift (= 7.3.2)
   - RxCocoa (= 6.6.0)
   - RxDataSources (~> 5.0)
@@ -117,6 +125,9 @@ SPEC REPOS:
     - MJRefresh
     - Moya
     - "NSObject+Rx"
+    - OpenCombine
+    - OpenCombineDispatch
+    - OpenCombineFoundation
     - R.swift
     - RxCocoa
     - RxDataSources
@@ -142,6 +153,9 @@ SPEC CHECKSUMS:
   MJRefresh: ff9e531227924c84ce459338414550a05d2aea78
   Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
   "NSObject+Rx": 61cf1f7306a73dcef8b36649198af0813ec18dfd
+  OpenCombine: 99bf5bc4fce0e34507031a9f277e927bbe25a722
+  OpenCombineDispatch: b52c5950f5f87677293b4d96931168c50b437f91
+  OpenCombineFoundation: bf2d665981bbc59fa99f34302d457a520297df8f
   R.swift: 0af0d882f49f03711415cb4e5215daa977d8a480
   RxCocoa: 44a80de90e25b739b5aeaae3c8c371a32e3343cc
   RxDataSources: aa47cc1ed6c500fa0dfecac5c979b723542d79cf
@@ -154,6 +168,6 @@ SPEC CHECKSUMS:
   SwiftDate: bbc26e26fc8c0c33fbee8c140c5e8a68293a148a
   SwiftLint: 1b7561918a19e23bfed960e40759086e70f4dba5
 
-PODFILE CHECKSUM: 8205ca54135662391f25e09567d46ef39ae6282e
+PODFILE CHECKSUM: 7ef431500948230c5678bb081ac5a17daac63d0b
 
-COCOAPODS: 1.15.2
+COCOAPODS: 1.14.3
