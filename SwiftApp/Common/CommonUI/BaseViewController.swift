@@ -21,7 +21,7 @@ class BaseViewController: UIViewController, NavigatorProtocol {
     let viewDidLoadSubject = PublishSubject<Void>()
 
     let emptyDataSetButtonTap = PublishSubject<Void>()
-    var emptyDataSetTitle = R.string.localizable.commonNoResults.developmentValue
+    var emptyDataSetTitle = R.string.localizable.commonNoResults.key.localized()
     var emptyDataSetDescription = ""
     var emptyDataSetImage = R.image.empty()
     var emptyDataSetImageTintColor = BehaviorRelay<UIColor?>(value: nil)
@@ -83,12 +83,11 @@ class BaseViewController: UIViewController, NavigatorProtocol {
     func bindViewModel() {
         viewModel?.loading.asObservable().bind(to: isLoading).disposed(by: disposeBag)
         isLoading.subscribe(onNext: { isLoading in
-            print("subscribe isLoading = \(isLoading)")
-            UIApplication.shared.isNetworkActivityIndicatorVisible = isLoading
+             UIApplication.shared.isNetworkActivityIndicatorVisible = isLoading
         }).disposed(by: disposeBag)
         
         languageChanged.subscribe(onNext: {[weak self] () in
-            self?.emptyDataSetTitle = R.string.localizable.commonNoResults.developmentValue
+            self?.emptyDataSetTitle = R.string.localizable.commonNoResults.key.localized()
         }).disposed(by: disposeBag)
     }
 }
@@ -96,7 +95,7 @@ class BaseViewController: UIViewController, NavigatorProtocol {
 extension BaseViewController: DZNEmptyDataSetSource {
 
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
-        return NSAttributedString(string: emptyDataSetTitle ?? "")
+        return NSAttributedString(string: emptyDataSetTitle )
     }
 
     func description(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {

@@ -7,4 +7,6 @@
 */
 
 "Common.NoResults" = "No Results";
-
+"GitHub.DailySegment.Title" = "Daily";
+"GitHub.WeeklySegment.Title" = "Weekly";
+"GitHub.MonthlySegment.Title" = "Monthly";

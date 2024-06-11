@@ -38,9 +38,9 @@ extension Navigator {
         case .mvvm_rxswift_pure:
             return RxSwiftPureViewController(viewModel: RxSwiftPureViewModel(service: NetworkingServiceIMP()), navigator: self)
         case .rxswift_github:
-            return RxSwiftGitHubSearchController(viewModel: RxSwiftGitHubSearchViewModel(service: NetworkingServiceIMP()), navigator: self)
+            return RxSwiftGitHubSearchController(viewModel: RxSwiftGitHubSearchViewModel(), navigator: self)
         case .combine_github:
-            return CombineGitHubSearchController(viewModel: CombineGitHubSearchViewModel(service: NetworkingServiceIMP()), navigator: self)
+            return CombineGitHubSearchController(viewModel: CombineGitHubSearchViewModel(), navigator: self)
         }
     }
 }

@@ -49,6 +49,8 @@ target 'SwiftApp' do
   pod 'DZNEmptyDataSet', '~> 1.0'  # https://github.com/dzenbot/DZNEmptyDataSet
   pod 'KafkaRefresh', '~> 1.0'  # https://github.com/OpenFeyn/KafkaRefresh
   pod 'MJRefresh' # https://github.com/CoderMJLee/MJRefresh
+  pod 'JXSegmentedView'  #https://github.com/pujiaxin33/JXSegmentedView
+  pod 'Localize-Swift', '~> 3.0'  # https://github.com/marmelroy/Localize-Swift
 
   # Keyboard
    pod 'IQKeyboardManagerSwift', '~> 6.0'  # https://github.com/hackiftekhar/IQKeyboardManager

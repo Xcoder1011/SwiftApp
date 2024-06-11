@@ -18,14 +18,18 @@ protocol ViewModelType {
 
 class ViewModel: NSObject {
     let disposeBag = DisposeBag()
-    let service: NetworkingService
+    var service: NetworkingService
     let loading = ActivityIndicator()
-        
+    
     init(service: NetworkingService) {
         self.service = service
         super.init()
     }
-        
+    
+    override convenience init() {
+        self.init(service: NetworkingServiceIMP())
+    }
+    
     deinit {
         logDebug("\(type(of: self)): Deinited")
     }

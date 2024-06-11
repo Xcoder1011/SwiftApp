@@ -6,4 +6,7 @@
   
 */
 "Common.NoResults" = "没有结果";
+"GitHub.DailySegment.Title" = "每日";
+"GitHub.WeeklySegment.Title" = "每周";
+"GitHub.MonthlySegment.Title" = "每月";
 

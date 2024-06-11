@@ -14,6 +14,7 @@ class RxSwiftGitHubSearchViewModel: ViewModel, ViewModelType {
     struct Input {
         let headerRefresh: Observable<Void>
         let footerRefresh: Observable<Void>
+        let selectTrendingPeriod: Observable<TrendingPeriodSegments>
     }
     
     struct Output {
@@ -22,12 +23,16 @@ class RxSwiftGitHubSearchViewModel: ViewModel, ViewModelType {
     
     var dataArray = BehaviorRelay<[RepoElement]>(value: [])
     var page: Int = 1
+    let trendingPeriod = BehaviorRelay<TrendingPeriodSegments>(value: .daily)
     
     func transform(input: Input) -> Output {
+        input.selectTrendingPeriod.bind(to: trendingPeriod).disposed(by: disposeBag)
+        let headerRefresh = Observable.of(input.headerRefresh, input.selectTrendingPeriod.map { _ in }.skip(1)).merge()
         // 下拉刷新
-        input.headerRefresh.flatMapLatest { [weak self] in
+        headerRefresh.flatMapLatest { [weak self] in
             self?.page = 1
-            return GitHubAPI.searchRepositories(language: "swift", since: "monthly").rx_request().asObservable().take(1)
+            let since = self?.trendingPeriod.value.rawValue ?? "daily"
+            return GitHubAPI.searchRepositories(language: "swift", since: since).rx_request().asObservable().take(1)
         }
         .map { [weak self] (response) -> Result<[RepoElement], Error> in
             self?.refreshingStateObservable.accept(.headerEndRefreshing)
@@ -53,7 +58,8 @@ class RxSwiftGitHubSearchViewModel: ViewModel, ViewModelType {
         // 上拉加载
         input.footerRefresh.flatMapLatest { [weak self] in
             self?.page += 1
-            return GitHubAPI.searchRepositories(language: "swift", since: "monthly").rx_request().asObservable().take(1)
+            let since = self?.trendingPeriod.value.rawValue ?? "daily"
+            return GitHubAPI.searchRepositories(language: "swift", since: since).rx_request().asObservable().take(1)
         }
         .map { [weak self] (response) -> Result<[RepoElement], Error> in
             do {
