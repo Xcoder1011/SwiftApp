@@ -18,7 +18,7 @@ protocol FuncSubViewModelInputs {
 protocol FuncSubViewModelOutputs {
     var didReceiveRepos: Driver<[Repo]> { get }
     var didSelectId: Driver<Int> { get }
-    var requestIsLoadding: Driver<Bool> { get }
+    var requestLoading: Driver<Bool> { get }
 }
 
 protocol FuncSubViewModelType {
@@ -49,14 +49,14 @@ class FunctionsSubjectsViewModel: ViewModel, FuncSubViewModelType, FuncSubViewMo
     
     var didReceiveRepos: RxCocoa.Driver<[Repo]>
     var didSelectId: RxCocoa.Driver<Int>
-    var requestIsLoadding: RxCocoa.Driver<Bool>
+    var requestLoading: RxCocoa.Driver<Bool>
     
     var input: FuncSubViewModelInputs { return self }
     var output: FuncSubViewModelOutputs { return self }
     
     override init(service: NetworkingService) {
         let loading = ActivityIndicator()
-        self.requestIsLoadding = loading.asDriver()
+        self.requestLoading = loading.asDriver()
         
         let initialRepos = self.viewWillAppearSubject
             .asObservable()

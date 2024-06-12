@@ -17,8 +17,8 @@ class BaseViewController: UIViewController, NavigatorProtocol {
     
     var viewModel: ViewModel?
     var navigator: Navigator!
-    let isLoading = BehaviorRelay(value: false)
     let viewDidLoadSubject = PublishSubject<Void>()
+    let isLoading = BehaviorRelay(value: false)
 
     let emptyDataSetButtonTap = PublishSubject<Void>()
     var emptyDataSetTitle = R.string.localizable.commonNoResults.key.localized()
@@ -82,11 +82,11 @@ class BaseViewController: UIViewController, NavigatorProtocol {
     
     func bindViewModel() {
         viewModel?.loading.asObservable().bind(to: isLoading).disposed(by: disposeBag)
-        isLoading.subscribe(onNext: { isLoading in
-             UIApplication.shared.isNetworkActivityIndicatorVisible = isLoading
+        isLoading.subscribe(onNext: { [weak self] isLoading in
+            isLoading ? self?.startAnimating() : self?.stopAnimating()
         }).disposed(by: disposeBag)
         
-        languageChanged.subscribe(onNext: {[weak self] () in
+        languageChanged.subscribe(onNext: { [weak self] () in
             self?.emptyDataSetTitle = R.string.localizable.commonNoResults.key.localized()
         }).disposed(by: disposeBag)
     }

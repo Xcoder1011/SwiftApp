@@ -19,11 +19,11 @@ class RxSwiftSubjectsViewModel: ViewModel {
     // Outputs
     var didReceiveRepos: Driver<[Repo]>
     var didSelectId: Driver<Int>
-    var requestIsLoadding: Driver<Bool>
+    var requestLoading: Driver<Bool>
     
     override init(service: NetworkingService) {
         let loading = ActivityIndicator()
-        self.requestIsLoadding = loading.asDriver()
+        self.requestLoading = loading.asDriver()
         
         let initialRepos = self.viewWillAppearSubject
             .asObservable()

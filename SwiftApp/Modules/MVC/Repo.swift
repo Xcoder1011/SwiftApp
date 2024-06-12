@@ -49,10 +49,8 @@ struct TrendingUser: Codable {
     var href: String
 }
 
-enum TrendingPeriodSegments: String, CaseIterable {
-    case daily = "daily"
-    case weekly = "weekly"
-    case monthly = "monthly"
+enum TrendingPeriodSegments: Int, CaseIterable {
+    case daily, weekly, monthly
     
     var title: String {
         switch self {
@@ -61,5 +59,12 @@ enum TrendingPeriodSegments: String, CaseIterable {
         case .monthly: return R.string.localizable.gitHubMonthlySegmentTitle.key.localized()
         }
     }
+    
+    var paramValue: String {
+        switch self {
+        case .daily: return "daily"
+        case .weekly: return "weekly"
+        case .monthly: return "monthly"
+        }
+    }
 }
-

@@ -12,7 +12,7 @@ class MVVMClosuresViewModel: ViewModel {
     // Outputs
     var didReceiveRepos: (([Repo]) -> Void)?
     var didSelectId: ((Int) -> Void)?
-    var requestIsLoadding: ((Bool) -> Void)?
+    var requestLoading: ((Bool) -> Void)?
 
     var repos: [Repo]?
     private let validator = ThrottledTextFieldValidator()
@@ -33,10 +33,10 @@ class MVVMClosuresViewModel: ViewModel {
     }
     
     private func startFetching(forQuery query: String) {
-        requestIsLoadding?(true)
+        requestLoading?(true)
         fetcher.fetchRepos(withQuery: query, completion: { [weak self] repos in
             guard let self = self else { return }
-            self.requestIsLoadding?(false)
+            self.requestLoading?(false)
             self.repos = repos
             self.didReceiveRepos?(repos)
         })

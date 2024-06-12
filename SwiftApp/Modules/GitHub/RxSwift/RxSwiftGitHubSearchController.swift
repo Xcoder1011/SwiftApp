@@ -9,11 +9,11 @@ import UIKit
 import RxSwift
 import Kingfisher
 import JXSegmentedView
+import RxCocoa
 
 class RxSwiftGitHubSearchController: TableViewController {
-    
-    fileprivate let segmentSelectionSubject = BehaviorSubject<Int>(value: 0)
-    
+    fileprivate let segmentSelection = BehaviorRelay<Int>(value: 0)
+
     private lazy var segmentedView: JXSegmentedView = {
         let view = JXSegmentedView()
         view.delegate = self
@@ -52,22 +52,17 @@ class RxSwiftGitHubSearchController: TableViewController {
     override func bindViewModel() {
         super.bindViewModel()
         guard let viewModel = viewModel as? RxSwiftGitHubSearchViewModel else { return }
-        let selectTrendingPeriod = self.segmentSelectionSubject.map { index in
-            var value: String
-            switch index {
-            case 0: value = "daily"
-            case 1: value = "weekly"
-            case 2: value = "monthly"
-            default:
-                value = "daily"
-            }
-            return TrendingPeriodSegments(rawValue: value)!
-        }
+        let selectTrendingPeriod = segmentSelection
+            .map { TrendingPeriodSegments(rawValue: $0) }
+            .compactMap { $0 }
         let input = RxSwiftGitHubSearchViewModel.Input(headerRefresh: headerRefreshTrigger,
                                                        footerRefresh: footerRefreshTrigger,
                                                        selectTrendingPeriod: selectTrendingPeriod)
         let output = viewModel.transform(input: input)
-        
+        bindTableView(output)
+    }
+    
+    private func bindTableView(_ output: RxSwiftGitHubSearchViewModel.Output) {
         output.repos
             .drive(tableView.rx
                 .items(cellIdentifier: UITableViewCell.reuseIdentifier, cellType: UITableViewCell.self)) { (row, repo, cell) in
@@ -80,6 +75,8 @@ class RxSwiftGitHubSearchController: TableViewController {
 
 extension RxSwiftGitHubSearchController: JXSegmentedViewDelegate {
     func segmentedView(_ segmentedView: JXSegmentedView, didSelectedItemAt index: Int) {
-        self.segmentSelectionSubject.onNext(index)
+        self.segmentSelection.accept(index)
+        /// 仅仅点击segmentedView时出现加载动画
+        viewModel?.loading.accept(true)
     }
 }

@@ -34,6 +34,7 @@ class TableViewController: BaseViewController, UIScrollViewDelegate, Refreshable
     }
     
     override func bindViewModel() {
+        super.bindViewModel()
         let updateEmptyDataSet = Observable.of(isLoading.map { _ in }.asObservable(), emptyDataSetImageTintColor.map({ _ in }), languageChanged.asObservable()).merge()
         updateEmptyDataSet.subscribe(onNext: { [weak self] () in
             self?.tableView.reloadEmptyDataSet()

@@ -19,7 +19,7 @@ protocol ViewModelType {
 class ViewModel: NSObject {
     let disposeBag = DisposeBag()
     var service: NetworkingService
-    let loading = ActivityIndicator()
+    let loading = BehaviorRelay(value: false)
     
     init(service: NetworkingService) {
         self.service = service

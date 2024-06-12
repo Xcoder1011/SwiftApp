@@ -35,10 +35,10 @@ class RxSwiftPureViewController: MVVMBaseViewController {
                 }
                 .disposed(by: disposeBag)
         
-        output.requestIsLoadding
-            .drive(onNext: { [weak self] isLoadding in
+        output.requestLoading
+            .drive(onNext: { [weak self] isLoading in
                 guard let self = self else { return }
-                if isLoadding {
+                if isLoading {
                     self.startAnimating()
                 } else {
                     self.stopAnimating()

@@ -41,10 +41,10 @@ class RxSwiftSubjectsController: MVVMBaseViewController {
             }
             .disposed(by: disposeBag)
         
-        viewModel.requestIsLoadding
-            .drive(onNext: { [weak self] isLoadding in
+        viewModel.requestLoading
+            .drive(onNext: { [weak self] isLoading in
                 guard let self = self else { return }
-                if isLoadding {
+                if isLoading {
                     self.startAnimating()
                 } else {
                     self.stopAnimating()

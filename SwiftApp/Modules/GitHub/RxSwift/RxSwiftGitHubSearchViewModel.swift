@@ -31,7 +31,7 @@ class RxSwiftGitHubSearchViewModel: ViewModel, ViewModelType {
         // 下拉刷新
         headerRefresh.flatMapLatest { [weak self] in
             self?.page = 1
-            let since = self?.trendingPeriod.value.rawValue ?? "daily"
+            let since = self?.trendingPeriod.value.paramValue ?? ""
             return GitHubAPI.searchRepositories(language: "swift", since: since).rx_request().asObservable().take(1)
         }
         .map { [weak self] (response) -> Result<[RepoElement], Error> in
@@ -39,7 +39,7 @@ class RxSwiftGitHubSearchViewModel: ViewModel, ViewModelType {
             do {
                 let elements = try response.map([RepoElement].self)
                 if let string = String(data: response.data, encoding: .utf8) {
-                    print("返回结果 string = \(string)")
+                    print("response data = \(string)")
                 }
                 return .success(elements)
             } catch {
@@ -47,6 +47,7 @@ class RxSwiftGitHubSearchViewModel: ViewModel, ViewModelType {
             }
         }
         .subscribe(onNext: { [weak self] result in
+            self?.loading.accept(false)
             switch result {
             case .success(let elements):
                 self?.dataArray.accept(elements)
@@ -58,17 +59,12 @@ class RxSwiftGitHubSearchViewModel: ViewModel, ViewModelType {
         // 上拉加载
         input.footerRefresh.flatMapLatest { [weak self] in
             self?.page += 1
-            let since = self?.trendingPeriod.value.rawValue ?? "daily"
+            let since = self?.trendingPeriod.value.paramValue ?? ""
             return GitHubAPI.searchRepositories(language: "swift", since: since).rx_request().asObservable().take(1)
         }
-        .map { [weak self] (response) -> Result<[RepoElement], Error> in
+        .map { (response) -> Result<[RepoElement], Error> in
             do {
                 let elements = try response.map([RepoElement].self)
-                if elements.isEmpty {
-                    self?.refreshingStateObservable.accept(.endRefreshingWithNoMoreData)
-                } else {
-                    self?.refreshingStateObservable.accept(.footerEndRefreshing)
-                }
                 return .success(elements)
             } catch {
                 return .failure(error)
@@ -77,11 +73,17 @@ class RxSwiftGitHubSearchViewModel: ViewModel, ViewModelType {
         .subscribe(onNext: { [weak self] result in
             switch result {
             case .success(let elements):
+                if elements.isEmpty {
+                    self?.refreshingStateObservable.accept(.endRefreshingWithNoMoreData)
+                } else {
+                    self?.refreshingStateObservable.accept(.footerEndRefreshing)
+                }
                 let totalElements = (self?.dataArray.value ?? []) + elements
                 self?.dataArray.accept(totalElements)
             case .failure(let error):
                 print("Error: \(error)")
             }
+            self?.loading.accept(false)
         }).disposed(by: disposeBag)
         
         let repos = self.dataArray.asDriver(onErrorJustReturn: [])

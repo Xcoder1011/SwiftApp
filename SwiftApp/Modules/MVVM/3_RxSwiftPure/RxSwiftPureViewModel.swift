@@ -17,7 +17,7 @@ class RxSwiftPureViewModel: ViewModel, ViewModelType {
     }
     
     struct Output {
-        let requestIsLoadding: Driver<Bool>
+        let requestLoading: Driver<Bool>
         let didSelectId: Driver<Int>
         let repos: Driver<[Repo]>
     }
@@ -56,7 +56,7 @@ class RxSwiftPureViewModel: ViewModel, ViewModelType {
             }
             .map { $0.id }
 
-        return Output(requestIsLoadding: loading.asDriver(),
+        return Output(requestLoading: loading.asDriver(),
                       didSelectId: selectRepoId,
                       repos: repos)
     }

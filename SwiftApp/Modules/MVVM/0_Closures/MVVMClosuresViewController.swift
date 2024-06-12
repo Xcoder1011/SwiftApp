@@ -55,9 +55,9 @@ class MVVMClosuresViewController: TableViewController {
             self.showSelectId(id)
         }
         
-        viewModel.requestIsLoadding = { [weak self] isLoadding in
+        viewModel.requestLoading = { [weak self] isLoading in
             guard let self = self else { return }
-            if isLoadding {
+            if isLoading {
                 self.startAnimating()
             } else {
                 self.stopAnimating()
