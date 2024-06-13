@@ -13,7 +13,7 @@ import RxCocoa
 
 class RxSwiftGitHubSearchController: TableViewController {
     fileprivate let segmentSelection = BehaviorRelay<Int>(value: 0)
-
+    
     private lazy var segmentedView: JXSegmentedView = {
         let view = JXSegmentedView()
         view.delegate = self
@@ -61,8 +61,13 @@ class RxSwiftGitHubSearchController: TableViewController {
         let output = viewModel.transform(input: input)
         bindTableView(output)
     }
-    
-    private func bindTableView(_ output: RxSwiftGitHubSearchViewModel.Output) {
+}
+
+// MARK: - Private Methods
+
+private extension RxSwiftGitHubSearchController {
+    /// 绑定表格视图数据
+    func bindTableView(_ output: RxSwiftGitHubSearchViewModel.Output) {
         output.repos
             .drive(tableView.rx
                 .items(cellIdentifier: UITableViewCell.reuseIdentifier, cellType: UITableViewCell.self)) { (row, repo, cell) in

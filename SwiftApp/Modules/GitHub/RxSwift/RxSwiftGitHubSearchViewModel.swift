@@ -27,15 +27,61 @@ class RxSwiftGitHubSearchViewModel: ViewModel, ViewModelType {
     
     func transform(input: Input) -> Output {
         input.selectTrendingPeriod.bind(to: trendingPeriod).disposed(by: disposeBag)
-        let headerRefresh = Observable.of(input.headerRefresh, input.selectTrendingPeriod.map { _ in }.skip(1)).merge()
-        // 下拉刷新
-        headerRefresh.flatMapLatest { [weak self] in
-            self?.page = 1
-            let since = self?.trendingPeriod.value.paramValue ?? ""
-            return GitHubAPI.searchRepositories(language: "swift", since: since).rx_request().asObservable().take(1)
+        
+        let headerRefreshObservable = Observable.of(input.headerRefresh, input.selectTrendingPeriod.map { _ in }.skip(1)).merge()
+        /// 下拉刷新
+        headerRefreshObservable.flatMapLatest { [weak self] in
+            guard let self = self else { return Observable<Result<[RepoElement], Error>>.empty() }
+            self.page = 1
+            let since = self.trendingPeriod.value.paramValue
+            return self.fetchRepositories(page: self.page, since: since)
         }
-        .map { [weak self] (response) -> Result<[RepoElement], Error> in
-            self?.refreshingStateObservable.accept(.headerEndRefreshing)
+        .subscribe(onNext: { [weak self] result in
+            guard let self = self else { return }
+            self.loading.accept(false)
+            self.refreshingStateObservable.accept(.headerEndRefreshing)
+            switch result {
+            case .success(let elements):
+                self.dataArray.accept(elements)
+            case .failure(let error):
+                print("Error: \(error)")
+            }
+        }).disposed(by: disposeBag)
+        
+        /// 上拉加载
+        input.footerRefresh.flatMapLatest { [weak self] in
+            guard let self = self else { return Observable<Result<[RepoElement], Error>>.empty() }
+            self.page += 1
+            let since = self.trendingPeriod.value.paramValue
+            return self.fetchRepositories(page: self.page, since: since)
+        }
+        .subscribe(onNext: { [weak self] result in
+            guard let self = self else { return }
+            self.loading.accept(false)
+            self.refreshingStateObservable.accept(.footerEndRefreshing)
+            switch result {
+            case .success(let elements):
+                self.dataArray.accept(self.dataArray.value + elements)
+            case .failure(let error):
+                print("Error: \(error)")
+            }
+        }).disposed(by: disposeBag)
+        
+        let repos = self.dataArray.asDriver(onErrorJustReturn: [])
+        return Output(repos: repos)
+    }
+}
+
+// MARK: - Private Methods
+
+private extension RxSwiftGitHubSearchViewModel {
+    /// 获取仓库列表
+    ///
+    /// - Parameters:
+    ///   - page: 页码
+    ///   - since: 时间参数
+    func fetchRepositories(page: Int, since: String) -> Observable<Result<[RepoElement], Error>> {
+        return GitHubAPI.searchRepositories(language: "swift", since: since).rx_request().asObservable().take(1).map { response -> Result<[RepoElement], Error> in
             do {
                 let elements = try response.map([RepoElement].self)
                 if let string = String(data: response.data, encoding: .utf8) {
@@ -46,53 +92,13 @@ class RxSwiftGitHubSearchViewModel: ViewModel, ViewModelType {
                 return .failure(error)
             }
         }
-        .subscribe(onNext: { [weak self] result in
-            self?.loading.accept(false)
-            switch result {
-            case .success(let elements):
-                self?.dataArray.accept(elements)
-            case .failure(let error):
-                print("Error: \(error)")
-            }
-        }).disposed(by: disposeBag)
-        
-        // 上拉加载
-        input.footerRefresh.flatMapLatest { [weak self] in
-            self?.page += 1
-            let since = self?.trendingPeriod.value.paramValue ?? ""
-            return GitHubAPI.searchRepositories(language: "swift", since: since).rx_request().asObservable().take(1)
-        }
-        .map { (response) -> Result<[RepoElement], Error> in
-            do {
-                let elements = try response.map([RepoElement].self)
-                return .success(elements)
-            } catch {
-                return .failure(error)
-            }
-        }
-        .subscribe(onNext: { [weak self] result in
-            switch result {
-            case .success(let elements):
-                if elements.isEmpty {
-                    self?.refreshingStateObservable.accept(.endRefreshingWithNoMoreData)
-                } else {
-                    self?.refreshingStateObservable.accept(.footerEndRefreshing)
-                }
-                let totalElements = (self?.dataArray.value ?? []) + elements
-                self?.dataArray.accept(totalElements)
-            case .failure(let error):
-                print("Error: \(error)")
-            }
-            self?.loading.accept(false)
-        }).disposed(by: disposeBag)
-        
-        let repos = self.dataArray.asDriver(onErrorJustReturn: [])
-        return Output(repos: repos)
     }
 }
 
+// MARK: - ViewModelHeaderFooterConfigure
+
 extension RxSwiftGitHubSearchViewModel: ViewModelHeaderFooterConfigure {
-    
+    /// 是否立即进入刷新状态
     var enterRefreshImmediately: Bool {
         return true
     }
