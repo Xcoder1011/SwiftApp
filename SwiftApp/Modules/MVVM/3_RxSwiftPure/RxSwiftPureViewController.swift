@@ -28,28 +28,27 @@ class RxSwiftPureViewController: MVVMBaseViewController {
         
         output.repos
             .drive(tableView.rx
-                .items(cellIdentifier: UITableViewCell.reuseIdentifier, cellType: UITableViewCell.self))
-        { _, repo, cell in
-            cell.textLabel?.numberOfLines = 0
-            cell.textLabel?.text = "\(repo.name)\n\(repo.description)"
-        }
-        .disposed(by: disposeBag)
+                .items(cellIdentifier: UITableViewCell.reuseIdentifier, cellType: UITableViewCell.self)) { _, repo, cell in
+                    cell.textLabel?.numberOfLines = 0
+                    cell.textLabel?.text = "\(repo.name)\n\(repo.description)"
+            }
+            .disposed(by: disposeBag)
         
         output.requestLoading
             .drive(onNext: { [weak self] isLoading in
-                guard let self = self else { return }
+                guard let self else { return }
                 if isLoading {
-                    self.startAnimating()
+                    startAnimating()
                 } else {
-                    self.stopAnimating()
+                    stopAnimating()
                 }
             })
             .disposed(by: disposeBag)
         
         output.didSelectId
             .drive(onNext: { [weak self] repoId in
-                guard let self = self else { return }
-                self.showSelectId(repoId)
+                guard let self else { return }
+                showSelectId(repoId)
             })
             .disposed(by: disposeBag)
     }

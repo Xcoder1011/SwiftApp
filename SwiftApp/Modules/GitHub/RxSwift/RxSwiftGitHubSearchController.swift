@@ -62,6 +62,10 @@ class RxSwiftGitHubSearchController: TableViewController {
         let output = viewModel.transform(input: input)
         bindTableView(output)
     }
+
+    deinit {
+        stopAnimating()
+    }
 }
 
 // MARK: - Private Methods
@@ -71,12 +75,11 @@ private extension RxSwiftGitHubSearchController {
     func bindTableView(_ output: RxSwiftGitHubSearchViewModel.Output) {
         output.repos
             .drive(tableView.rx
-                .items(cellIdentifier: UITableViewCell.reuseIdentifier, cellType: UITableViewCell.self))
-        { _, repo, cell in
-            cell.textLabel?.numberOfLines = 0
-            cell.textLabel?.text = "\(repo.name) -- \(repo.stars)\n\(repo.url)"
-        }
-        .disposed(by: disposeBag)
+                .items(cellIdentifier: UITableViewCell.reuseIdentifier, cellType: UITableViewCell.self)) { _, repo, cell in
+                    cell.textLabel?.numberOfLines = 0
+                    cell.textLabel?.text = "\(repo.name) -- \(repo.stars)\n\(repo.url)"
+            }
+            .disposed(by: disposeBag)
     }
 }
 

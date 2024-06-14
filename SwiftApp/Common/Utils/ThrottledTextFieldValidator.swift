@@ -13,15 +13,13 @@ final class ThrottledTextFieldValidator {
     private let validationRule: (String) -> Bool
 
     init(throttle: Throttle = Throttle(minimumDelay: 0.3),
-         validationRule: @escaping ((String) -> Bool) = { query in query.count > 2 })
-    {
+         validationRule: @escaping ((String) -> Bool) = { query in query.count > 2 }) {
         self.throttle = throttle
         self.validationRule = validationRule
     }
 
     func validate(query: String,
-                  completion: @escaping ((String?) -> Void))
-    {
+                  completion: @escaping ((String?) -> Void)) {
         guard validationRule(query),
               distinctUntilChanged(query)
         else {
