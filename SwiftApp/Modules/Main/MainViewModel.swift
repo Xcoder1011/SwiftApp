@@ -10,7 +10,6 @@ import RxCocoa
 import RxSwift
 
 class MainViewModel: ViewModel, ViewModelType {
-    
     struct Input {
         let ready: Observable<Void>
         let selection: Driver<Item>
@@ -44,9 +43,9 @@ class MainViewModel: ViewModel, ViewModelType {
             ])
         ]
         
-        input.ready.flatMapLatest({ () -> Observable<[MySection]> in
-            return Observable.just(sectionsData)
-        }).subscribe(onNext: { (sections) in
+        input.ready.flatMapLatest { () -> Observable<[MySection]> in
+            Observable.just(sectionsData)
+        }.subscribe(onNext: { sections in
             sectionsRelay.accept(sections)
         }, onError: { error in
             print("Error occurred: \(error)")
@@ -54,8 +53,8 @@ class MainViewModel: ViewModel, ViewModelType {
         
         input.selection.asObservable().bind(to: selectedItemsRelay).disposed(by: disposeBag)
         
-        let itemSelectedDriver = selectedItemsRelay.asDriver(onErrorRecover: { error in
-            return Driver.just(Item(title: "", scene: .home))
+        let itemSelectedDriver = selectedItemsRelay.asDriver(onErrorRecover: { _ in
+            Driver.just(Item(title: "", scene: .home))
         })
         return Output(sections: sectionsRelay.asDriver(), itemSelected: itemSelectedDriver)
     }

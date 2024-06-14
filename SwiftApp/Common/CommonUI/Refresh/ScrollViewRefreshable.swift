@@ -5,8 +5,8 @@
 //  Created by KUN on 2024/5/24.
 //
 
-import RxSwift
 import RxCocoa
+import RxSwift
 
 protocol ScrollViewRefreshable {
     var refreshScrollView: UIScrollView { get }
@@ -18,7 +18,7 @@ protocol RefreshableSubject {
     var footerRefreshTrigger: PublishSubject<Void> { get set }
 }
 
-private struct RSAssociatedKeys {
+private enum RSAssociatedKeys {
     static var headerRefreshTrigger: UInt8 = 0
     static var footerRefreshTrigger: UInt8 = 0
 }
@@ -37,7 +37,7 @@ extension RefreshableSubject {
             objc_setAssociatedObject(self, &RSAssociatedKeys.headerRefreshTrigger, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
     }
-    
+
     var footerRefreshTrigger: PublishSubject<Void> {
         get {
             guard let trigger = objc_getAssociatedObject(self, &RSAssociatedKeys.footerRefreshTrigger) as? PublishSubject<Void> else {
@@ -52,4 +52,3 @@ extension RefreshableSubject {
         }
     }
 }
-

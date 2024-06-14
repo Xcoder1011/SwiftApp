@@ -9,7 +9,6 @@ import Foundation
 import UIKit
 
 extension Navigator {
-    
     enum Scene {
         case home
         case navHome
@@ -22,25 +21,25 @@ extension Navigator {
         case rxswift_github
         case combine_github
     }
-    
+
     func getController(scene: Scene) -> UIViewController? {
         switch scene {
-        case .home: return ViewController(viewModel: nil, navigator: self)
-        case .navHome: return NavigationController(rootViewController: ViewController(viewModel: MainViewModel(service: NetworkingServiceIMP()), navigator: self))
-        case .mvc: return MVCViewController(viewModel: nil, navigator: self)
-        case .mvp: return MVPViewController(viewModel: MVPViewModel(service: NetworkingServiceIMP()), navigator: self)
+        case .home: ViewController(viewModel: nil, navigator: self)
+        case .navHome: NavigationController(rootViewController: ViewController(viewModel: MainViewModel(service: NetworkingServiceIMP()), navigator: self))
+        case .mvc: MVCViewController(viewModel: nil, navigator: self)
+        case .mvp: MVPViewController(viewModel: MVPViewModel(service: NetworkingServiceIMP()), navigator: self)
         case .mvvm_closures:
-            return MVVMClosuresViewController(viewModel: MVVMClosuresViewModel(service: NetworkingServiceIMP()), navigator: self)
+            MVVMClosuresViewController(viewModel: MVVMClosuresViewModel(service: NetworkingServiceIMP()), navigator: self)
         case .mvvm_functions_subjects:
-            return FunctionsSubjectsController(viewModel: FunctionsSubjectsViewModel(service: NetworkingServiceIMP()), navigator: self)
+            FunctionsSubjectsController(viewModel: FunctionsSubjectsViewModel(service: NetworkingServiceIMP()), navigator: self)
         case .mvvm_rxswift_subjects:
-            return RxSwiftSubjectsController(viewModel: RxSwiftSubjectsViewModel(service: NetworkingServiceIMP()), navigator: self)
+            RxSwiftSubjectsController(viewModel: RxSwiftSubjectsViewModel(service: NetworkingServiceIMP()), navigator: self)
         case .mvvm_rxswift_pure:
-            return RxSwiftPureViewController(viewModel: RxSwiftPureViewModel(service: NetworkingServiceIMP()), navigator: self)
+            RxSwiftPureViewController(viewModel: RxSwiftPureViewModel(service: NetworkingServiceIMP()), navigator: self)
         case .rxswift_github:
-            return RxSwiftGitHubSearchController(viewModel: RxSwiftGitHubSearchViewModel(), navigator: self)
+            RxSwiftGitHubSearchController(viewModel: RxSwiftGitHubSearchViewModel(), navigator: self)
         case .combine_github:
-            return CombineGitHubSearchController(viewModel: CombineGitHubSearchViewModel(), navigator: self)
+            CombineGitHubSearchController(viewModel: CombineGitHubSearchViewModel(), navigator: self)
         }
     }
 }

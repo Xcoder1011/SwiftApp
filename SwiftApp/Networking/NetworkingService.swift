@@ -6,8 +6,8 @@
 //
 
 import Foundation
-import RxSwift
 import RxCocoa
+import RxSwift
 
 protocol NetworkingHomeAPI {
     @discardableResult
@@ -21,7 +21,7 @@ protocol NetworkingAuthAPI {
     func login(username: String, password: String) -> Single<String>
 }
 
-protocol NetworkingService: NetworkingHomeAPI, NetworkingAuthAPI { }
+protocol NetworkingService: NetworkingHomeAPI, NetworkingAuthAPI {}
 
 final class NetworkingServiceIMP: NetworkingService {
     private let session = URLSession.shared
@@ -35,15 +35,16 @@ final class NetworkingServiceIMP: NetworkingService {
                     print("Error occurred during search: \(error.localizedDescription)")
                     return
                 }
-                
+
                 guard let httpResponse = response as? HTTPURLResponse,
                       httpResponse.statusCode == 200,
-                      let data = data else {
+                      let data = data
+                else {
                     completion([])
                     print("Invalid response or no data received")
                     return
                 }
-            
+
                 do {
                     let searchResponse = try JSONDecoder().decode(SearchResponse.self, from: data)
                     completion(searchResponse.items)
@@ -56,7 +57,7 @@ final class NetworkingServiceIMP: NetworkingService {
         task.resume()
         return task
     }
-    
+
     func rx_searchRepos(query: String) -> RxSwift.Observable<[Repo]> {
         let request = URLRequest(url: URL(string: "https://api.github.com/search/repositories?q=\(query)")!)
         return session.rx.data(request: request)
@@ -67,7 +68,7 @@ final class NetworkingServiceIMP: NetworkingService {
                 return response.items
             }
     }
-    
+
     func fetchPopularRepos() -> RxSwift.Observable<[Repo]?> {
         let request = URLRequest(url: URL(string: "https://api.github.com/search/repositories?q=hot")!)
         return session.rx.data(request: request)
@@ -102,13 +103,13 @@ extension NetworkingServiceIMP {
         ]).asSingle()
         return items
     }
-    
+
     func login(username: String, password: String) -> Single<String> {
         return Single.create { single in
             DispatchQueue.global().async {
                 single(.success(""))
             }
-            return Disposables.create { }
+            return Disposables.create {}
         }
         .observe(on: MainScheduler.instance)
     }

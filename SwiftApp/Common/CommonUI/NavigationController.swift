@@ -9,7 +9,7 @@ import UIKit
 
 class NavigationController: UINavigationController {
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        return globalStatusBarStyle.value
+        globalStatusBarStyle.value
     }
 
     override func viewDidLoad() {

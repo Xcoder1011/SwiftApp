@@ -8,7 +8,6 @@
 import UIKit
 
 class RxSwiftSubjectsController: MVVMBaseViewController {
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "mvvm-rxswift-subjects-observables"
@@ -35,7 +34,7 @@ class RxSwiftSubjectsController: MVVMBaseViewController {
             .disposed(by: disposeBag)
         
         viewModel.didReceiveRepos
-            .drive(tableView.rx.items(cellIdentifier: UITableViewCell.reuseIdentifier, cellType: UITableViewCell.self)) { (row, repo, cell) in
+            .drive(tableView.rx.items(cellIdentifier: UITableViewCell.reuseIdentifier, cellType: UITableViewCell.self)) { _, repo, cell in
                 cell.textLabel?.numberOfLines = 0
                 cell.textLabel?.text = "\(repo.name)\n\(repo.description)"
             }
@@ -43,19 +42,19 @@ class RxSwiftSubjectsController: MVVMBaseViewController {
         
         viewModel.requestLoading
             .drive(onNext: { [weak self] isLoading in
-                guard let self = self else { return }
+                guard let self else { return }
                 if isLoading {
-                    self.startAnimating()
+                    startAnimating()
                 } else {
-                    self.stopAnimating()
+                    stopAnimating()
                 }
             })
             .disposed(by: disposeBag)
         
         viewModel.didSelectId
             .drive(onNext: { [weak self] repoId in
-                guard let self = self else { return }
-                self.showSelectId(repoId)
+                guard let self else { return }
+                showSelectId(repoId)
             })
             .disposed(by: disposeBag)
     }

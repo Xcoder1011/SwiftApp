@@ -6,8 +6,8 @@
 //
 
 import Foundation
-import RxSwift
 import RxCocoa
+import RxSwift
 
 extension Reactive where Base: UIViewController {
     var viewWillAppear: ControlEvent<Void> {

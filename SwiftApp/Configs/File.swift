@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct Configs {
-    struct Network {
+enum Configs {
+    enum Network {
         static let gitHubApiBaseUrl = "https://gtrend.yapie.me"
     }
 }

@@ -5,29 +5,28 @@
 //  Created by KUN on 2024/5/17.
 //
 
-import RxSwift
-import RxCocoa
 import Moya
+import RxCocoa
+import RxSwift
 
 class RxSwiftGitHubSearchViewModel: ViewModel, ViewModelType {
-    
     struct Input {
         let headerRefresh: Observable<Void>
         let footerRefresh: Observable<Void>
         let selectTrendingPeriod: Observable<TrendingPeriodSegments>
     }
-    
+
     struct Output {
         let repos: Driver<[RepoElement]>
     }
-    
+
     var dataArray = BehaviorRelay<[RepoElement]>(value: [])
     var page: Int = 1
     let trendingPeriod = BehaviorRelay<TrendingPeriodSegments>(value: .daily)
-    
+
     func transform(input: Input) -> Output {
         input.selectTrendingPeriod.bind(to: trendingPeriod).disposed(by: disposeBag)
-        
+
         let headerRefreshObservable = Observable.of(input.headerRefresh, input.selectTrendingPeriod.map { _ in }.skip(1)).merge()
         /// 下拉刷新
         headerRefreshObservable.flatMapLatest { [weak self] in
@@ -47,7 +46,7 @@ class RxSwiftGitHubSearchViewModel: ViewModel, ViewModelType {
                 print("Error: \(error)")
             }
         }).disposed(by: disposeBag)
-        
+
         /// 上拉加载
         input.footerRefresh.flatMapLatest { [weak self] in
             guard let self = self else { return Observable<Result<[RepoElement], Error>>.empty() }
@@ -66,8 +65,8 @@ class RxSwiftGitHubSearchViewModel: ViewModel, ViewModelType {
                 print("Error: \(error)")
             }
         }).disposed(by: disposeBag)
-        
-        let repos = self.dataArray.asDriver(onErrorJustReturn: [])
+
+        let repos = dataArray.asDriver(onErrorJustReturn: [])
         return Output(repos: repos)
     }
 }

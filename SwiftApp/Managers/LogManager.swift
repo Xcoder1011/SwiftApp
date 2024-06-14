@@ -4,9 +4,9 @@
 //
 //  Created by KUN on 2023/11/30.
 //
+import CocoaLumberjack
 import Foundation
 import RxSwift
-import CocoaLumberjack
 
 public func logDebug(_ message: @autoclosure () -> String) {
     DDLogDebug(DDLogMessageFormat(unicodeScalarLiteral: message()))
@@ -22,7 +22,6 @@ public func logInfo(_ message: @autoclosure () -> String) {
 
 public func logVerbose(_ message: @autoclosure () -> String) {
     DDLogVerbose(DDLogMessageFormat(unicodeScalarLiteral: message()))
-
 }
 
 public func logWarn(_ message: @autoclosure () -> String) {

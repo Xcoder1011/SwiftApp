@@ -10,6 +10,6 @@ import Localize_Swift
 
 extension StaticString {
     func localized() -> String {
-        return description.localized()
+        description.localized()
     }
 }

@@ -8,8 +8,8 @@
 import Foundation
 
 class Throttle {
-    private var workItem: DispatchWorkItem = DispatchWorkItem(block: {})
-    private var previousRun: Date = Date.distantPast
+    private var workItem: DispatchWorkItem = .init(block: {})
+    private var previousRun: Date = .distantPast
     private let queue: DispatchQueue
     private let delay: TimeInterval
     
@@ -21,7 +21,7 @@ class Throttle {
     func throttle(_ block: @escaping () -> Void) {
         workItem.cancel()
         
-        workItem = DispatchWorkItem() {
+        workItem = DispatchWorkItem {
             [weak self] in
             self?.previousRun = Date()
             block()

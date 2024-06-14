@@ -5,13 +5,12 @@
 //  Created by KUN on 2023/12/6.
 //
 
-import UIKit
-import RxSwift
-import RxCocoa
 import MJRefresh
+import RxCocoa
+import RxSwift
+import UIKit
 
 class TableViewController: BaseViewController, UIScrollViewDelegate, RefreshableSubject {
-    
     lazy var tableView: TableView = {
         let view = TableView(frame: CGRect(), style: .plain)
         view.emptyDataSetSource = self
@@ -19,23 +18,23 @@ class TableViewController: BaseViewController, UIScrollViewDelegate, Refreshable
         view.rx.setDelegate(self).disposed(by: disposeBag)
         return view
     }()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
+
     override func makeUI() {
         super.makeUI()
-        self.contentView.addSubview(tableView)
+        contentView.addSubview(tableView)
         tableView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-        self.setupRefreshConfig()
+        setupRefreshConfig()
     }
-    
+
     override func bindViewModel() {
         super.bindViewModel()
-        let updateEmptyDataSet = Observable.of(isLoading.map { _ in }.asObservable(), emptyDataSetImageTintColor.map({ _ in }), languageChanged.asObservable()).merge()
+        let updateEmptyDataSet = Observable.of(isLoading.map { _ in }.asObservable(), emptyDataSetImageTintColor.map { _ in }, languageChanged.asObservable()).merge()
         updateEmptyDataSet.subscribe(onNext: { [weak self] () in
             self?.tableView.reloadEmptyDataSet()
         }).disposed(by: disposeBag)
@@ -44,11 +43,12 @@ class TableViewController: BaseViewController, UIScrollViewDelegate, Refreshable
 
 extension TableViewController: ScrollViewRefreshable {
     var refreshScrollView: UIScrollView {
-        return self.tableView
+        tableView
     }
+
     func setupRefreshConfig() {
         guard let viewModel = viewModel as? ViewModelRefreshable else { return }
-        viewModel.refreshingStateObservable.bind(to: refreshScrollView.rx.refreshingState).disposed(by: self.disposeBag)
+        viewModel.refreshingStateObservable.bind(to: refreshScrollView.rx.refreshingState).disposed(by: disposeBag)
 
         if let headerVM = viewModel as? ViewModelHeaderConfigure {
             refreshScrollView.mj_header = headerVM.header

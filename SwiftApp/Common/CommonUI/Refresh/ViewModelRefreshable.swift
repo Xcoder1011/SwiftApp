@@ -6,8 +6,8 @@
 //
 
 import MJRefresh
-import RxSwift
 import RxCocoa
+import RxSwift
 
 // MARK: - ViewModelRefreshable
 
@@ -33,7 +33,7 @@ extension ViewModelRefreshable {
     }
 }
 
-typealias ViewModelHeaderFooterConfigure = ViewModelHeaderConfigure & ViewModelFooterConfigure
+typealias ViewModelHeaderFooterConfigure = ViewModelFooterConfigure & ViewModelHeaderConfigure
 
 // MARK: - ViewModelHeaderConfigure
 
@@ -46,10 +46,11 @@ protocol ViewModelHeaderConfigure: ViewModelRefreshable {
 
 extension ViewModelHeaderConfigure {
     var header: MJRefreshHeader {
-        return MJRefreshNormalHeader()
+        MJRefreshNormalHeader()
     }
+
     var enterRefreshImmediately: Bool {
-        return false
+        false
     }
 }
 
@@ -62,6 +63,6 @@ protocol ViewModelFooterConfigure: ViewModelRefreshable {
 
 extension ViewModelFooterConfigure {
     var footer: MJRefreshFooter {
-        return MJRefreshAutoNormalFooter()
+        MJRefreshAutoNormalFooter()
     }
 }

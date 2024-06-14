@@ -6,8 +6,8 @@
 //
 
 import Foundation
-import RxSwift
 import RxCocoa
+import RxSwift
 
 protocol FuncSubViewModelInputs {
     func viewWillAppear()
@@ -27,7 +27,6 @@ protocol FuncSubViewModelType {
 }
 
 class FunctionsSubjectsViewModel: ViewModel, FuncSubViewModelType, FuncSubViewModelInputs, FuncSubViewModelOutputs {
-    
     // Inputs
     
     private let didSelectRowSubject = PublishSubject<IndexPath>()
@@ -51,21 +50,21 @@ class FunctionsSubjectsViewModel: ViewModel, FuncSubViewModelType, FuncSubViewMo
     var didSelectId: RxCocoa.Driver<Int>
     var requestLoading: RxCocoa.Driver<Bool>
     
-    var input: FuncSubViewModelInputs { return self }
-    var output: FuncSubViewModelOutputs { return self }
+    var input: FuncSubViewModelInputs { self }
+    var output: FuncSubViewModelOutputs { self }
     
     override init(service: NetworkingService) {
         let loading = ActivityIndicator()
         self.requestLoading = loading.asDriver()
         
-        let initialRepos = self.viewWillAppearSubject
+        let initialRepos = viewWillAppearSubject
             .asObservable()
             .flatMap { _ in
                 AppEnvironment.instance.service.rx_searchRepos(query: "RxSwift").trackActivity(loading)
             }
             .asDriver(onErrorJustReturn: [])
         
-        let searchRepos = self.didSearchSubject
+        let searchRepos = didSearchSubject
             .asObservable()
             .filter { $0.count > 2 }
             .throttle(RxTimeInterval.milliseconds(300), scheduler: MainScheduler.instance)
@@ -78,13 +77,13 @@ class FunctionsSubjectsViewModel: ViewModel, FuncSubViewModelType, FuncSubViewMo
         let repos = Driver.merge(initialRepos, searchRepos)
         self.didReceiveRepos = repos.asDriver()
         
-        self.didSelectId = self.didSelectRowSubject
+        self.didSelectId = didSelectRowSubject
             .asObservable()
             .withLatestFrom(repos, resultSelector: { indexPath, repos in
-                return repos[indexPath.item]
+                repos[indexPath.item]
             })
-            .map { $0.id }
-        // 当遇到错误时，返回-1表示无效的id
+            .map(\.id)
+            // 当遇到错误时，返回-1表示无效的id
             .asDriver(onErrorJustReturn: -1)
         
         super.init(service: service)

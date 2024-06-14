@@ -33,7 +33,7 @@ class MVVMClosuresViewController: TableViewController {
         searchController.delegate = self
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchBar.sizeToFit()
-        self.navigationItem.titleView = searchController.searchBar
+        navigationItem.titleView = searchController.searchBar
         
         tableView.dataSource = dataSource
         tableView.delegate = self
@@ -45,22 +45,22 @@ class MVVMClosuresViewController: TableViewController {
         guard let viewModel = viewModel as? MVVMClosuresViewModel else { return }
         
         viewModel.didReceiveRepos = { [weak self] repos in
-            guard let self = self else { return }
-            self.dataSource.repos = repos
-            self.tableView.reloadData()
+            guard let self else { return }
+            dataSource.repos = repos
+            tableView.reloadData()
         }
         
         viewModel.didSelectId = { [weak self] id in
-            guard let self = self else { return }
-            self.showSelectId(id)
+            guard let self else { return }
+            showSelectId(id)
         }
         
         viewModel.requestLoading = { [weak self] isLoading in
-            guard let self = self else { return }
+            guard let self else { return }
             if isLoading {
-                self.startAnimating()
+                startAnimating()
             } else {
-                self.stopAnimating()
+                stopAnimating()
             }
         }
     }

@@ -5,15 +5,15 @@
 //  Created by KUN on 2024/5/17.
 //
 
-import UIKit
-import RxSwift
-import Kingfisher
 import JXSegmentedView
+import Kingfisher
 import RxCocoa
+import RxSwift
+import UIKit
 
 class RxSwiftGitHubSearchController: TableViewController {
     fileprivate let segmentSelection = BehaviorRelay<Int>(value: 0)
-    
+
     private lazy var segmentedView: JXSegmentedView = {
         let view = JXSegmentedView()
         view.delegate = self
@@ -23,7 +23,7 @@ class RxSwiftGitHubSearchController: TableViewController {
         view.indicators = [indicator]
         return view
     }()
-    
+
     private lazy var segmentedDataSource: JXSegmentedTitleDataSource = {
         let dataSource = JXSegmentedTitleDataSource()
         dataSource.isTitleColorGradientEnabled = true
@@ -32,13 +32,14 @@ class RxSwiftGitHubSearchController: TableViewController {
                              TrendingPeriodSegments.monthly.title]
         return dataSource
     }()
-    
+
     override func makeUI() {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.reuseIdentifier)
         super.makeUI()
         navigationItem.title = "RxSwiftGitHub"
         contentView.addSubview(segmentedView)
         segmentedView.setBorderWidth()
+
         let segmentedViewHeight = 44.0
         segmentedView.snp.updateConstraints { make in
             make.left.top.right.equalTo(0)
@@ -48,7 +49,7 @@ class RxSwiftGitHubSearchController: TableViewController {
             make.edges.equalTo(UIEdgeInsets(top: segmentedViewHeight, left: 0, bottom: 0, right: 0))
         }
     }
-    
+
     override func bindViewModel() {
         super.bindViewModel()
         guard let viewModel = viewModel as? RxSwiftGitHubSearchViewModel else { return }
@@ -70,17 +71,18 @@ private extension RxSwiftGitHubSearchController {
     func bindTableView(_ output: RxSwiftGitHubSearchViewModel.Output) {
         output.repos
             .drive(tableView.rx
-                .items(cellIdentifier: UITableViewCell.reuseIdentifier, cellType: UITableViewCell.self)) { (row, repo, cell) in
-                    cell.textLabel?.numberOfLines = 0
-                    cell.textLabel?.text = "\(repo.name) -- \(repo.stars)\n\(repo.url)"
-                }
-                .disposed(by: disposeBag)
+                .items(cellIdentifier: UITableViewCell.reuseIdentifier, cellType: UITableViewCell.self))
+        { _, repo, cell in
+            cell.textLabel?.numberOfLines = 0
+            cell.textLabel?.text = "\(repo.name) -- \(repo.stars)\n\(repo.url)"
+        }
+        .disposed(by: disposeBag)
     }
 }
 
 extension RxSwiftGitHubSearchController: JXSegmentedViewDelegate {
     func segmentedView(_ segmentedView: JXSegmentedView, didSelectedItemAt index: Int) {
-        self.segmentSelection.accept(index)
+        segmentSelection.accept(index)
         /// 仅仅点击segmentedView时出现加载动画
         viewModel?.loading.accept(true)
     }

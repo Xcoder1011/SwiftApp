@@ -5,8 +5,8 @@
 //  Created by KUN on 2023/12/6.
 //
 
-import Foundation
 import Differentiator
+import Foundation
 
 struct Item {
     var title: String
@@ -20,21 +20,21 @@ struct MySection {
 
 extension Item: Equatable, IdentifiableType {
     static func == (lhs: Item, rhs: Item) -> Bool {
-        return lhs.title == rhs.title && lhs.scene == rhs.scene
+        lhs.title == rhs.title && lhs.scene == rhs.scene
     }
-    
+
     // IdentifiableType 实现
     var identity: String {
-        return title
+        title
     }
 }
 
 extension MySection: AnimatableSectionModelType, IdentifiableType {
     // IdentifiableType 实现
     var identity: String {
-        return header
+        header
     }
-    
+
     init(original: MySection, items: [Item]) {
         header = original.header
         self.items = items

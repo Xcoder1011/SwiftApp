@@ -9,12 +9,13 @@ import Foundation
 import Moya
 import RxSwift
 
-public protocol NetworkingAPI: Moya.TargetType { }
+public protocol NetworkingAPI: Moya.TargetType {}
 
 public extension NetworkingAPI {
     @discardableResult
     func rx_request(callbackQueue: DispatchQueue? = .none,
-                    progress: Moya.ProgressBlock? = .none) -> RxSwift.Single<Moya.Response> {
+                    progress: Moya.ProgressBlock? = .none) -> RxSwift.Single<Moya.Response>
+    {
         return RxSwift.Single.create { single in
             let cancellableToken = request(callbackQueue: callbackQueue, progress: progress) { result in
                 switch result {
@@ -29,11 +30,12 @@ public extension NetworkingAPI {
             }
         }
     }
-    
+
     @discardableResult
     func request(callbackQueue: DispatchQueue? = .none,
                  progress: Moya.ProgressBlock? = .none,
-                 completion: @escaping Moya.Completion) -> Moya.Cancellable {
+                 completion: @escaping Moya.Completion) -> Moya.Cancellable
+    {
         let provider = MoyaProvider<Self>()
         return provider.request(self, callbackQueue: callbackQueue, completion: completion)
     }

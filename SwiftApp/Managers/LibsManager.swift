@@ -5,13 +5,13 @@
 //  Created by KUN on 2023/11/30.
 //
 
-import Foundation
-import RxSwift
-import RxCocoa
-import Kingfisher
 import CocoaLumberjack
-import KafkaRefresh
+import Foundation
 import IQKeyboardManagerSwift
+import KafkaRefresh
+import Kingfisher
+import RxCocoa
+import RxSwift
 
 class LibsManager {
     static let shared = LibsManager()
@@ -41,8 +41,8 @@ class LibsManager {
     
     func setupCocoaLumberjack() {
         DDLog.add(DDOSLogger.sharedInstance)
-        let fileLogger: DDFileLogger = DDFileLogger() // File Logger
-        fileLogger.rollingFrequency = TimeInterval(60*60*24)  // 24 hours
+        let fileLogger = DDFileLogger() // File Logger
+        fileLogger.rollingFrequency = TimeInterval(60 * 60 * 24) // 24 hours
         fileLogger.logFileManager.maximumNumberOfLogFiles = 7
         DDLog.add(fileLogger)
     }

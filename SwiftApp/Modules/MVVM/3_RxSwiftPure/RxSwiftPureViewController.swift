@@ -8,7 +8,6 @@
 import UIKit
 
 class RxSwiftPureViewController: MVVMBaseViewController {
-   
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "mvvm-rxswift-pure"
@@ -29,11 +28,12 @@ class RxSwiftPureViewController: MVVMBaseViewController {
         
         output.repos
             .drive(tableView.rx
-                .items(cellIdentifier: UITableViewCell.reuseIdentifier, cellType: UITableViewCell.self)) { (row, repo, cell) in
-                    cell.textLabel?.numberOfLines = 0
-                    cell.textLabel?.text = "\(repo.name)\n\(repo.description)"
-                }
-                .disposed(by: disposeBag)
+                .items(cellIdentifier: UITableViewCell.reuseIdentifier, cellType: UITableViewCell.self))
+        { _, repo, cell in
+            cell.textLabel?.numberOfLines = 0
+            cell.textLabel?.text = "\(repo.name)\n\(repo.description)"
+        }
+        .disposed(by: disposeBag)
         
         output.requestLoading
             .drive(onNext: { [weak self] isLoading in

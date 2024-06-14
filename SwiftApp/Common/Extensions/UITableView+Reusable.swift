@@ -13,13 +13,11 @@ protocol ReusableView {
 
 extension ReusableView {
     static var reuseIdentifier: String {
-        return String(describing: self)
+        String(describing: self)
     }
 }
 
-extension UITableViewCell: ReusableView {
-    
-}
+extension UITableViewCell: ReusableView {}
 
 extension UITableView {
     func dequeueReusableCell<T: UITableViewCell>(for indexPath: IndexPath) -> T {

@@ -21,15 +21,15 @@ struct Repo: Decodable {
     let owner: RepoOwner
     let html_url: String
     let description: String
-    let url: String    
+    let url: String
 }
 
 struct SearchResponse: Decodable {
     let items: [Repo]
 }
 
-
 // MARK: - RepoElement
+
 struct RepoElement: Codable {
     var author: String
     var avatar: String
@@ -51,20 +51,20 @@ struct TrendingUser: Codable {
 
 enum TrendingPeriodSegments: Int, CaseIterable {
     case daily, weekly, monthly
-    
+
     var title: String {
         switch self {
-        case .daily: return R.string.localizable.gitHubDailySegmentTitle.key.localized()
-        case .weekly: return R.string.localizable.gitHubWeeklySegmentTitle.key.localized()
-        case .monthly: return R.string.localizable.gitHubMonthlySegmentTitle.key.localized()
+        case .daily: R.string.localizable.gitHubDailySegmentTitle.key.localized()
+        case .weekly: R.string.localizable.gitHubWeeklySegmentTitle.key.localized()
+        case .monthly: R.string.localizable.gitHubMonthlySegmentTitle.key.localized()
         }
     }
-    
+
     var paramValue: String {
         switch self {
-        case .daily: return "daily"
-        case .weekly: return "weekly"
-        case .monthly: return "monthly"
+        case .daily: "daily"
+        case .weekly: "weekly"
+        case .monthly: "monthly"
         }
     }
 }

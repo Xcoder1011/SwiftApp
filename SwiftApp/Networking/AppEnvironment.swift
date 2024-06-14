@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class AppEnvironment {
+enum AppEnvironment {
     static var instance = Environment()
 }
 

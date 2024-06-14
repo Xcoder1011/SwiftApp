@@ -6,11 +6,10 @@
 //
 
 import Foundation
-import RxSwift
 import RxCocoa
+import RxSwift
 
 class RxSwiftSubjectsViewModel: ViewModel {
-    
     // Inputs
     let viewWillAppearSubject = PublishSubject<Void>()
     let didSelectRowSubject = PublishSubject<IndexPath>()
@@ -48,13 +47,11 @@ class RxSwiftSubjectsViewModel: ViewModel {
         self.didSelectId = self.didSelectRowSubject
             .asObservable()
             .withLatestFrom(repos, resultSelector: { indexPath, repos in
-                return repos[indexPath.item]
+                repos[indexPath.item]
             })
-            .map { $0.id }
+            .map(\.id)
             .asDriver(onErrorJustReturn: -1)
         
         super.init(service: service)
     }
 }
-
-

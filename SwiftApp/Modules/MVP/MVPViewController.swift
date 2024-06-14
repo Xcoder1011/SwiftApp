@@ -33,7 +33,7 @@ class MVPViewController: TableViewController {
         searchController.delegate = self
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchBar.sizeToFit()
-        self.navigationItem.titleView = searchController.searchBar
+        navigationItem.titleView = searchController.searchBar
         
         tableView.dataSource = dataSource
         tableView.delegate = self
@@ -49,8 +49,8 @@ class MVPViewController: TableViewController {
 
 extension MVPViewController: MVPViewModelDelegate {
     func mvpReposViewModel(_ reposViewModel: MVPViewModel, didReceiveRepos repos: [Repo]) {
-        self.dataSource.repos = repos
-        self.tableView.reloadData()
+        dataSource.repos = repos
+        tableView.reloadData()
     }
     
     func mvpReposViewModel(_ reposViewModel: MVPViewModel, didSelectRepoWithId id: Int) {

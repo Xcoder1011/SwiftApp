@@ -5,10 +5,10 @@
 //  Created by KUN on 2024/5/24.
 //
 
-import UIKit
-import RxSwift
-import RxCocoa
 import MJRefresh
+import RxCocoa
+import RxSwift
+import UIKit
 
 enum RefreshingState {
     case idle /** 普通闲置状态 */
@@ -20,7 +20,7 @@ enum RefreshingState {
 
 extension Reactive where Base: UIScrollView {
     var refreshingState: Binder<RefreshingState> {
-        return Binder(self.base) { scrollView, state in
+        Binder(self.base) { scrollView, state in
             switch state {
             case .idle:
                 scrollView.mj_header?.endRefreshing()

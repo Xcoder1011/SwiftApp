@@ -34,7 +34,7 @@ class MVCViewController: TableViewController {
         searchController.delegate = self
         searchController.hidesNavigationBarDuringPresentation = false
         searchController.searchBar.sizeToFit()
-        self.navigationItem.titleView = searchController.searchBar
+        navigationItem.titleView = searchController.searchBar
         
         tableView.dataSource = dataSource
         tableView.delegate = self
@@ -44,19 +44,19 @@ class MVCViewController: TableViewController {
 private extension MVCViewController {
     func didChangeQuery(_ query: String) {
         validator.validate(query: query) { [weak self] query in
-            guard let self = self,
-                  let query = query else { return }
-            self.startFetching(forQuery: query)
+            guard let self,
+                  let query else { return }
+            startFetching(forQuery: query)
         }
     }
     
     func startFetching(forQuery query: String) {
         startAnimating()
         fetcher.fetchRepos(withQuery: query, completion: { [weak self] repos in
-            guard let self = self else { return }
-            self.stopAnimating()
-            self.dataSource.repos = repos
-            self.tableView.reloadData()
+            guard let self else { return }
+            stopAnimating()
+            dataSource.repos = repos
+            tableView.reloadData()
         })
     }
     

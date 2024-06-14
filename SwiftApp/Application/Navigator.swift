@@ -38,7 +38,6 @@ class Navigator {
 }
 
 private extension Navigator {
-    
     func _show(target: UIViewController, sender: UIViewController?, transition: Transition) {
         switch transition {
         case .root(in: let window):
@@ -52,7 +51,7 @@ private extension Navigator {
         default: break
         }
         
-        guard let sender = sender else {
+        guard let sender else {
             print("Navigator need to pass a sender")
             return
         }
@@ -62,11 +61,6 @@ private extension Navigator {
                 sender.present(viewController, animated: animated, completion: completion)
             }
         }
-        
-//        if let nav = sender as? UINavigationController {
-//            nav.pushViewController(target, animated: false)
-//            return
-//        }
         
         switch transition {
         case .navigation:

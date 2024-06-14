@@ -6,8 +6,8 @@
 //
 
 import Foundation
-import UIKit
 import SwiftUI
+import UIKit
 
 class TableView: UITableView {
     init() {
@@ -44,5 +44,4 @@ class TableView: UITableView {
             sectionHeaderTopPadding = 0
         }
     }
-    
 }
