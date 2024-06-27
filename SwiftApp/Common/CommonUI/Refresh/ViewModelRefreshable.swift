@@ -5,6 +5,7 @@
 //  Created by KUN on 2024/5/24.
 //
 
+import Combine
 import MJRefresh
 import RxCocoa
 import RxSwift
@@ -12,12 +13,17 @@ import RxSwift
 // MARK: - ViewModelRefreshable
 
 protocol ViewModelRefreshable {
+    /// RxSwift
     var refreshingStateObservable: BehaviorRelay<RefreshingState> { get set }
+    /// Combine
+    var refreshingStateSubject: PassthroughSubject<RefreshingState, Never> { get set }
 }
 
 private var refreshingStateObservableKey: UInt8 = 0
+private var refreshingStateSubjectKey: UInt8 = 0
 
 extension ViewModelRefreshable {
+    /// RxSwift
     var refreshingStateObservable: BehaviorRelay<RefreshingState> {
         get {
             guard let observable = objc_getAssociatedObject(self, &refreshingStateObservableKey) as? BehaviorRelay<RefreshingState> else {
@@ -29,6 +35,21 @@ extension ViewModelRefreshable {
         }
         set {
             objc_setAssociatedObject(self, &refreshingStateObservableKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        }
+    }
+
+    /// Combine
+    var refreshingStateSubject: PassthroughSubject<RefreshingState, Never> {
+        get {
+            guard let subject = objc_getAssociatedObject(self, &refreshingStateSubjectKey) as? PassthroughSubject<RefreshingState, Never> else {
+                let newSubject = PassthroughSubject<RefreshingState, Never>()
+                objc_setAssociatedObject(self, &refreshingStateSubjectKey, newSubject, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+                return newSubject
+            }
+            return subject
+        }
+        set {
+            objc_setAssociatedObject(self, &refreshingStateSubjectKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
     }
 }

@@ -18,11 +18,11 @@ class TableViewController: BaseViewController, UIScrollViewDelegate, Refreshable
         view.rx.setDelegate(self).disposed(by: disposeBag)
         return view
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-
+    
     override func makeUI() {
         super.makeUI()
         contentView.addSubview(tableView)
@@ -31,7 +31,7 @@ class TableViewController: BaseViewController, UIScrollViewDelegate, Refreshable
         }
         setupRefreshConfig()
     }
-
+    
     override func bindViewModel() {
         super.bindViewModel()
         let updateEmptyDataSet = Observable.of(isLoading.map { _ in }.asObservable(), emptyDataSetImageTintColor.map { _ in }, languageChanged.asObservable()).merge()
@@ -45,15 +45,22 @@ extension TableViewController: ScrollViewRefreshable {
     var refreshScrollView: UIScrollView {
         tableView
     }
-
+    
     func setupRefreshConfig() {
         guard let viewModel = viewModel as? ViewModelRefreshable else { return }
+        /// RxSwift
         viewModel.refreshingStateObservable.bind(to: refreshScrollView.rx.refreshingState).disposed(by: disposeBag)
-
+        
+        /// Combine
+        viewModel.refreshingStateSubject.receive(on: DispatchQueue.main).sink { [weak self] state in
+            self?.refreshScrollView.updateRefreshingState(state)
+        }.store(in: &cancellables)
+        
         if let headerVM = viewModel as? ViewModelHeaderConfigure {
             refreshScrollView.mj_header = headerVM.header
             refreshScrollView.mj_header?.refreshingBlock = { [weak self] in
                 self?.headerRefreshTrigger.onNext(())
+                self?.headerRefreshCombineTrigger.send()
             }
             if headerVM.enterRefreshImmediately {
                 refreshScrollView.mj_header?.beginRefreshing()
@@ -63,6 +70,7 @@ extension TableViewController: ScrollViewRefreshable {
             refreshScrollView.mj_footer = footerVM.footer
             refreshScrollView.mj_footer?.refreshingBlock = { [weak self] in
                 self?.footerRefreshTrigger.onNext(())
+                self?.footerRefreshCombineTrigger.send()
             }
         }
     }

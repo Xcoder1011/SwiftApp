@@ -8,6 +8,7 @@
 import Foundation
 import RxCocoa
 import RxSwift
+import Combine
 
 protocol ViewModelType {
     associatedtype Input
@@ -16,10 +17,14 @@ protocol ViewModelType {
     func transform(input: Input) -> Output
 }
 
-class ViewModel: NSObject {
+class ViewModel: NSObject, ObservableObject {
+    /// RxSwift
     let disposeBag = DisposeBag()
     var service: NetworkingService
     let loading = BehaviorRelay(value: false)
+    
+    /// Combine
+    var cancellables = Set<AnyCancellable>()
 
     init(service: NetworkingService) {
         self.service = service
