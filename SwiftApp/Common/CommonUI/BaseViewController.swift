@@ -5,6 +5,7 @@
 //  Created by KUN on 2023/12/6.
 //
 
+import Combine
 import DZNEmptyDataSet
 import RxCocoa
 import RxSwift
@@ -16,6 +17,8 @@ import UIKit
 class BaseViewController: UIViewController, NavigatorProtocol {
     var viewModel: ViewModel?
     var navigator: Navigator!
+
+    /// RxSwift
     let viewDidLoadSubject = PublishSubject<Void>()
     let isLoading = BehaviorRelay(value: false)
 
@@ -26,7 +29,6 @@ class BaseViewController: UIViewController, NavigatorProtocol {
     var emptyDataSetImageTintColor = BehaviorRelay<UIColor?>(value: nil)
 
     let languageChanged = BehaviorRelay<Void>(value: ())
-
     private var _disposeBag: DisposeBag?
     var disposeBag: DisposeBag {
         if let existingBag = _disposeBag {
@@ -35,6 +37,9 @@ class BaseViewController: UIViewController, NavigatorProtocol {
         _disposeBag = viewModel?.disposeBag ?? DisposeBag()
         return _disposeBag!
     }
+
+    /// Combine
+    var cancellables = Set<AnyCancellable>()
 
     init(viewModel: ViewModel?, navigator: Navigator) {
         self.viewModel = viewModel
@@ -59,6 +64,7 @@ class BaseViewController: UIViewController, NavigatorProtocol {
         makeUI()
         bindViewModel()
 
+        /// RxSwift
         NotificationCenter.default.rx.notification(NSNotification.Name.SKLanguageChangeNotification).subscribe { [weak self] _ in
             self?.languageChanged.accept(())
         }.disposed(by: disposeBag)
@@ -88,6 +94,11 @@ class BaseViewController: UIViewController, NavigatorProtocol {
         languageChanged.subscribe(onNext: { [weak self] () in
             self?.emptyDataSetTitle = R.string.localizable.commonNoResults.key.localized()
         }).disposed(by: disposeBag)
+    }
+
+    deinit {
+        cancellables.removeAll()
+        logDebug("\(type(of: self)): Deinited")
     }
 }
 

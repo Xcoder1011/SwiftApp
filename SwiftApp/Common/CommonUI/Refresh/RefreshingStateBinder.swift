@@ -21,23 +21,30 @@ enum RefreshingState {
 extension Reactive where Base: UIScrollView {
     var refreshingState: Binder<RefreshingState> {
         Binder(self.base) { scrollView, state in
-            switch state {
-            case .idle:
-                scrollView.mj_header?.endRefreshing()
-                scrollView.mj_footer?.endRefreshing()
-            case .headerBeginRefreshing:
-                scrollView.mj_header?.beginRefreshing()
-            case .footerBeginRefreshing:
-                scrollView.mj_footer?.beginRefreshing()
-            case .headerEndRefreshing:
-                scrollView.mj_header?.endRefreshing()
-            case .footerEndRefreshing:
-                scrollView.mj_footer?.endRefreshing()
-            case .endRefreshingWithNoMoreData:
-                scrollView.mj_footer?.endRefreshingWithNoMoreData()
-            case .resetNoMoreData:
-                scrollView.mj_footer?.resetNoMoreData()
-            }
+            scrollView.updateRefreshingState(state)
+        }
+    }
+}
+
+extension UIScrollView {
+    // 根据状态更新scrollView的刷新组件
+    func updateRefreshingState(_ state: RefreshingState) {
+        switch state {
+        case .idle:
+            self.mj_header?.endRefreshing()
+            self.mj_footer?.endRefreshing()
+        case .headerBeginRefreshing:
+            self.mj_header?.beginRefreshing()
+        case .footerBeginRefreshing:
+            self.mj_footer?.beginRefreshing()
+        case .headerEndRefreshing:
+            self.mj_header?.endRefreshing()
+        case .footerEndRefreshing:
+            self.mj_footer?.endRefreshing()
+        case .endRefreshingWithNoMoreData:
+            self.mj_footer?.endRefreshingWithNoMoreData()
+        case .resetNoMoreData:
+            self.mj_footer?.resetNoMoreData()
         }
     }
 }
